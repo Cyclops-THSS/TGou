@@ -124,6 +124,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = ''
+
+STATICFILES_DIRS=(
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+)
+
 # LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.126.com'

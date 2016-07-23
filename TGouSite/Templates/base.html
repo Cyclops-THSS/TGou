@@ -1,10 +1,15 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
-    <title>{% block title %}User test{% endblock %}</title>
+    {% block head %}
+
+    {% endblock %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/base.css" type = "text/css"/>
+    
+    <title>{% block title %}上天狗 就购了{% endblock %}</title>
 </head>
 
 <body>
@@ -24,12 +29,14 @@
     </div>
 
     <div id="content">
-    {% block content %}{% endblock %}
+    {% block content %}
+
+    {% endblock %}
     </div>
 
     <div id="footer">
     {% block footer %}
-        <hr />
+        <hr />CopyRight:天狗有限公司
     {% endblock %}
     </div>
 </body>
