@@ -10,14 +10,14 @@ class UserRegForm(RegistrationFormUniqueEmail):
                               initial=False, required=False)
 
 
-class BaseProf(forms.ModelForm):
+class BaseUserProf(forms.ModelForm):
     email = forms.EmailField(disabled=True, label='Register Email')
     username = forms.CharField(
         max_length=30, disabled=True, label='Login Name')
     datejoined = forms.DateField(disabled=True, label='Date Registered')
 
     def __init__(self, *args, **kwargs):
-        super(BaseProf, self).__init__(*args, **kwargs)
+        super(BaseUserProf, self).__init__(*args, **kwargs)
         self.initial['email'] = self.instance.user.email
         self.initial['username'] = self.instance.user.username
         self.initial['datejoined'] = self.instance.user.date_joined
@@ -29,7 +29,7 @@ class BaseProf(forms.ModelForm):
         self.fields = fields
 
 
-class ConsumerProf(BaseProf):
+class ConsumerProf(BaseUserProf):
 
     class Meta:
         model = Consumer
@@ -40,7 +40,7 @@ class ConsumerProf(BaseProf):
         }
 
 
-class ShopKeeperProf(BaseProf):
+class ShopKeeperProf(BaseUserProf):
 
     class Meta:
         model = ShopKeeper

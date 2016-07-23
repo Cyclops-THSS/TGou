@@ -125,3 +125,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.126.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+
+EMAIL_HOST_USER = 'jlmhkwang@126.com'
+EMAIL_HOST_PASSWORD = 'web_safe'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'jlmhkwang@126.com'
