@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
+from .forms import UserRegForm
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('TGouApp.urls')),
-    url(r'^$', views.index, name='index'),
+    url(r'^accounts/profile/$', views.view_profile, name='view_profile'),
+    url(r'^accounts/profile/edit/$', views.edit_profile, name='edit_profile'),
+    url(r'^accounts/register/$', views.TRegistrationView.as_view(), name='registration_register'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ]

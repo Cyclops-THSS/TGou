@@ -1,13 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Consumer (models.Model):
-	loginName = models.CharField(max_length=200)	#	登录名
-	loginPwd = models.CharField(max_length=200)	#	登录密码
-	nickName = models.CharField(max_length=200)	#	用户昵称
-	dftAddress = models.TextField()	#	默认收货地址
-	dftPayType = models.IntegerField()	#	默认付款方式
-	contact = models.TextField()	#	联系方式
-	email = models.CharField(max_length=200)	#	邮箱地址
+	user = models.OneToOneField(User, null=True, related_name='ConsumerProf')
+	nickName = models.CharField(max_length=200, blank=True, null=True)	#	用户昵称
+	dftAddress = models.TextField(blank=True, null=True)	#	默认收货地址
+	dftPayType = models.IntegerField(blank=True, null=True)	#	默认付款方式
+	contact = models.TextField(blank=True, null=True)	#	联系方式
 
 class ShopCategory (models.Model):
 	name = models.CharField(max_length=200)	#	类别名称
@@ -21,13 +20,11 @@ class Shop (models.Model):
 	createDate = models.DateTimeField()	#	开店日期
 
 class ShopKeeper (models.Model):
-	loginName = models.CharField(max_length=200)	#	登录名
-	loginPwd = models.CharField(max_length=200)	#	登录密码
-	nickName = models.CharField(max_length=200)	#	用户昵称
-	shop = models.ForeignKey(Shop, on_delete=models.CASCADE)	#	店铺标识符
-	contact = models.TextField()	#	联系方式
-	email = models.TextField()	#	邮箱地址
-	account = models.CharField(max_length=200)	#	收款账号
+	user = models.OneToOneField(User, null=True, related_name='ShopKeeperProf')
+	nickName = models.CharField(max_length=200, null=True, blank=True)	#	用户昵称
+	shop = models.ForeignKey(Shop, on_delete=models.CASCADE, null=True)	#	店铺标识符
+	contact = models.TextField(null=True)	#	联系方式
+	account = models.CharField(max_length=200, null=True)	#	收款账号
 
 class CommodityCategory (models.Model):
 	name = models.CharField(max_length=200)	#	类别名称

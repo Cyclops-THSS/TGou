@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'registration'
+    'registration'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -60,7 +60,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'Templates'),
         ],
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -124,13 +124,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
 
-ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_HOST = 'smtp.126.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jlmhkwang@126.com'
+EMAIL_HOST_PASSWORD = 'web_safe'
 
-EMAIL_HOST_USER = 'foo@gmail.com'
-EMAIL_HOST_PASSWORD = 'bar'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'jlmhkwang@126.com'
