@@ -59,19 +59,24 @@ def view_shop(request):
     pass
 
 
-def view_shop_id(request, id):
-    shop = Shop.objects.get(pk=id)
+def _view_shop(request, shop):
     category = shop.category
     categoryList = [category]
     context = {
         'categoryList': categoryList,
         'shop': shop
     }
-    return HttpResponse(loader.get_template('vShop.html').render(context, request))
+    return render(request, 'shop/vShop.html', context)
+
+
+def view_shop_id(request, id):
+    shop = Shop.objects.get(pk=id)
+    return _view_shop(request, shop)
 
 
 def view_shop_name(request, name):
-    pass
+    shop = Shop.objects.get(name=name)
+    return _view_shop(request, shop)
 
 
 @group_required('ShopKeeper')
@@ -152,11 +157,15 @@ def search_product(request):
 
 
 def view_product_id(request, id):
-    pass
-
-
-def view_product_name(request, name):
-    pass
+    prod = Commodity.objects.get(pk=id)
+    comments = prod.comment_set.all()
+    context = {
+        'commodity': prod,
+        'categoryList': [prod.category],
+        'comments': comments,
+        'average': prod.grade
+    }
+    return render(request, 'product/vCommodity.html', context)
 
 
 @group_required('ShopKeeper')

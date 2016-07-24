@@ -43,7 +43,7 @@ class CommodityCategory (models.Model):
 class Commodity (models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 所属店铺标识符
     name = models.CharField(max_length=200)  # 商品名
-    categoty = models.ForeignKey(
+    category = models.ForeignKey(
         CommodityCategory, on_delete=models.CASCADE, blank=True, null=True)  # 类别标识符
     price = models.DecimalField(max_digits=8, decimal_places=2)  # 售价
     inventory = models.IntegerField()  # 库存余量
