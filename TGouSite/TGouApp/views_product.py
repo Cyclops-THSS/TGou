@@ -9,19 +9,19 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
 from .views_auth import group_required
-
+from django import forms
 
 @group_required('ShopKeeper')
 def new_product(request):
     pass
 
 
-def view_product(request):
-    pass
-
-
 def search_product(request):
-    pass
+    q = request.GET.get('q')
+    if request.method == 'POST':
+        q = request.POST.get('q')
+    cset = Commodity.objects.filter(name__icontains=q) if q else Commodity.objects.all()
+    return render(request, 'product/vCommodities.html', {'commodities': cset, 'query': q})
 
 
 def view_product_id(request, id):

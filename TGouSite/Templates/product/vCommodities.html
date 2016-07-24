@@ -6,7 +6,8 @@
 {% block content %}
 
 <form action="" method="POST">
-	<input name="q"/>
+    {% csrf_token %}
+	<input name="q" value="{{ query }}"/>
 	<button type="submit" class="search">搜索</button>
 </form>
 

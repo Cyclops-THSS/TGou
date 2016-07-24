@@ -45,9 +45,8 @@ urlpatterns = [
     url(r'^order/(?P<id>\d+)/confirm$', views.confirm_order, name='confirm_order'),
     url(r'^order/(?P<id>\d+)/delete$', views.delete_order, name='delete_order'),
     # product related
-    url(r'^product/$', views.view_product, name='view_product'),
+    url(r'^product/$', views.search_product, name='search_product'),
     url(r'^product/new$', views.new_product, name='new_product'),
-    url(r'^product/search$', views.search_product, name='search_product'),
     url(r'^product/(?P<id>\d+)$', views.view_product_id, name='view_product_id'),
     url(r'^product/(?P<id>\d+)/edit$', views.edit_product, name='edit_product'),
     url(r'^product/(?P<id>\d+)/delete$',
