@@ -31,7 +31,6 @@ urlpatterns = [
     url(r'^shop/new$', views.new_shop, name='new_shop'),
     url(r'^shop/delete$', views.delete_shop, name='delete_shop'),
     url(r'^shop/edit$', views.edit_shop, name='edit_shop'),
-    url(r'^shop/order/$', views.view_shop_orders, name='view_shop_orders'),
     url(r'^shop/search$', views.search_shop, name='search_shop'),
     url(r'^shop/(?P<id>\d+)$', views.view_shop_id, name='view_shop_id'),
     url(r'^shop/(?P<name>\w+)$', views.view_shop_name, name='view_shop_name'),

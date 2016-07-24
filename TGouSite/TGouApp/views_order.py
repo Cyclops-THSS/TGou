@@ -8,12 +8,24 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
-from .views_auth import group_required
+from .views_auth import group_required, belongTo
+from datetime import datetime
 
-
-@group_required('Consumer')
+@login_required
 def view_order(request):
-    pass
+    isConsumer = belongTo(request.user, 'Consumer')
+    after = request.GET.get('after')
+    before = request.GET.get('before')
+    left = datetime.min
+    right = datetime.max
+    if after:
+        y, m, d = after.split('-')
+        left = datetime(int(y), int(m), int(d))
+    if before:
+        y, m, d = before.split('-')
+        right = datetime(int(y), int(m), int(d))
+    oset = Order.objects.filter(time__range=[left,right])
+    return render(request, 'order/vOrders.html', {'orders': oset, 'isConsumer': isConsumer})
 
 
 @login_required

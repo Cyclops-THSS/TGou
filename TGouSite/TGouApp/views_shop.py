@@ -50,10 +50,5 @@ def delete_shop(request):
     pass
 
 
-@group_required('ShopKeeper')
-def view_shop_orders(request):
-    pass
-
-
 def search_shop(request):
     pass

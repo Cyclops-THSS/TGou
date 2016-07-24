@@ -31,6 +31,10 @@ def group_required(group, login_url='auth_login', raise_exception=True):
     return user_passes_test(check_perms, login_url=login_url)
 
 
+def belongTo(user, group):
+    return user.groups.filter(name=group).exists()
+
+
 @receiver(user_registered)
 def create_profile(sender, user, request, **kwargs):
     form = UserRegForm(request.POST)
@@ -45,11 +49,11 @@ def create_profile(sender, user, request, **kwargs):
 @login_required
 def edit_profile(request):
     if request.method == 'GET':
-        form = ConsumerProf(instance=request.user.ConsumerProf) if request.user.groups.filter(
-            name='Consumer').exists() else ShopKeeperProf(instance=request.user.ShopKeeperProf)
+        form = ConsumerProf(instance=request.user.ConsumerProf) if belongTo(
+            request.user, 'Consumer') else ShopKeeperProf(instance=request.user.ShopKeeperProf)
     else:
-        form = ConsumerProf(request.POST, instance=request.user.ConsumerProf) if request.user.groups.filter(
-            name='Consumer').exists() else ShopKeeperProf(request.POST, instance=request.user.ShopKeeperProf)
+        form = ConsumerProf(request.POST, instance=request.user.ConsumerProf) if belongTo(
+            request.user, 'Consumer') else ShopKeeperProf(request.POST, instance=request.user.ShopKeeperProf)
         if form.is_valid():
             form.save()
     return HttpResponse(loader.get_template('profile/profile.html').render({'form': form}, request))
