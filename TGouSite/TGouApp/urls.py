@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^accounts/profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^accounts/register/$', views.TRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^shop/(?P<id>\d+)$', views.view_shop, name='view_shop'),
 ]

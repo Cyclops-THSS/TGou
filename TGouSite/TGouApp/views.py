@@ -37,3 +37,13 @@ def edit_profile(request):
     if form.is_valid():
         form.save()
     return redirect('view_profile')
+
+def view_shop(request, id):
+    shop = Shop.objects.get(pk=id)
+    category = shop.category
+    categoryList = [category]
+    context = {
+        'categoryList': categoryList,
+        'shop': shop
+    }
+    return HttpResponse(loader.get_template('vShop.html').render(context, request))
