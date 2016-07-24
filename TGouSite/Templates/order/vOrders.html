@@ -1,0 +1,45 @@
+{# 表单 POST 自己，参数 after #}
+
+{# orders 全部 或 搜索结果集 #}
+{# isConsumer bool，当前用户身份 #}
+
+
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+
+{% if isConsumer %}
+<form action="" method="POST">
+	<p>查看在此日期之后的所有订单：</p>
+	<input type="date" name="after"/>
+	<button type="submit" class="search">提交</button>
+</form>
+{% endif %}
+
+<ul class="order-list">
+{% for order in orders %}
+	<li class="order-item">
+		<p>
+				<span class="order-id">#{{ order.id }}: </span>
+				<span class="time">{{order.time}}</span></p>
+
+		<p>
+				¥ <span class="price">{{order.price}}</span></p>
+
+		<p>
+		 	{% if isConsumer %}
+			<span class="shop-name">{{ commodity.shop.name }}
+				(#{{order.shop.id}})</span>
+		 	{% else %}
+			<span class="consumer-name">{{order.consumer.nickName}}
+				(#{{order.consumer.id}})</span>
+		 	{% endif %}
+		</p>
+	 </li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
