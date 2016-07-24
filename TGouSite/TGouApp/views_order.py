@@ -18,7 +18,8 @@ def view_order(request):
 
 @login_required
 def view_order_id(request, id):
-    pass
+    order = Order.objects.get(pk=id)
+    return render(request, 'order/vOrder.html', {'order': order})
 
 
 @group_required('Consumer')
