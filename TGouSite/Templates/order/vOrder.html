@@ -6,6 +6,7 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+{% load mathfilters %}
 {% block content %}
 
 
@@ -41,13 +42,13 @@
 {% for orderitem in order.orderitem_set.all %}
 	<tr>
 		<td><span class="commodity-name">
-				{{ orderitem.commodity.name }} (#{{ orderitem.commodity.id }})</span></td>
+				{{ orderitem.cmd.name }} (#{{ orderitem.cmd.id }})</span></td>
 		<td>
 			{{ orderitem.quantity }}</td>
 		<td><span class="price">
-			{{ orderitem.commodity.price }}</span></td>
+			{{ orderitem.cmd.price }}</span></td>
 		<td><span class="price">
-			{{ orderitem.commodity.price * orderitem.quantity }}</span></td>
+			{{ orderitem.cmd.price|mul:orderitem.quantity }}</span></td>
 	</tr>
 {% endfor %}
 	<tr>
