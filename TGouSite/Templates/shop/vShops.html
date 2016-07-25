@@ -1,5 +1,6 @@
 {# 表单 POST 自己，参数 q #}
 {# shops， 全部 或 搜索结果集 #}
+{# query 当前搜索框内容 #}
 
 
 {% extends "base.html" %}
@@ -8,7 +9,8 @@
 
 
 <form action="" method="POST">
-	<input name="q"/>
+	{% csrf_token %}
+	<input name="q" value="{{query}}"/>
 	<button type="submit" class="search">搜索</button>
 </form>
 
