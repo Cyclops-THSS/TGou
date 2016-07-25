@@ -15,6 +15,7 @@ div {
 	display: block;
 }
 
+/*登陆部分*/
 .w {
 	width: 990px;
 	margin: 0 auto;
@@ -25,6 +26,8 @@ div {
 	position: relative;
 	width: 300px;
 	margin: 10px 0 0;
+	padding-left: 5px;
+	padding-right: 5px;
 	height: 60px;
 }
 
@@ -59,6 +62,9 @@ img[Attributes Style]{
 	right: 0;
 	top: 10px;
 	position: absolute;
+}
+
+.welcome-login{
 	background: url(../../static/images/icon.png) no-repeat;
 }
 
@@ -83,7 +89,7 @@ strong, b{
 	background: #fff;
 	width: 306px;
 	padding: 20px;
-	padding-bottom: 30px; 
+	padding-bottom: 30px;
 	overflow: visible;/*溢出内容可见*/
 }
 
@@ -161,10 +167,6 @@ h1 {
 	background: url(../../static/images/pwd-icons-new.png) -104px -75px no-repeat;
 }
 
-
-
-
-
 .login-body{
 
 }
@@ -172,59 +174,12 @@ h1 {
 	overflow: visible;
 }
 
-.form{
-	margin: 10px;
-}
-
-p{
-	margin: 5px;
-	padding: 5px;
-	font-weight: bold;
-	font-size: 17px;
-	line-height: 120%;
-
-}
-
-label{
-	margin-bottom: 8px;
-    position: relative;
-	display: flex;
-	align-items:center;
-
-}
-
-input{
-	display: flex;
-	right: 50px;
-	border: 2px bold #FF0099;   
-	font-size: 18px;
-	font-style: "Times New Roman", Georgia, Serif;
-	
-} 
-
-.button-submit{
-	font-weight: bold;
-	display: inline-block;
-	text-align: center;
-	text-shadow: 1px 1px 1px rgba(255,255,255, .22);
-	font-size: 17px;
-	margin: 8px;
-	background-color: #00ff00;
-	border-radius: 5px;
-}
-
-.button-submit:hover{
-	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
-	background-color: #44ff40;
-	cursor: pointer;
-}
-
-.form .item-fore3 {  
+.form .item-fore3 {
     margin-bottom: 15px;
 }
 
 .forget-pw-safe {
-    position: absolute;  
+    position: absolute;
     margin: 10px;
     font-size: 14px;
 }
@@ -249,4 +204,158 @@ input{
 	background: url(../../static/images/tgoubg.jpg) 0 0 no-repeat;
 	background-color: #000;
 }
+
+
+.form{
+	margin: 10px;
+}
+
+p{
+	margin: 5px;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 17.8px;
+	line-height: 120%;
+
+}
+
+label{
+	margin-bottom: 8px;
+    position: relative;
+	display: flex;
+	align-items:center;
+}
+
+#id_username{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 20px;
+}
+
+.button-submit{
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+	font-size: 17px;
+	margin: 8px;
+	background-color: #00ff00;
+	border-radius: 5px;
+}
+
+.button-submit:hover{
+	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
+	background-color: #44ff40;
+	cursor: pointer;
+}
+
+
+/*注册部分*/
+.registration-boder{
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding: 10px;
+
+}
+
+.registration_left{
+	width: 500px;
+	overflow: hidden;
+	margin-left: 9vw;
+	z-index: 3;
+}
+
+.registration_right{
+	width: 46.5vw;
+	height: 500px;
+	float: right;
+	overflow: hidden;
+	z-index: 2;
+	margin-right: 3vw;
+	background: url(../../static/images/22222.jpg) no-repeat;
+	border-radius: 2px;
+	text-shadow: 1px 1px 1px rgba(25,25,25, .22);
+}
+
+.welcome-registration{
+	background: url(../../static/images/zhuce.jpg) no-repeat;
+}
+
+.helptext{
+	top: 10px;
+	padding-top: 10px;
+	margin-top: 20px;
+	font-size: 14px;
+	display: table-cell;
+	font-weight: 550;
+	color: #633;
+}
+
+#id_email{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password1{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password2{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_type{
+
+}
+
+.btn-submit{
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(250,245,245, .22);
+	font-size: 17px;
+	margin: 8px;
+	background-color: #aaccaa;
+	border-radius: 5px;
+}
+
+.btn-submit:hover{
+	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
+	background-color: #44ff40;
+	cursor: pointer;
+}
+
+
 
