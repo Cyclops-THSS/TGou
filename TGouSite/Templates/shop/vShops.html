@@ -1,0 +1,37 @@
+{# 表单 POST 自己，参数 q #}
+{# shops， 全部 或 搜索结果集 #}
+{# query 当前搜索框内容 #}
+
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+
+<form action="" method="POST">
+	{% csrf_token %}
+	<input name="q" value="{{query}}"/>
+	<button type="submit" class="search">搜索</button>
+</form>
+
+<p>
+	以下店铺已入驻天狗：
+</p>
+
+<ul class="shop-list">
+{% for shop in shops %}
+		<li class="shop-item">
+			<p>
+				<span class="shop-name">{{shop.name}} (#{{shop.id}})</span></p>
+			<p>位置：
+				<span class="shop-location">{{shop.location}}</span></p>
+			<p>分类：
+				<span class="category-name">{{shop.category.name}}</span></p>
+			<p>简介：
+				<span class="shop-intro">{{shop.intro}}</span></p>
+		 </li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+
+{# order #}
+
+
+
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load mathfilters %}
+{% block content %}
+
+
+<h1>订单 #{{order.id}}</h1>
+
+<p>
+	消费者：
+	<span class="consumer-name">{{order.consumer.nickName}}
+		(#{{order.consumer.id}})</span></p>
+
+<p>
+	发货店铺：
+	<span class="shop-name">{{ commodity.shop.name }}
+		(#{{order.shop.id}})</span></p>
+
+<p>
+	送货地址：
+	<span class="address">{{order.address}}</span></p>
+
+<p>
+		创建时间：<span class="time">{{order.time}}</span></p>
+<p>
+		总价格：<span class="price">{{order.price}}</span></p>
+
+<p>该订单包含以下商品：</p>
+<table class="order-items">
+	<tr>
+		<th>商品</th>
+		<th>数量</th>
+		<th>单价</th>
+		<th>小计</th>
+	</tr>
+{% for orderitem in order.orderitem_set.all %}
+	<tr>
+		<td><span class="commodity-name">
+				{{ orderitem.cmd.name }} (#{{ orderitem.cmd.id }})</span></td>
+		<td>
+			{{ orderitem.quantity }}</td>
+		<td><span class="price">
+			{{ orderitem.cmd.price }}</span></td>
+		<td><span class="price">
+			{{ orderitem.cmd.price|mul:orderitem.quantity }}</span></td>
+	</tr>
+{% endfor %}
+	<tr>
+		<td>
+			订单总价</td>
+		<td></td>
+		<td></td>
+		<td><span class="price">
+			{{ order.price }}</span></td>
+	</tr>
+</table>
+
+<p>
+	购买方式：{{order.payType}}</p>
+<p>
+	送货地址：{{order.address}}</p>
+<p>
+	留言：{{order.message}}</p>
+<p>
+	订单状态：{{order.state}}</p>
+
+
+
+
+
+{% endblock %}
