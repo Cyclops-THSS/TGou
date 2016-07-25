@@ -1,20 +1,25 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
-    <title>{% block title %}User test{% endblock %}</title>
+    {% block head %}
+
+    {% endblock %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/base.css" type = "text/css"/>
+
+    <title>{% block title %}上天狗 就购了{% endblock %}</title>
 </head>
 
 <body>
     <div id="header">
     {% block header %}
-    <a href="{% url 'index' %}">{% trans "Home" %}</a> | 
+    <a href="{% url 'index' %}">{% trans "Home" %}</a> |
 
     {% if user.is_authenticated %}
-        {% trans "Logged in" %}: {{ user.username }} 
-        (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> | 
+        {% trans "Logged in" %}: {{ user.username }}
+        (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
         <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
     {% else %}
        <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
@@ -24,12 +29,19 @@
     </div>
 
     <div id="content">
-    {% block content %}{% endblock %}
+    {% block content %}
+
+    {% endblock %}
     </div>
 
     <div id="footer">
     {% block footer %}
         <hr />
+        <div class="foot">
+            copyRight:天狗集团<br/>
+            李肇阳 ｜ 王永赫 ｜ 刘想<br/>
+            紫荆一号楼三单元
+        </div>
     {% endblock %}
     </div>
 </body>

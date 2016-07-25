@@ -1,0 +1,361 @@
+body {
+	font:12px/150%;
+	font-family: Arial, Verdana, 宋体;
+	color: #666;
+	background: #fff;
+	display: block;
+}
+
+a, address, b, big, blockquote, body, center, cite, code, dd, del, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, label, legend, li, ol, p, pre, small, span, strong, u, ul, var{
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	display: block;
+}
+
+/*登陆部分*/
+.w {
+	width: 990px;
+	margin: 0 auto;
+}
+
+/*logo标志*/
+#logo {
+	position: relative;
+	width: 300px;
+	margin: 10px 0 0;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 60px;
+}
+
+a: -webkit-any-link {   /*google浏览器的任何超链接*/
+	color: -webkit-link;
+	text-decoration: underline;
+	cursor: auto;
+}
+
+a {
+	color: #666;
+	text-decoration: none;
+}
+
+a img{
+	border: 0;
+}
+
+img{
+	vertical-align: middle;/*垂直对齐一幅图像*/
+}
+
+img[Attributes Style]{
+	width: 170px;
+    height: 60px;
+}
+
+#logo b{
+	display: block;
+	width: 110px;
+	height: 40px;
+	right: 0;
+	top: 10px;
+	position: absolute;
+}
+
+.welcome-login{
+	background: url(../../static/images/icon.png) no-repeat;
+}
+
+strong, b{
+	font-weight: bold;
+}
+
+#content{
+
+}
+
+.login-wrap{/* 登陆外包装*/
+	height: 475px;
+	margin: 10px 0 20px;
+	position: relative;
+	z-index: 5;
+}
+
+.login-form{/*登陆总体*/
+	position: relative;
+	z-index: 4;
+	background: #fff;
+	width: 306px;
+	padding: 20px;
+	padding-bottom: 30px;
+	overflow: visible;/*溢出内容可见*/
+}
+
+.login-wrap .login-form {
+	float: right;
+	top: 60px;
+}
+
+.login-form .login-box .login-head{
+	display: inline-block;
+	display: block;
+	overflow: visible;
+	height: 27px;
+	width: 306px;
+}
+
+.login-head .login-body{
+	overflow: hidden;
+	zoom: 1;/*用浮点数来定义缩放比例*/
+}
+
+.login-head{
+	cursor: default;/*规定要显示的光标的类型为默认光标：箭头*/
+}
+
+.login-form .login-box .login-head h1{
+	position: relative;
+	height: 27px;
+	line-height: 27px;
+	float: left;
+	color: #666;
+	top: -5px;
+	font-family: '宋体';
+	font-size: 20px;
+}
+
+h1 {
+	font-height: 20px;
+	font-family:  "microsoft yahei";
+}
+
+h1 {
+	display: block;
+	font-size: 2em;
+	/*-webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;*/
+    font-weight: bold;
+}
+
+.login-form .login-box .login-head .extra-r{
+	float: right;
+}
+
+.login-form .login-box .login-head .regist-link{
+	font-size: 14px;
+	color: #666;
+}
+
+.login-form .login-box .login-head .regist-link a{
+	color: #666;
+	/*font-size: 14px;
+	text-decoration: none;*/
+
+}
+
+.login-form .login-box .login-head .regist-link b{
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	margin-right: 5px;
+	vertical-align: middle;
+	background: url(../../static/images/pwd-icons-new.png) -104px -75px no-repeat;
+}
+
+.login-body{
+
+}
+.login-form .login-box .login-body{
+	overflow: visible;
+}
+
+.form .item-fore3 {
+    margin-bottom: 15px;
+}
+
+.forget-pw-safe {
+    position: absolute;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.login-wrap .login-banner{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 475px;
+	background: #000;
+}
+
+.login-wrap .i-inner{
+	position: relative;
+	z-index: 3;
+	width: 100%;
+	height: 475px;
+}
+
+#bannerimg{
+	background: url(../../static/images/tgoubg.jpg) 0 0 no-repeat;
+	background-color: #000;
+}
+
+
+.form{
+	margin: 10px;
+}
+
+p{
+	margin: 5px;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 17.8px;
+	line-height: 120%;
+
+}
+
+label{
+	margin-bottom: 8px;
+    position: relative;
+	display: flex;
+	align-items:center;
+}
+
+#id_username{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 20px;
+}
+
+.button-submit{
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+	font-size: 17px;
+	margin: 8px;
+	background-color: #00ff00;
+	border-radius: 5px;
+}
+
+.button-submit:hover{
+	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
+	background-color: #44ff40;
+	cursor: pointer;
+}
+
+
+/*注册部分*/
+.registration-boder{
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	padding: 10px;
+
+}
+
+.registration_left{
+	width: 500px;
+	overflow: hidden;
+	margin-left: 9vw;
+	z-index: 3;
+}
+
+.registration_right{
+	width: 46.5vw;
+	height: 500px;
+	float: right;
+	overflow: hidden;
+	z-index: 2;
+	margin-right: 3vw;
+	background: url(../../static/images/22222.jpg) no-repeat;
+	border-radius: 2px;
+	text-shadow: 1px 1px 1px rgba(25,25,25, .22);
+}
+
+.welcome-registration{
+	background: url(../../static/images/zhuce.jpg) no-repeat;
+}
+
+.helptext{
+	top: 10px;
+	padding-top: 10px;
+	margin-top: 20px;
+	font-size: 14px;
+	display: table-cell;
+	font-weight: 550;
+	color: #633;
+}
+
+#id_email{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password1{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_password2{
+	height: 28px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_type{
+
+}
+
+.btn-submit{
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(250,245,245, .22);
+	font-size: 17px;
+	margin: 8px;
+	background-color: #aaccaa;
+	border-radius: 5px;
+}
+
+.btn-submit:hover{
+	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
+	background-color: #44ff40;
+	cursor: pointer;
+}
+
+
+
