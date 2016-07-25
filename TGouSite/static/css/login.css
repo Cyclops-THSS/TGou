@@ -357,5 +357,72 @@ label{
 	cursor: pointer;
 }
 
+/*修改密码*/
+.change_password_pic{
+	background: url(../../static/images/xiugaimima.jpg) no-repeat;
+}
+
+.change_password_content{
+	height: 230px;
+	margin-left: 20%;
+	margin-top: 5%;
+	position: relative;
+	align-self: center;
+}
+
+.errorlist{
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+/*密码修改完毕*/
+.send_sucess{
+	margin-top: 30px;
+	margin-bottom: 50px;
+	margin-left: 120px;
+	margin-right: 120px;
+	padding-bottom: 80px;
+	background-color: RGBA(245, 222, 179, .9) 
+}
+
+.img_sucess{
+	width: 40px;
+	height: 40px;
+	margin-left: 30%;
+	padding-top: 30px;
+	position: relative;
+	align-self: center;
+
+}
+
+.password_change_done{
+	margin-left: 30%;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	position: relative;
+	align-self: center;
+}
+
+.btn-submit-sure{
+	margin-left: 30%;
+
+}
+
+.dynamic_gif2{
+	width: 100px;
+	height: 100px;
+	margin-bottom: 250px;
+
+}
+
+.dynamic_gif1{
+	width: 100px;
+	height: 100px;
+	margin-bottom: 150px;
+
+}
+
+
+
 
 

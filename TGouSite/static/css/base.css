@@ -6,15 +6,6 @@ body {
 	display: block;
 }
 
-a, address, b, big, blockquote, body, center, cite, code, dd, del, div, dl, dt, em, fieldset, font, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, label, legend, li, ol, p, pre, small, span, strong, u, ul, var{
-	margin: 0;
-	padding: 0;
-}
-
-div {
-	display: block;
-}
-
 a: -webkit-any-link {   /*google浏览器的任何超链接*/
 	color: -webkit-link;
 	text-decoration: underline;
@@ -26,16 +17,19 @@ a {
 	text-decoration: none;
 }
 
+#header{
+	margin-top: 8px;
+	margin-left: 10px;
+}
+
 .foot{
 	display: flex;
 	text-align: center;
 	position: absolute;
 	align-self: center;
 	margin: 0 auto;
- 	left:45%;
+ 	left:40%;
 	font-size: 14px;
 	color: #661;
 	line-height: 150%;
-
-
 }

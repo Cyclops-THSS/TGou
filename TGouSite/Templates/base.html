@@ -2,18 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
-
-    {% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/base.css" type = "text/css"/>
+    {% block head %}
 
+    {% endblock %}
     <title>{% block title %}上天狗 就购了{% endblock %}</title>
 </head>
 
 <body>
-    <div id="header">
+    <div id="header" >
     {% block header %}
     <a href="{% url 'index' %}">{% trans "Home" %}</a> |
 
@@ -24,9 +23,11 @@
     {% else %}
        <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
     {% endif %}
-    <hr />
+    
     {% endblock %}
+
     </div>
+    <hr/>
 
     <div id="content">
     {% block content %}
@@ -38,7 +39,7 @@
     {% block footer %}
         <hr />
         <div class="foot">
-            copyRight:天狗集团<br/>
+            copyRight:天狗集团 | All Rights Reserved<br/>
             李肇阳 ｜ 王永赫 ｜ 刘想<br/>
             紫荆一号楼三单元
         </div>
