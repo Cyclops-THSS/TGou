@@ -11,6 +11,7 @@ from registration.backends.simple.views import RegistrationView
 from .views_auth import group_required
 from django import forms
 
+
 @group_required('ShopKeeper')
 def new_product(request):
     pass
@@ -20,8 +21,9 @@ def search_product(request):
     q = request.GET.get('q')
     if request.method == 'POST':
         q = request.POST.get('q')
-    cset = Commodity.objects.filter(name__icontains=q) if q else Commodity.objects.all()
-    return render(request, 'product/vCommodities.html', {'commodities': cset, 'query': q})
+    cset = Commodity.objects.filter(
+        name__icontains=q) if q else Commodity.objects.all()
+    return render(request, 'product/vCommodities.html', {'commodities': cset, 'query': q if q else ''})
 
 
 def view_product_id(request, id):

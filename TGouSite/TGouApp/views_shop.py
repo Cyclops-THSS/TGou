@@ -51,4 +51,9 @@ def delete_shop(request):
 
 
 def search_shop(request):
-    pass
+    q = request.GET.get('q')
+    if request.method == 'POST':
+        q = request.POST.get('q')
+    cset = Shop.objects.filter(
+        name__icontains=q) if q else Shop.objects.all()
+    return render(request, 'shop/vShops.html', {'shops': cset, 'query': q if q else ''})
