@@ -32,4 +32,4 @@ def apply_grading(request):
 
 
 def error(request, message):
-    pass
+    return render(request, 'error.html', {'message': message})

@@ -1,6 +1,6 @@
 from registration.forms import RegistrationFormUniqueEmail
 from django import forms
-from .models import Consumer, ShopKeeper
+from .models import *
 from collections import OrderedDict
 
 
@@ -48,3 +48,40 @@ class ShopKeeperProf(BaseUserProf):
         labels = {
             'account': 'Shroff Account',
         }
+
+
+class ShopForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ShopForm, self).__init__(*args, **kwargs)
+        self.fields['createDate'].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = Shop
+        fields = '__all__'
+
+
+class OrderForm(forms.ModelForm):
+    shopName = forms.CharField(max_length=200, disabled=True)
+
+    def __init__(self, *args, **kwargs):
+        super(OrderForm, self).__init__(*args, **kwargs)
+        self.fields['price'].widget.attrs['readonly'] = True
+        self.fields['time'].widget.attrs['readonly'] = True
+        self.initial['shopName'] = self.instance.shop.name
+
+    class Meta:
+        model = Order
+        exclude = ('consumer', 'shop', 'state')
+
+
+class CommodityForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CommodityForm, self).__init__(*args, **kwargs)
+        self.fields['grade'].widget.attrs['readonly'] = True
+        self.fields['gradedBy'].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = Commodity
+        exclude = ('shop',)
