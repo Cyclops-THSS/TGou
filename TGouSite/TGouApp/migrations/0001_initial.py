@@ -131,7 +131,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='shop',
             name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='TGouApp.ShopCategory'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='TGouApp.ShopCategory'),
         ),
         migrations.AddField(
             model_name='order',
@@ -150,8 +150,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='commodity',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='TGouApp.CommodityCategory'),
+            name='categoty',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='TGouApp.CommodityCategory'),
         ),
         migrations.AddField(
             model_name='commodity',
