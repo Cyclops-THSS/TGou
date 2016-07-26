@@ -148,6 +148,7 @@ h1 {
 .login-form .login-box .login-head .regist-link{
 	font-size: 14px;
 	color: #666;
+	margin-right: 30px;
 }
 
 .login-form .login-box .login-head .regist-link a{
@@ -227,7 +228,7 @@ label{
 }
 
 #id_username{
-	height: 28px;
+	height: 30px;
 	display: flex;
 	right: 50px;
 	border: 2px bold #FF0099;
@@ -237,7 +238,7 @@ label{
 }
 
 #id_password{
-	height: 28px;
+	height: 30px;
 	display: flex;
 	right: 50px;
 	border: 2px bold #FF0099;
@@ -307,7 +308,7 @@ label{
 }
 
 #id_email{
-	height: 28px;
+	height: 30px;
 	display: flex;
 	right: 50px;
 	border: 2px bold #FF0099;
@@ -317,7 +318,7 @@ label{
 }
 
 #id_password1{
-	height: 28px;
+	height: 30px;
 	display: flex;
 	right: 50px;
 	border: 2px bold #FF0099;
@@ -327,7 +328,7 @@ label{
 }
 
 #id_password2{
-	height: 28px;
+	height: 30px;
 	display: flex;
 	right: 50px;
 	border: 2px bold #FF0099;
@@ -357,9 +358,9 @@ label{
 	cursor: pointer;
 }
 
-/*修改密码*/
-.change_password_pic{
-	background: url(../../static/images/xiugaimima.jpg) no-repeat;
+/*忘记密码*/
+.reset_password_pic{
+	background: url(../../static/images/wangjimima.jpg) no-repeat;
 }
 
 .change_password_content{
@@ -375,7 +376,7 @@ label{
 	margin-left: 10px;
 }
 
-/*密码修改完毕*/
+/*邮件发送完毕*//*退出登录*/
 .send_sucess{
 	margin-top: 30px;
 	margin-bottom: 50px;
@@ -389,7 +390,8 @@ label{
 	width: 40px;
 	height: 40px;
 	margin-left: 30%;
-	padding-top: 30px;
+	margin-top: 30px;
+	padding-top: 10px;
 	position: relative;
 	align-self: center;
 
@@ -419,10 +421,67 @@ label{
 	width: 100px;
 	height: 100px;
 	margin-bottom: 150px;
-
 }
 
+/*修改密码部分*/
+.change_password_pic{
+	background: url(../../static/images/xiugaimima.jpg) no-repeat;
+}
 
+.change_password_content{
+	height: 400px;
+}
 
+.change_password_content form{
+	float: left;
+	position: absolute;
+	display: table-cell;
+	vertical-align: middle;
+	left: 1%;
+	top: -30px;
+	bottom: 50px;
+}
+.change_password_gif{
+	width: 300px;
+	height: 200px;
+	float: right;
+	position: relative;
+	right: 26%;
+	background: url(../images/tiao.gif);
+}
+
+#id_old_password{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 20px;
+}
+
+#id_new_password1{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 20px;
+}
+
+#id_new_password2{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 20px;
+}
+
+.change_password_content form ul{
+	margin-left:12px;
+}
 
 

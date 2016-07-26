@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/base.css" type = "text/css"/>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
     {% block head %}
 
     {% endblock %}
@@ -12,29 +13,44 @@
 </head>
 
 <body>
-    <div id="header" >
+    <!--导航栏-->
+    <div id="header">
     {% block header %}
-    <a href="{% url 'index' %}">{% trans "Home" %}</a> |
-
-    {% if user.is_authenticated %}
-        {% trans "Logged in" %}: {{ user.username }}
-        (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
-        <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
-    {% else %}
-       <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
-    {% endif %}
+    <p class="sn-container">
+        <i class="icon-ui glyphicon glyphicon-home"></i>
+        <a class="head_home" href="{% url 'index' %}">{% trans "Home" %}</a> &nbsp;&nbsp;
+    <p class="sn-container2"> 
+        {% if user.is_authenticated %}
+             {% trans "Log in" %}: {{ user.username }}&nbsp;
+             (<a class="head_logout" href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
+            <a class="head_changepassword" href="{% url 'auth_password_change' %}">{% trans     "Change password" %}</a>)
+        {% else %}
+             <a class="head_login" href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
+        {% endif %}
+    </p>
+    <p class="sn-container3">
+         <a class="welcome-registe" href="#">欢迎注册</a>
+    </p>
+    <p class="sn-container4">
+        <a class="my-order" href="#">我的订单</a>
+    </p>
+    <p class="sn-container5">
+        <i class="icon-ui glyphicon glyphicon-shopping-cart"></i>
+        <a class="my-cart" href="#">购物车</a>
+    </p>
     
     {% endblock %}
-
-    </div>
     <hr/>
+    </div>
 
+    <!--主体-->
     <div id="content">
     {% block content %}
 
     {% endblock %}
     </div>
 
+    <!--脚-->
     <div id="footer">
     {% block footer %}
         <hr />
@@ -45,6 +61,9 @@
         </div>
     {% endblock %}
     </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
