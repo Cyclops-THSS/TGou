@@ -1,15 +1,74 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block head %}
+
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+
+{% endblock %}
+
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %} 
-  {{ form.as_p }}
+	<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="welcome-login"></b>
+		</div>
+	</div>
+	
+	<!--body-->
+	<div id = "content">
+		<div class="login-wrap">
+			<div class="w">
+				<div class="login-form">
+					<div class="login-box">
+						<div class="login-head">
+							<h1>天狗你值得拥有</h1>
+							<div class="extra-r">
+								<div class="regist-link">
+									<!--注册-->
+									<a href="{% url 'registration_register' %}" target="_blank">
+										<b></b>立即注册
+									</a>
+								</div>
+							</div>
+						</div>
 
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+						<div class="login-body">
+							<div class="form">
 
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+								<form id="formlogin" method="post" action=".">
+								
+									{% csrf_token %} <!--插入防止 csrf 攻击的 token-->
+  									{{ form.as_p }}
+  																
+  									<input class="button-submit" type="submit" value="{% trans 'Log in' %}" />
+  									<input type="hidden" name="next" value="{{ next }}" />
+
+									<div class="item item-fore3">
+										<div class="safe">
+											<span class="forget-pw-safe">
+												<a href="{% url 'auth_password_reset' %}">忘记密码？</a>
+											</span>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--背景图片-->
+			<div class="login-banner">
+				<div class="w">
+					<div id="bannerimg" class="i-inner">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

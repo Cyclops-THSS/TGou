@@ -1,0 +1,33 @@
+{# 表单 POST 自己，参数 q #}
+{# commodities，全部 或 搜索结果集 #}
+{# query 当前查询框里的内容 #}
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+	<input name="q" value="{{ query }}"/>
+	<button type="submit" class="search">搜索</button>
+</form>
+
+<p>
+	以下商品正在天狗火热销售：
+</p>
+
+<ul class="shop-list">
+{% for commodity in commodities %}
+	<li class="commodity-item">
+		<p>
+			<span class="commodity-name">{{ commodity.name }}</span>
+		 	(#{{ commodity.id }})</p>
+		<p>
+			<span class="commodity-price">¥ {{ commodity.price }}</span>
+			来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
+	 </li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

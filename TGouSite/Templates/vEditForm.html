@@ -1,0 +1,37 @@
+{# POST 提交到自己#}
+
+{# form #}
+{# entityType，string shop/product/order #}
+{# isCreating，bool 新建还是编辑 #}
+
+{# 由以下各 view 共用：shop/product/order 的 edit/new #}
+
+
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1>
+	{%if isCreating%}新建{%else%}编辑{%endif%} {{entityType}}
+</h1>
+
+<p>
+	您正在{%if isCreating%}创建一个新的{%else%}编辑一个已有的{%endif%} {{entityType}}。
+</p>
+
+<form method="POST" action="" class="" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{# shop 店铺 #}
+{# categoryList 数组，所属分类，从分类树的根节点开始 #}
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+
+<h1>店铺 #{{shop.id}}</h1>
+
+<p>店铺名称：
+	<span class="shop-name">{{shop.name}}</span></p>
+
+<p>类别：
+	<div class="category-container">
+		{% for category in categoryList %}
+	    <span class="category-delimiter"> &gt; </span>
+			<span class="category-name">{{ category.name }} (#{{ category.id }}) </span>
+		{% endfor %}
+	</div>
+</p>
+
+<p>位置：
+	<span class="shop-location">{{shop.location}}</span></p>
+<p>简介：
+	<span class="shop-intro">{{shop.intro}}</span></p>
+<p>开店日期：
+	<span class="shop-date">{{shop.createDate}}</span></p>
+
+<ul class="commodity-list">
+{% for commodity in shop.commodity_set.all %}
+		<li class="commodity-item">
+			<span class="commodity-name">{{ commodity.name }}</span>
+			 (#{{ commodity.id }})，
+			 ¥ <span class="commodity-price">{{ commodity.price }}</span>
+		 </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
