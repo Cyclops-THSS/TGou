@@ -32,14 +32,12 @@
 		<td><span class="shop-name">
 						{{ cartitem.commodity.shop.name }} (#{{ cartitem.commodity.shop.id }})</span></td>
 		<td>
-			<span class="quantity">{{ cartitem.quantity }}</span></td>
+			<span class="quantity"><input class="quantity-box" value="{{ cartitem.quantity }}"/></span></td>
 		<td><span class="price">
 			{{ cartitem.commodity.price }}</span></td>
 		<td><span class="price">
 			{{ cartitem.commodity.price|mul:cartitem.quantity }}</span></td>
 		<td>
-			<button class="cartitem-minus" onclick="item_minus(this)">-</button>
-			<button class="cartitem-plus" onclick="item_plus(this)">+</button>
 			<button class="cartitem-remove" onclick="item_remove(this)">删除</button>
 		</td>
 	</tr>
@@ -69,12 +67,6 @@
 
 
 <script>
-	function item_minus(el){
-
-	}
-	function item_plus(el){
-
-	}
 	function item_remove(el){
 
 	}
