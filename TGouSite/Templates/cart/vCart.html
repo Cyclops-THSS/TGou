@@ -1,16 +1,43 @@
+{# 定义 CartEditJSON：表示用户对购物车的编辑，字符串，以JSON解释， #}
+{#     javascript 字典(key-value pairs)，key为商品id，value为数组，0下标元素为数量，1下标元素为单价 #}
+{#     如 `{233: [3, 20], 234: [2, 10], 235: [5, 10]}` 表示购物车中目前有233号商品（单价20元）3件，...  #}
+{#     如 `{233: [2, 0], 234: [2, "foo"], 235: [0, 10]}` 表示用户把233号商品改成了2件，并从购物车中删除了235号商品 #}
+
 {# POST 到自己 #}
-{#      whatamidoing: submit提交生成订单 / save暂存 #}
-{#      cartitems: JSON字典，key为商品id，value为商品数量、0表示删除 #}
+{#      whatamidoing: 字符串，submit 表示提交、生成订单，save 表示暂存 #}
+{#      cartJson: 上述定义的CartEditJSON：JSON字符串 #}
 
-{# POST 到 clear #}
+{# POST 到 clear，无参数 #}
 
-{# cart #}
+{# 接受的模板参数 #}
+{#      cart，常规Python对象 #}
+{#      cartJson，上述定义的CartEditJSON：JSON字符串 #}
+
+{# 实现说明：初始 DOM 由后端模板引擎渲染，此后交互操作由前端 JavaScript 完成#}
+
+
+
+
+
+
+
+{# 注意！有直接 DOM 操作，请谨慎编辑 #}
+
+
+
+
+
 
 
 {% extends "base.html" %}
 {% load i18n %}
 {% load mathfilters %}
 {% block content %}
+
+
+<script>
+	document.TGou_cartJson = {{cartJson}};
+</script>
 
 
 <h1>您的购物车</h1>
@@ -25,22 +52,29 @@
 		<th>小计</th>
 		<th>操作</th>
 	</tr>
+
 {% for cartitem in cart.cartitem_set.all %}
-	<tr>
-		<td><span class="commodity-name">
+	<tr id="commodity_id_{{cartitem.commodity.id}}">
+		<td>
+			<span class="commodity-name">
 				{{ cartitem.commodity.name }} (#{{ cartitem.commodity.id }})</span></td>
-		<td><span class="shop-name">
-						{{ cartitem.commodity.shop.name }} (#{{ cartitem.commodity.shop.id }})</span></td>
 		<td>
-			<span class="quantity">{{ cartitem.quantity }}</span></td>
-		<td><span class="price">
-			{{ cartitem.commodity.price }}</span></td>
-		<td><span class="price">
-			{{ cartitem.commodity.price|mul:cartitem.quantity }}</span></td>
+			<span class="shop-name">
+				{{ cartitem.commodity.shop.name }}
+				(#{{ cartitem.commodity.shop.id }})</span></td>
 		<td>
-			<button class="cartitem-minus" onclick="item_minus(this)">-</button>
-			<button class="cartitem-plus" onclick="item_plus(this)">+</button>
-			<button class="cartitem-remove" onclick="item_remove(this)">删除</button>
+			<input
+				class="quantity-box"
+				value="{{ cartitem.quantity }}"
+				onchange = "item_changeQuantity({{cartitem.commodity.id}})" /></td>
+		<td>
+			<span class="price unit-price"></span></td>
+		<td>
+			<span class="price sub-total"></span></td>
+		<td>
+			<button
+				class="cartitem-remove"
+				onclick="item_remove({{cartitem.commodity.id}})">删除</button>
 		</td>
 	</tr>
 {% endfor %}
@@ -50,17 +84,25 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><span class="price">
-			{{ cart.price }}</span></td>
+		<td>
+			<span class="price" id="total-price"></span></td>
 		<td></td>
 	</tr>
 </table>
 
+<div id="notice" style="display:none">
+	您已对购物车做了修改，别忘了保存哦！</div>
+
 <form method="post" action="" id="form">
-	<input name="whatamidoing" type="hidden" value=""/>
-	<input name="cartitems" type="hidden" value=""/>
-	<button type="button" class="cart-save" onclick="cart_save()">暂存更改</button>
-	<button type="button" class="cart-submit" onclick="cart_submit()">前去结算</button>
+	<input id="whatamidoingField" name="whatamidoing" type="hidden" value=""/>
+	<input id="cartJsonField" name="cartJson" type="hidden" value=""/>
+
+	<button type="button" class="cart-reload" onclick="cart_reload()">
+		撤销更改</button>
+	<button type="button" class="cart-save" onclick="cart_save()">
+		保存更改</button>
+	<button type="button" class="cart-submit" onclick="cart_submit()">
+		保存更改并前去结算</button>
 </form>
 
 <form method="post" action="clear">
@@ -68,27 +110,63 @@
 </form>
 
 
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script>
-	function item_minus(el){
 
+	function show_notice(){
+		$('#notice').show();
 	}
-	function item_plus(el){
+	function item_remove(id){
+		$('#commodity_id_'+id).slideUp();
+		document.TGou_cartJson[id] = 0;
+		update_totals();
+		show_notice();
+	}
+	function item_changeQuantity(id){
+		document.TGou_cartJson[id]
+			= $('#commodity_id_'+id+' input.quantity-box').val();
+		update_totals();
+		show_notice();
+	}
+	function update_totals(){
+		var total = 0;
+		function for_own_properties(object, callback){
+			for (var property in object) {
+				if (object.hasOwnProperty(property)) {
+						callback(property);
+				}
+			}
+		}
+		for_own_properties(document.TGou_cartJson, function(id){
+			var sub_total
+				= parseInt(document.TGou_cartJson[id][1])
+				* parseInt(document.TGou_cartJson[id][0]);
+			total += sub_total;
+			$('#commodity_id_'+id+' .sub-total').html(sub_total);
+		});
+		$('#total-price').html(total);
+	}
+	function cart_reload(){
+		document.location.reload();
+	}
 
+	function serializeAndPost(){
+		$('#cartJsonField').val(JSON.stringify(result));
+		$('#form').submit();
 	}
-	function item_remove(el){
+	function cart_save(){
+		$('#whatamidoingField').val('submit');
+		serializeAndPost();
+	}
+	function cart_submit(){
+		$('#whatamidoingField').val('submit');
+		serializeAndPost();
+	}
 
-	}
-	function cart_save(el){
-
-	}
-	function cart_submit(el){
-
-	}
-	function get_cart_items(){
-
-	}
 </script>
 
-
+<script>
+	update_totals();
+</script>
 
 {% endblock %}
