@@ -67,7 +67,9 @@
 			<input
 				class="quantity-box"
 				value="{{ cartitem.quantity }}"
-				onchange = "item_changeQuantity({{cartitem.commodity.id}})" /></td>
+				type = "tel"
+				oninput = "item_changeQuantity({{cartitem.commodity.id}})"
+				 /></td>
 		<td>
 			<span class="price unit-price">
 			{{cartitem.commodity.price}}</span></td>
@@ -111,7 +113,7 @@
 
 
 
-<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="/static/jquery.min.js"></script>
 <script>
 	function for_own_properties(object, callback){
 		for (var property in object) {
@@ -133,8 +135,9 @@
 		show_notice();
 	}
 	function item_changeQuantity(id){
-		document.TGou_cartJson[id][0]
-			= $('#commodity_id_'+id+' input.quantity-box')[0].value;
+		var q = parseInt($('#commodity_id_'+id+' input.quantity-box')[0].value);
+		if(isNaN(q)) q = 0;
+		document.TGou_cartJson[id][0] = q;
 		update_totals();
 		show_notice();
 	}
