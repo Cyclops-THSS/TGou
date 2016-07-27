@@ -28,7 +28,7 @@ def delete_comment(request, id):
 
 
 @login_required
-@check_request(lambda r: r.method == 'POST' and r.POST.cid and r.POST.sid and r.POST.direction and r.POST.grade, 'bad request' and Consumer.objects.get(pk=r.POST.cid) and Shop.objects.get(pk=r.POST.sid))
+@check_request(lambda r: r.method == 'POST' and r.POST.cid and r.POST.sid and r.POST.direction and r.POST.grade and Consumer.objects.get(pk=r.POST.cid) and Shop.objects.get(pk=r.POST.sid), 'bad request')
 def apply_grading(request):
     def update(obj, g):
         tot = obj.grade * obj.gradedBy + g
