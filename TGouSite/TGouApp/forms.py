@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 class UserRegForm(RegistrationFormUniqueEmail):
     """add check about type of registration"""
     type = forms.ChoiceField(label=_('As Shop Keeper? '), choices=((False, _('No')), (True, _('Yes'))),
-                              initial=False, required=False)
+                             initial=False, required=False)
 
 
 class BaseUserProf(forms.ModelForm):
@@ -86,3 +86,15 @@ class CommodityForm(forms.ModelForm):
     class Meta:
         model = Commodity
         exclude = ('shop',)
+
+
+class CommentForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['time'].widget.attrs['readonly'] = True
+        self.fields['commodity'].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = Comment
+        fields = '__all__'

@@ -13,18 +13,39 @@ from datetime import datetime
 
 
 @group_required('Consumer')
+@check_request(lambda r: r.method=='POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), 'bad request')
 def new_comment(request):
-    pass
-
+    oi = OrderItem.objects.get(pk=r.POST.oiid)
+    oc = Comment(commodity=oi.cmd, grade=5.00, message='', time=datetime.now())
+    oc.save()
+    return redirect('edit_comment', id=oc.id)
 
 @group_required('Consumer')
+@render_to('vEditForm.html')
 def edit_comment(request, id):
-    pass
+    try:
+        dat = Comment.objects.get(pk=id)
+    except:
+        raise Http404
+    if dat.consumer != request.user.ConsumerProf:
+        raise PermissionDenied
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=dat)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CommentForm(instance=dat)
+    return {'form': form, 'entityType': 'Order'}
 
 
 @group_required('Consumer')
 def delete_comment(request, id):
-    pass
+    try:
+        dat = Comment.objects.get(pk=id)
+    except:
+        raise Http404
+    dat.delete()
+    return redirect('index')
 
 
 @login_required
