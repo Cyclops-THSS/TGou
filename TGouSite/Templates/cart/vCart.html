@@ -130,10 +130,11 @@
 		$('#notice').show();
 	}
 	function item_remove(id){
-		$('#commodity_id_'+id).slideUp();
-		document.TGou_cartJson[id] = 0;
-		update_totals();
-		show_notice();
+		$('#commodity_id_'+id).fadeOut(function(){
+			document.TGou_cartJson[id][0] = 0;
+			update_totals();
+			show_notice();
+		});
 	}
 	function item_changeQuantity(id){
 		var q = parseInt($('#commodity_id_'+id+' input.quantity-box')[0].value);
