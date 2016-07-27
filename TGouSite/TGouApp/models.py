@@ -72,14 +72,13 @@ class OrderItem (models.Model):
 
 
 class Cart (models.Model):
-    consumer = models.ForeignKey(
-        Consumer, on_delete=models.CASCADE)  # 所属消费者标识符
+    consumer = models.OneToOneField(Consumer, related_name='cart')  # 所属消费者标识符
 
 
 class CartItem (models.Model):
     commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE)  # 商品标识符
     quantity = models.IntegerField()  # 购买数量
-    order = models.ForeignKey(Cart, on_delete=models.CASCADE)  # 所属购物车标识符
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)  # 所属购物车标识符
 
 
 class Comment (models.Model):

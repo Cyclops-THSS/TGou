@@ -32,8 +32,9 @@
 
 <p>有意购买？</p>
 
-<form action="/add-to-cart" method="post">
-<input name="commodityId" value="" type="hidden" />
+<form action="{% url 'add-to-cart' %}" method="post">
+	    {% csrf_token %}
+<input name="commodityId" value="{{commodity.id}}" type="hidden" />
 <p>件数：
 	<input name="quantity" value="" type="text" /></p>
 <button type="submit" class="add-to-cart">加入购物车</button>
