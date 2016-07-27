@@ -78,7 +78,7 @@ class Cart (models.Model):
 class CartItem (models.Model):
     commodity = models.ForeignKey(Commodity, on_delete=models.CASCADE)  # 商品标识符
     quantity = models.IntegerField()  # 购买数量
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)  # 所属购物车标识符
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)  # 所属购物车标识符
 
 
 class Comment (models.Model):
