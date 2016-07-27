@@ -589,7 +589,7 @@ label{
 .shop-content{
 	margin-top: 40px;
 	margin-left: 350px;
-	height: 300px;
+	
 }
 
 
@@ -690,4 +690,25 @@ label{
 .search-commodities-pic{
 	background: url(../images/commodities.jpg);
 }
+
+/*订单搜索*/
+.search-order{
+	background: url(../images/ordersearch.jpg);
+}
+
+.date-order{
+	height: 30px;
+	font-size: 16px;
+	color: #233;
+}
+
+.search-order-p{
+	margin-left: 0px;
+	margin-bottom: 14px;
+	padding-left: 0px; 
+}
+
+
+
+
 

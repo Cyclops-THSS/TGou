@@ -7,39 +7,57 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+{% block head %}
+
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
+
 {% block content %}
 
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-order"></b>
+		</div>
+	</div>
+	<div class="shop-content">
+		
+		{% if isConsumer %}
+		<form action="" method="POST">
+			<p class="search-order-p">查看在此日期之后的所有订单：</p>
+			<input class="date-order" type="date" name="after"/>
+			<button class="btn-search-shop" type="submit" class="search">提交</button>
+		</form>
+		{% endif %}
 
-{% if isConsumer %}
-<form action="" method="POST">
-	<p>查看在此日期之后的所有订单：</p>
-	<input type="date" name="after"/>
-	<button type="submit" class="search">提交</button>
-</form>
-{% endif %}
+		<ul class="order-list">
+		{% for order in orders %}
+			<li class="order-item">
+				<p>
+						<span class="order-id">#{{ order.id }}: </span>
+						<span class="time">{{order.time}}</span></p>
 
-<ul class="order-list">
-{% for order in orders %}
-	<li class="order-item">
-		<p>
-				<span class="order-id">#{{ order.id }}: </span>
-				<span class="time">{{order.time}}</span></p>
+				<p>
+						¥ <span class="price">{{order.price}}</span></p>
 
-		<p>
-				¥ <span class="price">{{order.price}}</span></p>
-
-		<p>
-		 	{% if isConsumer %}
-			<span class="shop-name">{{ commodity.shop.name }}
-				(#{{order.shop.id}})</span>
-		 	{% else %}
-			<span class="consumer-name">{{order.consumer.nickName}}
-				(#{{order.consumer.id}})</span>
-		 	{% endif %}
-		</p>
-	 </li>
-{% endfor %}
-</ul>
+				<p>
+				 	{% if isConsumer %}
+					<span class="shop-name">{{ commodity.shop.name }}
+						(#{{order.shop.id}})</span>
+				 	{% else %}
+					<span class="consumer-name">{{order.consumer.nickName}}
+						(#{{order.consumer.id}})</span>
+				 	{% endif %}
+				</p>
+			 </li>
+		{% endfor %}
+		</ul>
+	</div>
 
 
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 {% endblock %}
