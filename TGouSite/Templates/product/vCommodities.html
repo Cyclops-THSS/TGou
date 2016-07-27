@@ -4,30 +4,43 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+{% block head %}
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
 {% block content %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-commodities-pic"></b>
+		</div>
+	</div>
+	<!--商品搜索-->
+	<div class="commodities-content">
+		<form action="" method="POST">
+    		{% csrf_token %}
+			<input class="search-input" name="q" value="{{ query }}"/>
+			<button class="btn-search-shop" type="submit" class="search">搜索</button>
+		</form>
 
-<form action="" method="POST">
-    {% csrf_token %}
-	<input name="q" value="{{ query }}"/>
-	<button type="submit" class="search">搜索</button>
-</form>
+		<p>以下商品正在天狗火热销售：</p>
 
-<p>
-	以下商品正在天狗火热销售：
-</p>
-
-<ul class="shop-list">
-{% for commodity in commodities %}
-	<li class="commodity-item">
-		<p>
-			<span class="commodity-name">{{ commodity.name }}</span>
+		<ul class="shop-list">
+			{% for commodity in commodities %}
+			<li class="commodity-item">
+			<p>
+					<span class="commodity-name">{{ commodity.name }}</span>
 		 	(#{{ commodity.id }})</p>
-		<p>
-			<span class="commodity-price">¥ {{ commodity.price }}</span>
-			来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
-	 </li>
-{% endfor %}
-</ul>
+			<p>
+				<span class="commodity-price">¥ {{ commodity.price }}</span>
+				来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
+		 	</li>
+			{% endfor %}
+		</ul>
+	</div>
 
 
 {% endblock %}

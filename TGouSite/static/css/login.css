@@ -429,7 +429,7 @@ label{
 }
 
 .change_password_content{
-	height: 400px;
+	height: 500px;
 }
 
 .change_password_content form{
@@ -581,22 +581,113 @@ label{
 	font-size: 22px;
 }
 
+/*店铺搜索*/
+.search-shops{
+	background: url(../images/sousuo.jpg) no-repeat;
+}
+
+.shop-content{
+	margin-top: 40px;
+	margin-left: 350px;
+	height: 300px;
+}
 
 
+.search-input{
+	display: inline;
+	margin: 5px;
+	height: 31px;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
 
 
+.btn-search-shop{
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(250,245,245, .22);
+	font-size: 17px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	background-color: #aaccaa;
+	border-radius: 5px;
+}
 
+.btn-search-shop:hover{
+	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
+	background-color: #44ff40;
+	cursor: pointer;
+}
 
+/*编辑商铺*/
+.edit-yourshop{
+	background: url(../images/bianji.jpg);
+}
 
+.edit{
+	margin-top: 20px;
+	margin-left: 200px;
+}
 
+#id_name{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
 
+#id_category{
+	font-family: Serif;
+	font-size: 22px;
+}
 
+#id_location{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
 
+#id_intro{
+	width: 350px;
+	height: 140px;
+	border: 3px solid #ccc;
+	font-family: Serif;
+	font-size: 18px;
+	background-color: RGBA(233, 233, 233, .8)
+}
 
+#id_createDate{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
 
+/*403.html*/
+#error-message{
+	margin-left: 450px;
+}
 
+/*商品搜索*/
+.commodities-content{
+	margin-top: 40px;
+	margin-left: 350px;
+	height: 300px;
+}
 
-
-
-
+.search-commodities-pic{
+	background: url(../images/commodities.jpg);
+}
 

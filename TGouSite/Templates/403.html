@@ -1,7 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block head %}
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+
+{% endblock %}
+
 {% block content %}
+<div class="send_sucess">
+	<img class="img_sucess" src="../../../../static/images/sucess.jpg" />
+
+
+	<h1 class="password_change_done">{% trans "出错啦 :(" %}</h1>
+	<h3>
+	<span id="error-message">您不具备操作权限!</span></h3>
+	<button class="btn-submit btn-submit-sure" type="button"><a href="{% url 'index' %}">{% trans "确定" %}</a></button>
+</div>
+<div class="dynamic_gif2">
+	<img src="../../../../static/images/wudong.gif" />
+</div>
+
 <h1>出错啦 :(</h1>
 <h2>
 	<span id="error-message">您不具备操作权限。</span></h2>
