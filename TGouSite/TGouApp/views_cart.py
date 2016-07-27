@@ -16,7 +16,9 @@ import json
 @render_to('cart/vCart.html')
 def edit_cart(request):
     if request.method == 'POST':
-        print('save')
+        print('.')
+        print(request.POST.get('cartJson'))
+        print('.')
         cartJson = json.load(request.POST.get('cartJson'))
         whatamidoing = request.POST.get('whatamidoing')
         if whatamidoing == 'save':

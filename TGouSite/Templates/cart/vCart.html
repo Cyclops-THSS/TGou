@@ -93,6 +93,7 @@
 	您已对购物车做了修改，别忘了保存哦！</div>
 
 <form method="post" action="" id="form">
+	    {% csrf_token %}
 	<input id="whatamidoingField" name="whatamidoing" type="hidden" value=""/>
 	<input id="cartJsonField" name="cartJson" type="hidden" value=""/>
 
