@@ -35,6 +35,7 @@
 
 <script>
 	document.TGou_cartJson = {{cartJson}};
+	console.log(document.cartJson);
 </script>
 
 
@@ -67,7 +68,7 @@
 				value="{{ cartitem.quantity }}"
 				onchange = "item_changeQuantity({{cartitem.commodity.id}})" /></td>
 		<td>
-			<span class="price unit-price"></span></td>
+			<span class="price unit-price">{{cartitem.commodity.price}}</span></td>
 		<td>
 			<span class="price sub-total"></span></td>
 		<td>
@@ -95,7 +96,7 @@
 <form method="post" action="" id="form">
 	<input id="whatamidoingField" name="whatamidoing" type="hidden" value=""/>
 	<input id="cartJsonField" name="cartJson" type="hidden" value=""/>
-
+	{% csrf_token %}
 	<button type="button" class="cart-reload" onclick="cart_reload()">
 		撤销更改</button>
 	<button type="button" class="clear-cart">清空购物车</button>
@@ -107,7 +108,7 @@
 
 
 
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script>
 	function for_own_properties(object, callback){
 		for (var property in object) {
@@ -151,7 +152,10 @@
 	}
 
 	function serializeAndPost(){
-		$('#cartJsonField').val(JSON.stringify(document.TGou_cartJson));
+		console.log(document.TGou_cartJson);
+		var json = JSON.stringify(document.TGou_cartJson);
+		console.log(json);
+		$('#cartJsonField').val(json);
 		$('#form').submit();
 	}
 	function cart_save(){
