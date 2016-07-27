@@ -4,10 +4,8 @@
 {#     如 `{233: [2, 0], 234: [2, "foo"], 235: [0, 10]}` 表示用户把233号商品改成了2件，并从购物车中删除了235号商品 #}
 
 {# POST 到自己 #}
-{#      whatamidoing: 字符串，submit 表示提交、生成订单，save 表示暂存 #}
+{#      whatamidoing: 字符串，submit 表示提交、生成订单，save 表示暂存（含“清空购物车”） #}
 {#      cartJson: 上述定义的CartEditJSON：JSON字符串 #}
-
-{# POST 到 clear，无参数 #}
 
 {# 接受的模板参数 #}
 {#      cart，常规Python对象 #}
@@ -57,7 +55,8 @@
 	<tr id="commodity_id_{{cartitem.commodity.id}}">
 		<td>
 			<span class="commodity-name">
-				{{ cartitem.commodity.name }} (#{{ cartitem.commodity.id }})</span></td>
+				{{ cartitem.commodity.name }}
+				(#{{ cartitem.commodity.id }})</span></td>
 		<td>
 			<span class="shop-name">
 				{{ cartitem.commodity.shop.name }}
@@ -99,18 +98,25 @@
 
 	<button type="button" class="cart-reload" onclick="cart_reload()">
 		撤销更改</button>
+	<button type="button" class="clear-cart">清空购物车</button>
 	<button type="button" class="cart-save" onclick="cart_save()">
 		保存更改</button>
 	<button type="button" class="cart-submit" onclick="cart_submit()">
 		保存更改并前去结算</button>
 </form>
 
-<form method="post" action="clear">
-	<button type="submit" class="clear-cart">清空购物车</button>
-</form>
 
 
 <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	function for_own_properties(object, callback){
+		for (var property in object) {
+			if (object.hasOwnProperty(property)) {
+					callback(property);
+			}
+		}
+	}
+</script>
 <script>
 
 	function show_notice(){
@@ -130,13 +136,7 @@
 	}
 	function update_totals(){
 		var total = 0;
-		function for_own_properties(object, callback){
-			for (var property in object) {
-				if (object.hasOwnProperty(property)) {
-						callback(property);
-				}
-			}
-		}
+
 		for_own_properties(document.TGou_cartJson, function(id){
 			var sub_total
 				= parseInt(document.TGou_cartJson[id][1])
@@ -151,15 +151,24 @@
 	}
 
 	function serializeAndPost(){
-		$('#cartJsonField').val(JSON.stringify(result));
+		$('#cartJsonField').val(JSON.stringify(document.TGou_cartJson));
 		$('#form').submit();
 	}
 	function cart_save(){
-		$('#whatamidoingField').val('submit');
+		$('#whatamidoingField').val('save');
 		serializeAndPost();
 	}
 	function cart_submit(){
 		$('#whatamidoingField').val('submit');
+		serializeAndPost();
+	}
+	function cart_clear(){
+		var result = {};
+		for_own_properties(document.TGou_cartJson, function(id){
+			result[id] = 0;
+		});
+		document.TGou_cartJson = result;
+		$('#whatamidoingField').val('save');
 		serializeAndPost();
 	}
 
