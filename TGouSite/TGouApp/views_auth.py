@@ -20,12 +20,15 @@ class TRegistrationView(RegistrationView):
 
 @receiver(user_registered)
 def create_profile(sender, user, request, **kwargs):
-    isSK = request.POST.get('type')
+    isSK = request.POST.get('type') == 'True'
     d = ShopKeeper(user=user) if isSK else Consumer(user=user)
     g, create = Group.objects.get_or_create(
         name='ShopKeeper' if isSK else 'Consumer')
-    g.user_set.add(user)
+    g.user_set.add(d.user)
     d.save()
+    if not isSK:
+        cart = Cart(consumer=d)
+        cart.save()
 
 
 @login_required

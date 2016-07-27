@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^shop/(?P<name>\w+)$', views.view_shop_name, name='view_shop_name'),
     # cart related
     url(r'^cart/$', views.edit_cart, name='edit_cart'),
-    url(r'^cart/clear$', views.clear_cart, name='clear_cart'),
+    url(r'^add-to-cart/$', views.add_to_cart, name='add-to-cart'),
     # order related
     url(r'^order/$', views.view_order, name='view_order'),
     url(r'^order/new$', views.new_order, name='new_order'),
