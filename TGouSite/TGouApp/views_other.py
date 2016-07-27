@@ -13,12 +13,13 @@ from datetime import datetime
 
 
 @group_required('Consumer')
-@check_request(lambda r: r.method=='POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), 'bad request')
+@check_request(lambda r: r.method == 'POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), 'bad request')
 def new_comment(request):
     oi = OrderItem.objects.get(pk=r.POST.oiid)
     oc = Comment(commodity=oi.cmd, grade=5.00, message='', time=datetime.now())
     oc.save()
     return redirect('edit_comment', id=oc.id)
+
 
 @group_required('Consumer')
 @render_to('vEditForm.html')
