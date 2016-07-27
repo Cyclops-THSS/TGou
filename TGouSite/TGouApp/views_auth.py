@@ -37,8 +37,7 @@ def belongTo(user, group):
 
 @receiver(user_registered)
 def create_profile(sender, user, request, **kwargs):
-    form = UserRegForm(request.POST)
-    isSK = request.POST.get('type', False) == 'on'
+    isSK = request.POST.get('type')
     d = ShopKeeper(user=user) if isSK else Consumer(user=user)
     g, create = Group.objects.get_or_create(
         name='ShopKeeper' if isSK else 'Consumer')
