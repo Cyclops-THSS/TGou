@@ -10,11 +10,23 @@ from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
 from .views_auth import group_required
 from django import forms
+from enum import Enum, unique
+from .views_other import error
+
+
+@unique
+class State(Enum):
+    unavailable = 1
+    available = 0
 
 
 @group_required('ShopKeeper')
 def new_product(request):
-    pass
+    if not request.user.ShopKeeperProf.shop:
+        return error(request, 'You must open a shop first!')
+    prod = Commodity(shop=request.user.ShopKeeperProf.shop)
+    prod.save()
+    return redirect('edit_product', id=prod.id)
 
 
 def search_product(request):
@@ -40,9 +52,23 @@ def view_product_id(request, id):
 
 @group_required('ShopKeeper')
 def edit_product(request, id):
-    pass
+    prod = Commodity.objects.get(pk=id)
+    if prod.shop.ShopKeeper.user.id != request.user.id:
+        raise PermissionDenied
+    if request.method == 'GET':
+        form = CommodityForm(instance=prod)
+    else:
+        form = CommodityForm(request.POST, instance=prod)
+        if form.is_valid():
+            form.save()
+    return render(request, 'vEditForm.html', {'form': form, 'entityType': 'product'})
 
 
 @group_required('ShopKeeper')
 def delete_product(request, id):
-    pass
+    prod = Commodity.objects.get(pk=id)
+    if prod.shop.ShopKeeper.user.id != request.user.id:
+        raise PermissionDenied
+    shopid = prod.shop.id
+    prod.delete()
+    return redirect('view_shop_id', id=shopid)

@@ -2,7 +2,6 @@
 
 {# form #}
 {# entityType，string shop/product/order #}
-{# isCreating，bool 新建还是编辑 #}
 
 {# 由以下各 view 共用：shop/product/order 的 edit/new #}
 
@@ -21,11 +20,11 @@
 
 
 <h1>
-	{%if isCreating%}新建{%else%}编辑{%endif%} {{entityType}}
+	编辑 {{entityType}}
 </h1>
 
 <p>
-	您正在{%if isCreating%}创建一个新的{%else%}编辑一个已有的{%endif%} {{entityType}}。
+	您正在编辑一个 {{entityType}}。
 </p>
 
 <form method="POST" action="" class="" >

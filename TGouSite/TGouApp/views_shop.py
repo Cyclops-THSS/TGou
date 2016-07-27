@@ -9,10 +9,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
 from .views_auth import group_required
-
-
-def view_shop(request):
-    pass
+from .views_other import error
+from datetime import datetime
 
 
 def _view_shop(request, shop):
@@ -37,17 +35,31 @@ def view_shop_name(request, name):
 
 @group_required('ShopKeeper')
 def new_shop(request):
-    pass
+    if request.user.ShopKeeperProf.shop:
+        return error(request, 'You\'ve opened a shop')
+    shop = Shop(createDate=datetime.now())
+    shop.save()
+    request.user.ShopKeeperProf.shop = shop
+    request.user.ShopKeeperProf.save()
+    return redirect('edit_shop')
 
 
 @group_required('ShopKeeper')
 def edit_shop(request):
-    pass
+    if request.method == 'GET':
+        form = ShopForm(instance=request.user.ShopKeeperProf.shop)
+    else:
+        form = ShopForm(
+            request.POST, instance=request.user.ShopKeeperProf.shop)
+        if form.is_valid():
+            form.save()
+    return render(request, 'vEditForm.html', {'form': form, 'entityType': 'shop'})
 
 
 @group_required('ShopKeeper')
 def delete_shop(request):
-    pass
+    request.user.ShopKeeperProf.shop.delete()
+    return redirect('index')
 
 
 def search_shop(request):

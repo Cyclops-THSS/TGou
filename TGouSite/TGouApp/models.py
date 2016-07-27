@@ -28,8 +28,8 @@ class Shop (models.Model):
 class ShopKeeper (models.Model):
     user = models.OneToOneField(User, null=True, related_name='ShopKeeperProf')
     nickName = models.CharField(max_length=200, null=True, blank=True)  # 用户昵称
-    shop = models.ForeignKey(
-        Shop, on_delete=models.CASCADE, null=True)  # 店铺标识符
+    shop = models.OneToOneField(
+        Shop, null=True, related_name='ShopKeeper')  # 店铺标识符
     contact = models.TextField(null=True)  # 联系方式
     account = models.CharField(max_length=200, null=True)  # 收款账号
 
@@ -42,14 +42,16 @@ class CommodityCategory (models.Model):
 
 class Commodity (models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 所属店铺标识符
-    name = models.CharField(max_length=200)  # 商品名
+    name = models.CharField(max_length=200, default='')  # 商品名
     category = models.ForeignKey(
         CommodityCategory, on_delete=models.CASCADE, blank=True, null=True)  # 类别标识符
-    price = models.DecimalField(max_digits=8, decimal_places=2)  # 售价
-    inventory = models.IntegerField()  # 库存余量
-    grade = models.CharField(max_length=200)  # 评分
-    gradedBy = models.IntegerField()  # 评分数量
-    state = models.IntegerField()  # 商品状态
+    price = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0.0)  # 售价
+    inventory = models.IntegerField(default=0)  # 库存余量
+    grade = models.DecimalField(
+        max_digits=3, decimal_places=2, default=5.00)  # 评分
+    gradedBy = models.IntegerField(default=0)  # 评分数量
+    state = models.IntegerField(default=0)  # 商品状态
 
 
 class Order (models.Model):
@@ -60,7 +62,7 @@ class Order (models.Model):
     message = models.TextField()  # 留言
     price = models.DecimalField(max_digits=8, decimal_places=2)  # 订单总价
     time = models.DateTimeField()  # 创建时间
-    state = models.IntegerField()  # 订单状态
+    state = models.IntegerField(default=0)  # 订单状态
 
 
 class OrderItem (models.Model):
