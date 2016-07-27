@@ -16,14 +16,17 @@ import json
 @group_required('Consumer')
 @render_to('cart/vCart.html')
 def edit_cart(request):
+    def save_cart(json):
+        request.user.ConsumerProf.cart.cartitem_set.clear()
+        for k, v in json.items():
+            _add_to_cart(Commodity.objects.get(pk=int(k)), v[0], request.user.ConsumerProf.cart)
     if request.method == 'POST':
         cartJson = json.loads(request.POST.get('cartJson'))
         whatamidoing = request.POST.get('whatamidoing')
         if whatamidoing == 'save':
-            request.user.ConsumerProf.cart.cartitem_set.clear()
-            for k, v in cartJson.items():
-                _add_to_cart(Commodity.objects.get(pk=int(k)), v[0], request.user.ConsumerProf.cart)
+            save_cart(cartJson)
         elif whatamidoing == 'submit':
+            save_cart(cartJson)
             return redirect('new_order')
     else:
         cartJson = {}

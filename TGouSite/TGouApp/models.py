@@ -57,10 +57,10 @@ class Commodity (models.Model):
 class Order (models.Model):
     consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE)  # 创建用户标识符
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 负责店铺标识符
-    address = models.CharField(max_length=200)  # 送货地址
-    payType = models.IntegerField()  # 购买方式
-    message = models.TextField()  # 留言
-    price = models.DecimalField(max_digits=8, decimal_places=2)  # 订单总价
+    address = models.CharField(max_length=200, default='')  # 送货地址
+    payType = models.IntegerField(default=0)  # 购买方式
+    message = models.TextField(default='', blank=True)  # 留言
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=0.0)  # 订单总价
     time = models.DateTimeField()  # 创建时间
     state = models.IntegerField(default=0)  # 订单状态
 
@@ -69,6 +69,11 @@ class OrderItem (models.Model):
     cmd = models.ForeignKey(Commodity, on_delete=models.CASCADE)  # 商品标识符
     quantity = models.IntegerField()  # 购买数量
     order = models.ForeignKey(Order, on_delete=models.CASCADE)  # 所属订单标识符
+    def __init__(self, cartitem, order):
+        super(OrderItem, self).__init__()
+        self.cmd = cartitem.commodity
+        self.quantity = cartitem.quantity
+        self.order = order
 
 
 class Cart (models.Model):
