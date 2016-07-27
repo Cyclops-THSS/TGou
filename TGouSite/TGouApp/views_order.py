@@ -8,9 +8,9 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
-from .views_auth import group_required, belongTo
 from datetime import datetime, timedelta
 from enum import Enum, unique
+from .short_cut import *
 
 
 @unique
@@ -26,6 +26,7 @@ class State(Enum):
 
 
 @login_required
+@render_to('order/vOrders.html')
 def view_order(request):
     isConsumer = belongTo(request.user, 'Consumer')
     after = request.GET.get('after')
@@ -39,17 +40,18 @@ def view_order(request):
         y, m, d = before.split('-')
         right = datetime(int(y), int(m), int(d))
     oset = Order.objects.filter(time__range=[left, right])
-    return render(request, 'order/vOrders.html', {'orders': oset, 'isConsumer': isConsumer})
+    return {'orders': oset, 'isConsumer': isConsumer}
 
 
 @login_required
+@render_to('order/vOrder.html')
 def view_order_id(request, id):
     order = Order.objects.get(pk=id)
     if belongTo(request.user, 'Consumer') and order.consumer.user != request.user:
         raise PermissionDenied
     elif order.shop.ShopKeeper.user != request.user:
         raise PermissionDenied
-    return render(request, 'order/vOrder.html', {'order': order})
+    return {'order': order}
 
 
 @group_required('Consumer')
@@ -58,6 +60,7 @@ def new_order(request):
 
 
 @login_required
+@render_to('vEditForm.html')
 def edit_order(request, id):
     order = Order.objects.get(pk=id)
     if order.consumer.user != request.user:
@@ -68,7 +71,7 @@ def edit_order(request, id):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-    return render(request, 'vEditForm.html', {'form': form, 'entityType': 'Order'})
+    return {'form': form, 'entityType': 'Order'}
 
 
 @group_required('Consumer')
