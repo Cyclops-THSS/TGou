@@ -34,8 +34,9 @@
 
 
 <script>
+{% autoescape off %}
 	document.TGou_cartJson = {{cartJson}};
-	console.log(document.cartJson);
+{% endautoescape %}
 </script>
 
 
@@ -68,7 +69,8 @@
 				value="{{ cartitem.quantity }}"
 				onchange = "item_changeQuantity({{cartitem.commodity.id}})" /></td>
 		<td>
-			<span class="price unit-price">{{cartitem.commodity.price}}</span></td>
+			<span class="price unit-price">
+			{{cartitem.commodity.price}}</span></td>
 		<td>
 			<span class="price sub-total"></span></td>
 		<td>
@@ -94,9 +96,10 @@
 	您已对购物车做了修改，别忘了保存哦！</div>
 
 <form method="post" action="" id="form">
+	    {% csrf_token %}
 	<input id="whatamidoingField" name="whatamidoing" type="hidden" value=""/>
 	<input id="cartJsonField" name="cartJson" type="hidden" value=""/>
-	{% csrf_token %}
+
 	<button type="button" class="cart-reload" onclick="cart_reload()">
 		撤销更改</button>
 	<button type="button" class="clear-cart">清空购物车</button>
@@ -108,7 +111,7 @@
 
 
 
-<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script>
 	function for_own_properties(object, callback){
 		for (var property in object) {
@@ -152,10 +155,7 @@
 	}
 
 	function serializeAndPost(){
-		console.log(document.TGou_cartJson);
-		var json = JSON.stringify(document.TGou_cartJson);
-		console.log(json);
-		$('#cartJsonField').val(json);
+		$('#cartJsonField').val(JSON.stringify(document.TGou_cartJson));
 		$('#form').submit();
 	}
 	function cart_save(){
