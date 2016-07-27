@@ -133,8 +133,8 @@
 		show_notice();
 	}
 	function item_changeQuantity(id){
-		document.TGou_cartJson[id]
-			= $('#commodity_id_'+id+' input.quantity-box').val();
+		document.TGou_cartJson[id][0]
+			= $('#commodity_id_'+id+' input.quantity-box')[0].value;
 		update_totals();
 		show_notice();
 	}
@@ -143,7 +143,7 @@
 
 		for_own_properties(document.TGou_cartJson, function(id){
 			var sub_total
-				= parseInt(document.TGou_cartJson[id][1])
+				= parseFloat(document.TGou_cartJson[id][1])
 				* parseInt(document.TGou_cartJson[id][0]);
 			total += sub_total;
 			$('#commodity_id_'+id+' .sub-total').html(sub_total);
