@@ -45,18 +45,29 @@ def group_required(group, login_url='auth_login', raise_exception=True):
     return user_passes_test(check_perms, login_url=login_url)
 
 
-def check_user(_lambda, message):
+def belongTo(user, group):
+    return user.groups.filter(name=group).exists()
+
+
+@render_to('error.html')
+def error(request, message=None):
+    if not message:
+        message = request.session.get('msg', None)
+        if message:
+            del request.session['msg']
+    if not message:
+        raise Http404
+    return {'message': message}
+
+
+def check_request(_lambda, message):
     def outer(func):
         @wraps(func)
         def inner(request, *args, **kwargs):
-            if _lambda(request.user):
+            ret = _lambda(request)
+            if ret == True:
                 return func(request, *args, **kwargs)
             else:
-                request.session['msg'] = message
-                return redirect(resolve_url('error'))
+                return error(request, message if ret == False or not isinstance(ret, six.string_types) else ret)
         return inner
     return outer
-
-
-def belongTo(user, group):
-    return user.groups.filter(name=group).exists()

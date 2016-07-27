@@ -21,9 +21,8 @@ class State(Enum):
 
 
 @group_required('ShopKeeper')
+@check_request(lambda r: r.user.ShopKeeperProf.shop, 'You must open a shop first!')
 def new_product(request):
-    if not request.user.ShopKeeperProf.shop:
-        return error(request, 'You must open a shop first!')
     prod = Commodity(shop=request.user.ShopKeeperProf.shop)
     prod.save()
     return redirect('edit_product', id=prod.id)
@@ -41,7 +40,10 @@ def search_product(request):
 
 @render_to('product/vCommodity.html')
 def view_product_id(request, id):
-    prod = Commodity.objects.get(pk=id)
+    try:
+        prod = Commodity.objects.get(pk=id)
+    except:
+        raise Http404
     comments = prod.comment_set.all()
     return {
         'commodity': prod,
@@ -54,7 +56,10 @@ def view_product_id(request, id):
 @group_required('ShopKeeper')
 @render_to('vEditForm.html')
 def edit_product(request, id):
-    prod = Commodity.objects.get(pk=id)
+    try:
+        prod = Commodity.objects.get(pk=id)
+    except:
+        raise Http404
     if prod.shop.ShopKeeper.user.id != request.user.id:
         raise PermissionDenied
     if request.method == 'GET':
@@ -68,7 +73,10 @@ def edit_product(request, id):
 
 @group_required('ShopKeeper')
 def delete_product(request, id):
-    prod = Commodity.objects.get(pk=id)
+    try:
+        prod = Commodity.objects.get(pk=id)
+    except:
+        raise Http404
     if prod.shop.ShopKeeper.user.id != request.user.id:
         raise PermissionDenied
     shopid = prod.shop.id

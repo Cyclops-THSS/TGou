@@ -87,11 +87,14 @@ class OrderItem (models.Model):
     quantity = models.IntegerField()  # 购买数量
     order = models.ForeignKey(Order, on_delete=models.CASCADE)  # 所属订单标识符
 
-    def __init__(self, cartitem, order):
-        super(OrderItem, self).__init__()
-        self.cmd = cartitem.commodity
-        self.quantity = cartitem.quantity
-        self.order = order
+    def __init__(self, *args, **kwargs):
+        super(OrderItem, self).__init__(*args, **kwargs)
+        item = kwargs.pop('item', None)
+        order = kwargs.pop('order', None)
+        if item and order:
+            self.cmd = item.commodity
+            self.quantity = item.quantity
+            self.order = order
 
 
 class Cart (models.Model):

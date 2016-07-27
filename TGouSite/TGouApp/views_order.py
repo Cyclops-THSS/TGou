@@ -39,17 +39,21 @@ def view_order(request):
     if before:
         y, m, d = before.split('-')
         right = datetime(int(y), int(m), int(d))
-    oset = Order.objects.filter(time__range=[left, right])
+    if isConsumer:
+        oset = Order.objects.filter(time__range=[left, right], consumer=request.user.ConsumerProf)
+    else:
+        oset = Order.objects.filter(time__range=[left, right], shop=request.user.ShopKeeperProf.shop)
     return {'orders': oset, 'isConsumer': isConsumer}
 
 
 @login_required
 @render_to('order/vOrder.html')
 def view_order_id(request, id):
-    order = Order.objects.get(pk=id)
-    if belongTo(request.user, 'Consumer') and order.consumer.user != request.user:
-        raise PermissionDenied
-    elif order.shop.ShopKeeper.user != request.user:
+    try:
+        order = Order.objects.get(pk=id)
+    except:
+        raise Http404
+    if (order.consumer.user if belongTo(request.user, 'Consumer') else order.shop.ShopKeeper.user) != request.user:
         raise PermissionDenied
     return {'order': order}
 
@@ -60,7 +64,7 @@ def new_order(request):
                   0].commodity.shop, time=datetime.now())
     order.save()
     for item in request.user.ConsumerProf.cart.cartitem_set.all():
-        o = OrderItem(item, order)
+        o = OrderItem({'item': item, 'order': order})
         order.price += float(item.quantity * item.commodity.price)
         o.save()
     order.save()
@@ -71,7 +75,10 @@ def new_order(request):
 @login_required
 @render_to('vEditForm.html')
 def edit_order(request, id):
-    order = Order.objects.get(pk=id)
+    try:
+        order = Order.objects.get(pk=id)
+    except:
+        raise Http404
     if order.consumer.user != request.user:
         raise PermissionDenied
     if request.method == 'GET':
@@ -85,7 +92,10 @@ def edit_order(request, id):
 
 @group_required('Consumer')
 def confirm_order(request, id):
-    order = Order.objects.get(pk=id)
+    try:
+        order = Order.objects.get(pk=id)
+    except:
+        raise Http404
     if order.consumer.user != request.user:
         raise PermissionDenied
     order.state = State.finished
@@ -94,7 +104,10 @@ def confirm_order(request, id):
 
 @group_required('Consumer')
 def delete_order(request, id):
-    order = Order.objects.get(pk=id)
+    try:
+        order = Order.objects.get(pk=id)
+    except:
+        raise Http404
     if order.consumer.user != request.user:
         raise PermissionDenied
     order.delete()
