@@ -1,10 +1,17 @@
+{# 定义 CartEditJSON：表示用户对购物车的编辑，字符串，以JSON解释， #}
+{#     javascript 字典(key-value pairs)，key为商品id，value为数量 #}
+{#     如 `{233: 3, 234: 2, 235:5}` 表示购物车中目前有233号商品3件，...  #}
+{#     如 `{233: 2, 234: 2, 235:0}` 表示用户把233号商品改成了2件，并从购物车中删除了235号商品 #}
+
 {# POST 到自己 #}
 {#      whatamidoing: submit提交生成订单 / save暂存 #}
-{#      cartitems: JSON字典，key为商品id，value为商品数量、0表示删除 #}
+{#      cartJson: 上述定义的CartEditJSON：JSON字符串 #}
 
-{# POST 到 clear #}
+{# POST 到 clear，无参数 #}
 
-{# cart #}
+{# 接受的模板参数 #}
+{#      cart，常规Python对象 #}
+{#      cartJson，上述定义的CartEditJSON：JSON字符串 #}
 
 
 {% extends "base.html" %}
