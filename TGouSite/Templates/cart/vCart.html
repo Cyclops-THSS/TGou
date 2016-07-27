@@ -34,7 +34,9 @@
 
 
 <script>
+{% autoescape off %}
 	document.TGou_cartJson = {{cartJson}};
+{% endautoescape %}
 </script>
 
 
@@ -65,9 +67,12 @@
 			<input
 				class="quantity-box"
 				value="{{ cartitem.quantity }}"
-				onchange = "item_changeQuantity({{cartitem.commodity.id}})" /></td>
+				type = "tel"
+				oninput = "item_changeQuantity({{cartitem.commodity.id}})"
+				 /></td>
 		<td>
-			<span class="price unit-price"></span></td>
+			<span class="price unit-price">
+			{{cartitem.commodity.price}}</span></td>
 		<td>
 			<span class="price sub-total"></span></td>
 		<td>
@@ -108,7 +113,7 @@
 
 
 
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="/static/jquery.min.js"></script>
 <script>
 	function for_own_properties(object, callback){
 		for (var property in object) {
@@ -130,8 +135,9 @@
 		show_notice();
 	}
 	function item_changeQuantity(id){
-		document.TGou_cartJson[id]
-			= $('#commodity_id_'+id+' input.quantity-box').val();
+		var q = parseInt($('#commodity_id_'+id+' input.quantity-box')[0].value);
+		if(isNaN(q)) q = 0;
+		document.TGou_cartJson[id][0] = q;
 		update_totals();
 		show_notice();
 	}
@@ -140,7 +146,7 @@
 
 		for_own_properties(document.TGou_cartJson, function(id){
 			var sub_total
-				= parseInt(document.TGou_cartJson[id][1])
+				= parseFloat(document.TGou_cartJson[id][1])
 				* parseInt(document.TGou_cartJson[id][0]);
 			total += sub_total;
 			$('#commodity_id_'+id+' .sub-total').html(sub_total);
