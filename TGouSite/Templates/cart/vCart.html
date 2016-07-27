@@ -104,7 +104,8 @@
 
 	<button type="button" class="cart-reload" onclick="cart_reload()">
 		撤销更改</button>
-	<button type="button" class="clear-cart">清空购物车</button>
+	<button type="button" class="clear-cart" onclick="cart_clear()">
+		清空购物车</button>
 	<button type="button" class="cart-save" onclick="cart_save()">
 		保存更改</button>
 	<button type="button" class="cart-submit" onclick="cart_submit()">
@@ -129,10 +130,11 @@
 		$('#notice').show();
 	}
 	function item_remove(id){
-		$('#commodity_id_'+id).slideUp();
-		document.TGou_cartJson[id] = 0;
-		update_totals();
-		show_notice();
+		$('#commodity_id_'+id).fadeOut(function(){
+			document.TGou_cartJson[id][0] = 0;
+			update_totals();
+			show_notice();
+		});
 	}
 	function item_changeQuantity(id){
 		var q = parseInt($('#commodity_id_'+id+' input.quantity-box')[0].value);
