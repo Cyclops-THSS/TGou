@@ -29,7 +29,8 @@ def edit_cart(request):
     else:
         cartJson = {}
         for value in request.user.ConsumerProf.cart.cartitem_set.all():
-            cartJson[value.commodity.id] = value.quantity
+            cartJson[value.commodity.id] = [value.quantity, str(value.commodity.price)]
+    print(cartJson)
     return {'cart': request.user.ConsumerProf.cart, 'cartJson': json.dumps(cartJson)}
 
 
