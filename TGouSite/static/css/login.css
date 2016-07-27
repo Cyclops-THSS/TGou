@@ -485,3 +485,118 @@ label{
 }
 
 
+/*编辑个人资料部分*/
+.edit-profile{
+	background: url(../../static/images/profile.jpg);
+}
+
+.edit_profile_gif{
+	width: 300px;
+	height: 200px;
+	float: right;
+	position: relative;
+	top: 2%;
+	right: 26%;
+	background: url(../images/zhuakuang.gif) no-repeat;
+}
+
+.edit_profile_content{
+	height: 800px;
+}
+
+.edit_profile_content h1{
+	color: #556;
+	font-family: "Microsoft YaHei" !important;
+	margin-left: 200px;
+}
+
+.edit_profile_content form{
+	margin-top: 40px;
+	margin-left: 200px;
+}
+
+.edit_profile_content form p{
+	color: #666;
+}
+
+.edit_profile_content form p input{
+	color: #776;
+}
+
+#id_datejoined{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_nickName{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_dftAddress{
+	width: 350px;
+	height: 100px;
+	border: 3px solid #ccc;
+	font-family: Serif;
+	font-size: 18px;
+	background-color: RGBA(233, 233, 233, .8)
+}
+
+#id_dftPayType{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_contact{
+	width: 350px;
+	height: 100px;
+	border: 3px solid #ccc;
+	font-family: Serif;
+	font-size: 18px;
+	background-color: RGBA(233, 233, 233, .8)
+}
+
+#id_account{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
