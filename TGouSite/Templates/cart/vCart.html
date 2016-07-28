@@ -1,0 +1,94 @@
+{# POST 到自己 #}
+{#      whatamidoing: submit提交生成订单 / save暂存 #}
+{#      cartitems: JSON字典，key为商品id，value为商品数量、0表示删除 #}
+
+{# POST 到 clear #}
+
+{# cart #}
+
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load mathfilters %}
+{% block content %}
+
+
+<h1>您的购物车</h1>
+
+<p>包含以下商品：</p>
+<table class="order-items">
+	<tr>
+		<th>商品</th>
+		<th>店铺</th>
+		<th>数量</th>
+		<th>单价</th>
+		<th>小计</th>
+		<th>操作</th>
+	</tr>
+{% for cartitem in cart.cartitem_set.all %}
+	<tr>
+		<td><span class="commodity-name">
+				{{ cartitem.commodity.name }} (#{{ cartitem.commodity.id }})</span></td>
+		<td><span class="shop-name">
+						{{ cartitem.commodity.shop.name }} (#{{ cartitem.commodity.shop.id }})</span></td>
+		<td>
+			<span class="quantity">{{ cartitem.quantity }}</span></td>
+		<td><span class="price">
+			{{ cartitem.commodity.price }}</span></td>
+		<td><span class="price">
+			{{ cartitem.commodity.price|mul:cartitem.quantity }}</span></td>
+		<td>
+			<button class="cartitem-minus" onclick="item_minus(this)">-</button>
+			<button class="cartitem-plus" onclick="item_plus(this)">+</button>
+			<button class="cartitem-remove" onclick="item_remove(this)">删除</button>
+		</td>
+	</tr>
+{% endfor %}
+	<tr>
+		<td>
+			总价格</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><span class="price">
+			{{ cart.price }}</span></td>
+		<td></td>
+	</tr>
+</table>
+
+<form method="post" action="" id="form">
+	<input name="whatamidoing" type="hidden" value=""/>
+	<input name="cartitems" type="hidden" value=""/>
+	<button type="button" class="cart-save" onclick="cart_save()">暂存更改</button>
+	<button type="button" class="cart-submit" onclick="cart_submit()">前去结算</button>
+</form>
+
+<form method="post" action="clear">
+	<button type="submit" class="clear-cart">清空购物车</button>
+</form>
+
+
+<script>
+	function item_minus(el){
+
+	}
+	function item_plus(el){
+
+	}
+	function item_remove(el){
+
+	}
+	function cart_save(el){
+
+	}
+	function cart_submit(el){
+
+	}
+	function get_cart_items(){
+
+	}
+</script>
+
+
+
+{% endblock %}

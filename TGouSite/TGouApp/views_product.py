@@ -8,10 +8,10 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
-from .views_auth import group_required
 from django import forms
 from enum import Enum, unique
 from .views_other import error
+from .short_cut import *
 
 
 @unique
@@ -29,28 +29,30 @@ def new_product(request):
     return redirect('edit_product', id=prod.id)
 
 
+@render_to('product/vCommodities.html')
 def search_product(request):
     q = request.GET.get('q')
     if request.method == 'POST':
         q = request.POST.get('q')
     cset = Commodity.objects.filter(
         name__icontains=q) if q else Commodity.objects.all()
-    return render(request, 'product/vCommodities.html', {'commodities': cset, 'query': q if q else ''})
+    return {'commodities': cset, 'query': q if q else ''}
 
 
+@render_to('product/vCommodity.html')
 def view_product_id(request, id):
     prod = Commodity.objects.get(pk=id)
     comments = prod.comment_set.all()
-    context = {
+    return {
         'commodity': prod,
         'categoryList': [prod.category],
         'comments': comments,
         'average': prod.grade
     }
-    return render(request, 'product/vCommodity.html', context)
 
 
 @group_required('ShopKeeper')
+@render_to('vEditForm.html')
 def edit_product(request, id):
     prod = Commodity.objects.get(pk=id)
     if prod.shop.ShopKeeper.user.id != request.user.id:
@@ -61,7 +63,7 @@ def edit_product(request, id):
         form = CommodityForm(request.POST, instance=prod)
         if form.is_valid():
             form.save()
-    return render(request, 'vEditForm.html', {'form': form, 'entityType': 'product'})
+    return {'form': form, 'entityType': 'product'}
 
 
 @group_required('ShopKeeper')

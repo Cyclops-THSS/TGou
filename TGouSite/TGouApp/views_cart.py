@@ -8,7 +8,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
-from .views_auth import group_required
+from .short_cut import *
 
 
 @group_required('Consumer')

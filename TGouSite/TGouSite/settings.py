@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
-    'mathfilters'
+    'mathfilters',
+    'rosetta'
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,6 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'Locale'),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
