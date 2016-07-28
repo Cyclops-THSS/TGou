@@ -1,12 +1,13 @@
 {% extends "../Templates/base.html" %}
 {% load i18n %}
+{% load utils %}
 
 
 {% block content %}
-Index page
-<br/>
-<br/>
-<br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/><br/>
+{% ifusergroup Consumer %}
+You're consumer
+{% endifusergroup %}
+{% ifusergroup ShopKeeper %}
+You're shopkeeper
+{% endifusergroup %}
 {% endblock %}
