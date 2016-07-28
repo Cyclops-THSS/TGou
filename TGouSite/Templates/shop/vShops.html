@@ -13,7 +13,7 @@
 <!--head-->
 	<div class="w">
 		<div id="logo">
-			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
 				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
 			</a>
 			<b class="search-shops"></b>
@@ -24,11 +24,11 @@
 		<form action="" method="POST">
 				{% csrf_token %}
 				<input class="search-input" name="q" value="{{query}}"/>
-				<button class="btn-search-shop" type="submit" class="search">搜索</button>
+				<button class="btn-search-shop" type="submit" class="search">{% trans "Search" %}</button>
 		</form>
 
 		<p><h3 class="shop-h3">
-			以下店铺已入驻天狗：</h3>
+			{% trans "Who is selling at TGou now?" %}：</h3>
 		</p>
 
 		<ul class="shop-list">
@@ -38,11 +38,11 @@
 					<span class="shop-name">
 						<a href="{% url 'view_shop_id' shop.id %}">
 							{{shop.name}}</a></span></p>
-				<p>位&nbsp;&nbsp;置：
+				<p>{% trans "Location" %}：
 					<span class="shop-location">{{shop.location}}</span></p>
-				<p>分&nbsp;&nbsp;类：
+				<p>{% trans "Category" %}：
 					<span class="category-name">{{shop.category.name}}</span></p>
-				<p>简&nbsp;&nbsp;介：
+				<p>{% trans "Summary" %}：
 					<span class="shop-intro">{{shop.intro}}</span></p>
 		 	</li>
 			{% endfor %}
@@ -50,5 +50,5 @@
 
 	</div>
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 {% endblock %}

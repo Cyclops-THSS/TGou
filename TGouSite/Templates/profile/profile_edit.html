@@ -9,7 +9,7 @@
 <!--head-->
 	<div class="w">
 		<div id="logo">
-			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
 				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
 			</a>
 			<b class="edit-profile"></b>
@@ -19,11 +19,11 @@
 	<div class="registration-boder">
 		<div class="edit_profile_content">
 			<div class="edit_profile_gif"></div>
-			<h1>&nbsp;&nbsp;&nbsp;&nbsp;Edit Profile</h1>
+			<h1>&nbsp;&nbsp;&nbsp;&nbsp;{% trans "Edit profile" %}</h1>
 			<form method="POST" action="." class="" >
     			{% csrf_token %}
     			{{ form.as_p }}
-   				 <button class="btn-submit" type="submit">Save</button>
+   				 <button class="btn-submit" type="submit">{% trans "Submit" %}</button>
 			</form>
 		</div>
 	</div>

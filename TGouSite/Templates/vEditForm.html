@@ -20,7 +20,7 @@
 <!--head-->
 	<div class="w">
 		<div id="logo">
-			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
 				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
 			</a>
 			<b class="edit-yourshop"></b>
@@ -31,9 +31,9 @@
 		<div class="edit_profile_content">
 				<div class="edit_profile_gif"></div>
 
-				<h1>&nbsp;&nbsp;&nbsp; 编 辑 {{entityType}}</h1>
+				<h1>&nbsp;&nbsp;&nbsp; {% trans "Edit %} {{entityType}}</h1>
 
-				<p class="edit">您正在编辑一个 {{entityType}}...</p>
+				<p class="edit">{% trans "You are editing a(n) " %} {{entityType}}...</p>
 
 				<form method="POST" action="" class="" >
     				{% csrf_token %}

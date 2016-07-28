@@ -801,3 +801,17 @@ label{
 	font-size: 22px;
 }
 
+/*购物车*/
+.vcart-pic{
+	background: url(../images/vcart.jpg) no-repeat;
+}
+
+.vcart-content{
+	margin-left: 300px;
+	margin-top: 30px;
+}
+
+
+
+
+
