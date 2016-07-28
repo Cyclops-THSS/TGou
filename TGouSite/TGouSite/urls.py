@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^', include('TGouApp.urls')),
-    url(r'^$', views.index, name='index'),
+    # url(r'^$', views.index, name='index'),
 ]
