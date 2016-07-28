@@ -3,6 +3,19 @@ from django import forms
 from .models import *
 from collections import OrderedDict
 from django.utils.translation import ugettext_lazy as _
+from enum import Enum, unique
+
+
+@unique
+class OState(Enum):
+    new = 0  # never used
+    paying = 1
+    paid = 2
+    sent = 3
+    finished = 4
+    returning = 5
+    refunding = 6
+    canceled = 7
 
 
 class UserRegForm(RegistrationFormUniqueEmail):
@@ -72,10 +85,12 @@ class OrderForm(forms.ModelForm):
         self.fields['price'].widget.attrs['readonly'] = True
         self.fields['time'].widget.attrs['readonly'] = True
         self.initial['shopName'] = self.instance.shop.name
+        self.fields['state'] = forms.ChoiceField(label=_('state'), choices=((0, _('new')), (1, _(
+            'paying')), (3, _('paid')), (4, _('sent')), (5, _('finished'))), initial=self.instance.state)
 
     class Meta:
         model = Order
-        exclude = ('consumer', 'shop', 'state')
+        exclude = ('consumer', 'shop')
 
 
 class CommodityForm(forms.ModelForm):

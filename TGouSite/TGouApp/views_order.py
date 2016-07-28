@@ -9,21 +9,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
 from datetime import datetime, timedelta
-from enum import Enum, unique
 from .short_cut import *
 from django.utils.translation import ugettext_lazy as _
-
-
-@unique
-class State(Enum):
-    new = 0  # never used
-    paying = 1
-    paid = 2
-    sent = 3
-    finished = 4
-    returning = 5
-    refunding = 6
-    canceled = 7
 
 
 @login_required
@@ -103,7 +90,7 @@ def confirm_order(request, id):
         raise Http404
     if order.consumer.user != request.user:
         raise PermissionDenied
-    order.state = State.finished
+    order.state = 5
     return redirect('view_order_id', id=id)
 
 
