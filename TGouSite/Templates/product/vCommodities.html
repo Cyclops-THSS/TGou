@@ -20,11 +20,14 @@
 	</div>
 	<!--商品搜索列表-->
 	<div class="commodities-content">
+		<p>{% trans "Search by keyword:" %}</p>
 		<form action="" method="POST">
     		{% csrf_token %}
 			<input class="search-input" name="q" value="{{ query }}"/>
 			<button class="btn-search-shop" type="submit" class="search">{% trans "Search" %}</button>
 		</form>
+		<p><a href="{% url 'view_product_categories' %}">
+			{% trans "Search by category..." %}</a></p>
 
 		<p><h3 class="shop-h3">{% trans "What is sold at TGou now?" %}</h3></p>
 

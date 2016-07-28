@@ -62,14 +62,14 @@
 
     {% endifusergroup %}
     {% ifusergroup ShopKeeper %}
-    
+
     <p class="sn-container4">
         <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
     </p>
     <p class="sn-container5">
         <a class="personnal-center" href="{% url 'edit_profile' %}">个人中心</a>
     </p>
-    
+
     <p class="sn-container7">
         <a class="my-commodity" href="{% url 'search_product' %}">商品</a>
     </p>
@@ -85,21 +85,21 @@
     </p>
     -->
     {% endifusergroup %}
-    
+
 
     {% endblock %}
     <hr/>
     </div>
 
     <!--主体-->
-		
+
     <div id="content">
 
     {% block content %}
 
     {% endblock %}
 		</div>
-    
+
 
     <!--脚-->
     <div id="footer">

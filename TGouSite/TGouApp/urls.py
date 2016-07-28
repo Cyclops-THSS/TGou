@@ -56,12 +56,15 @@ urlpatterns = [
     url(r'^order/(?P<id>\d+)/confirm$', views.confirm_order, name='confirm_order'),
     url(r'^order/(?P<id>\d+)/delete$', views.delete_order, name='delete_order'),
     # product related
+	url(r'^$', views.search_product, name='index'),
     url(r'^product/$', views.search_product, name='search_product'),
     url(r'^product/new$', views.new_product, name='new_product'),
     url(r'^product/(?P<id>\d+)$', views.view_product_id, name='view_product_id'),
     url(r'^product/(?P<id>\d+)/edit$', views.edit_product, name='edit_product'),
     url(r'^product/(?P<id>\d+)/delete$',
         views.delete_product, name='delete_product'),
+	url(r'^productincategory', views.view_product_in_category, name='view_product_in_category'),
+	url(r'^productcategories', views.view_product_categories, name='view_product_categories'),
     # comment related
     url(r'^comment/new$', views.new_comment, name='new_comment'),
     url(r'^comment/(?P<id>\d+)/edit$', views.edit_comment, name='edit_comment'),
