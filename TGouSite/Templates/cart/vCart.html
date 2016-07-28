@@ -57,12 +57,12 @@
 	<tr id="commodity_id_{{cartitem.commodity.id}}">
 		<td>
 			<span class="commodity-name">
-				{{ cartitem.commodity.name }}
-				(#{{ cartitem.commodity.id }})</span></td>
+				<a href="{% url 'view_product_id' cartitem.commodity.id %}">
+					{{ cartitem.commodity.name }}</a></span></td>
 		<td>
 			<span class="shop-name">
-				{{ cartitem.commodity.shop.name }}
-				(#{{ cartitem.commodity.shop.id }})</span></td>
+				<a href="{% url 'view_shop_id' cartitem.commodity.shop.id %}">
+					{{ cartitem.commodity.shop.name }}</a></span></td>
 		<td>
 			<input
 				class="quantity-box"
@@ -106,10 +106,10 @@
 		撤销更改</button>
 	<button type="button" class="clear-cart" onclick="cart_clear()">
 		清空购物车</button>
-	<button type="button" class="cart-save" onclick="cart_save()">
+	<button type="button" class="cart-save" onclick="cart_save()" style="display:none;">
 		保存更改</button>
 	<button type="button" class="cart-submit" onclick="cart_submit()">
-		保存更改并前去结算</button>
+		前去结算</button>
 </form>
 
 
@@ -128,6 +128,8 @@
 
 	function show_notice(){
 		$('#notice').show();
+		$('button.cart-save').show();
+		$('button.cart-submit').html("保存更改并前去结算");
 	}
 	function item_remove(id){
 		$('#commodity_id_'+id).fadeOut(function(){

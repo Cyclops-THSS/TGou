@@ -20,11 +20,15 @@
 {% for commodity in commodities %}
 	<li class="commodity-item">
 		<p>
-			<span class="commodity-name">{{ commodity.name }}</span>
-		 	(#{{ commodity.id }})</p>
+			<span class="commodity-name">
+				<a href="{% url 'view_product_id' commodity.id%}">
+					{{ commodity.name }}</a></span>
+		 	</p>
 		<p>
 			<span class="commodity-price">¥ {{ commodity.price }}</span>
-			来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
+			来自 <span class="shop-name">
+				<a href="{% url 'view_shop_id' commodity.shop.id}">
+					{{ commodity.shop.name }}</a></span></p>
 	 </li>
 {% endfor %}
 </ul>
