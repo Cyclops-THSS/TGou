@@ -8,71 +8,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 15:04+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-07-29 00:43+0800\n"
+"PO-Revision-Date: 2016-07-29 01:07+0800\n"
+"Last-Translator: b'  <jlmhkwang@163.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.7.11\n"
 
-#: TGouApp/forms.py:10
+#: TGouApp/forms.py:23
 msgid "As Shop Keeper? "
-msgstr ""
+msgstr "作为商家入驻？"
 
-#: TGouApp/forms.py:10
+#: TGouApp/forms.py:23
 msgid "No"
-msgstr ""
+msgstr "否"
 
-#: TGouApp/forms.py:10
+#: TGouApp/forms.py:23
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: TGouApp/forms.py:15
+#: TGouApp/forms.py:28
 msgid "Register Email"
-msgstr ""
+msgstr "注册邮箱"
 
-#: TGouApp/forms.py:17
+#: TGouApp/forms.py:30
 msgid "Login Name"
-msgstr ""
+msgstr "登录名"
 
-#: TGouApp/forms.py:18
+#: TGouApp/forms.py:31
 msgid "Date Registered"
-msgstr ""
+msgstr "注册日期"
 
-#: TGouApp/forms.py:39
+#: TGouApp/forms.py:52
 msgid "Default Address"
-msgstr ""
+msgstr "默认地址"
 
-#: TGouApp/forms.py:40
+#: TGouApp/forms.py:53
 msgid "Default Paying Method"
-msgstr ""
+msgstr "默认付款方式"
 
-#: TGouApp/forms.py:50
+#: TGouApp/forms.py:63
 msgid "Shroff Account"
-msgstr ""
+msgstr "收款账号"
 
-#: TGouApp/views_cart.py:47
-msgid "You must apply your cart with another store's products first!"
-msgstr ""
+#: TGouApp/forms.py:88 TGouApp/forms.py:102
+msgid "state"
+msgstr "状态"
 
-#: TGouApp/views_cart.py:52 TGouApp/views_other.py:17 TGouApp/views_other.py:54
+#: TGouApp/forms.py:88
+msgid "new"
+msgstr "新建"
+
+#: TGouApp/forms.py:89
+msgid "paying"
+msgstr "正在付款"
+
+#: TGouApp/forms.py:89
+msgid "paid"
+msgstr "已付款"
+
+#: TGouApp/forms.py:89
+msgid "sent"
+msgstr "已发货"
+
+#: TGouApp/forms.py:89
+msgid "finished"
+msgstr "交易完成"
+
+#: TGouApp/forms.py:103
+msgid "available"
+msgstr "热销中"
+
+#: TGouApp/forms.py:103
+msgid "unavailable"
+msgstr "暂不供货"
+
+#: TGouApp/views_cart.py:52 TGouApp/views_other.py:18
+#: TGouApp/views_other.py:60
 msgid "bad request"
-msgstr ""
+msgstr "非法请求"
 
-#: TGouApp/views_order.py:65
+#: TGouApp/views_cart.py:56
+msgid "Inventory not available!"
+msgstr "库存量不足！"
+
+#: TGouApp/views_cart.py:58
+msgid "You must apply your cart with another store's products first!"
+msgstr "请先结算购物车中来自另一家商铺的所有商品！"
+
+#: TGouApp/views_order.py:52
 msgid "Please add at least one item in your cart first!"
-msgstr ""
+msgstr "请至少在购物车中添加一个项目！"
 
-#: TGouApp/views_product.py:25 TGouApp/views_shop.py:67
+#: TGouApp/views_product.py:25 TGouApp/views_shop.py:73
 msgid "You must open a shop first!"
-msgstr ""
+msgstr "请先开一个商铺！"
 
 #: TGouApp/views_shop.py:44
 msgid "You've opened a shop"
-msgstr ""
+msgstr "您已经注册了一个商铺！"
 
 #: Templates/403.html:14
 msgid "出错啦 :("
@@ -84,45 +122,237 @@ msgstr ""
 msgid "确定"
 msgstr ""
 
-#: Templates/base.html:22 Templates/registration/logged_out.html:4
+#: Templates/base.html:25 Templates/registration/logged_out.html:4
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
-#: Templates/base.html:25 Templates/base.html:29
+#: Templates/base.html:28 Templates/base.html:32
 #: Templates/registration/login.html:47
 #: Templates/registration/password_reset_complete.html:14
 msgid "Log in"
-msgstr ""
+msgstr "登录"
 
-#: Templates/base.html:26
+#: Templates/base.html:29
 msgid "Log out"
-msgstr ""
+msgstr "注销"
 
-#: Templates/base.html:27
+#: Templates/base.html:30
 msgid "Change password"
-msgstr ""
+msgstr "更改密码"
 
-#: Templates/order/vOrders.html:32
-msgid "View orders created after the date of:"
-msgstr ""
+#: Templates/cart/vCart.html:56
+msgid "Your cart"
+msgstr "你的购物车"
 
-#: Templates/order/vOrders.html:34
+#: Templates/cart/vCart.html:58
+msgid "now contains the following commodities"
+msgstr "现在包含如下商品"
+
+#: Templates/cart/vCart.html:61
+msgid "Commodity"
+msgstr "商品"
+
+#: Templates/cart/vCart.html:62 Templates/order/vOrder.html:22
+#: Templates/shop/vShop.html:24
+msgid "Shop"
+msgstr "商铺"
+
+#: Templates/cart/vCart.html:63 Templates/order/vOrder.html:40
+msgid "Quantity"
+msgstr "数量"
+
+#: Templates/cart/vCart.html:64 Templates/order/vOrder.html:41
+msgid "Unit price"
+msgstr "单价"
+
+#: Templates/cart/vCart.html:65 Templates/order/vOrder.html:42
+msgid "Sub total"
+msgstr "共计"
+
+#: Templates/cart/vCart.html:66
+msgid "Oparation"
+msgstr "操作"
+
+#: Templates/cart/vCart.html:94
+msgid "Remove"
+msgstr "移除"
+
+#: Templates/cart/vCart.html:100 Templates/order/vOrder.html:34
+#: Templates/order/vOrder.html:65
+msgid "Total price"
+msgstr "总价"
+
+#: Templates/cart/vCart.html:111
+msgid "You hava made changes to your cart. Don't forget to save your changes."
+msgstr "您编辑了自己的购物车，请记得保存更改。"
+
+#: Templates/cart/vCart.html:119
+msgid "Undo all changes"
+msgstr "撤销所有更改"
+
+#: Templates/cart/vCart.html:121
+msgid "Clear cart"
+msgstr "清空购物车"
+
+#: Templates/cart/vCart.html:123
+msgid "Save changes"
+msgstr "保存更改"
+
+#: Templates/cart/vCart.html:125
+msgid "Go to pay"
+msgstr "前往结算"
+
+#: Templates/cart/vCart.html:146
+msgid "Save changes and go to pay"
+msgstr "保存并结算"
+
+#: Templates/order/vOrder.html:14
+msgid "Order"
+msgstr "订单"
+
+#: Templates/order/vOrder.html:17
+msgid "Consumer"
+msgstr "消费者"
+
+#: Templates/order/vOrder.html:28 Templates/order/vOrder.html:76
+msgid "Delivery address"
+msgstr "送货地址"
+
+#: Templates/order/vOrder.html:32
+msgid "Time of creation"
+msgstr "下单时间"
+
+#: Templates/order/vOrder.html:36
+msgid "This order contains the following commodities"
+msgstr "该订单包含如下项目"
+
+#: Templates/order/vOrder.html:39 Templates/shop/vShop.html:26
+msgid "Name"
+msgstr "商品名"
+
+#: Templates/order/vOrder.html:60
+msgid "Comment it"
+msgstr "评论"
+
+#: Templates/order/vOrder.html:74
+msgid "Payment"
+msgstr "付款方式"
+
+#: Templates/order/vOrder.html:78
+msgid "Message"
+msgstr "留言"
+
+#: Templates/order/vOrder.html:80
+msgid "Status"
+msgstr "订单状态"
+
+#: Templates/order/vOrder.html:84
+msgid "Order management operations"
+msgstr "订单管理操作"
+
+#: Templates/order/vOrder.html:87
+msgid "Confirm delivery and close order"
+msgstr "确认发货并关闭订单"
+
+#: Templates/order/vOrder.html:90
+msgid "Confirm order"
+msgstr "确认订单"
+
+#: Templates/order/vOrder.html:92
+msgid "I've started delivering"
+msgstr "开始送货"
+
+#: Templates/order/vOrder.html:94
+msgid "Confirm receipt and close order"
+msgstr "确认收货并关闭订单"
+
+#: Templates/order/vOrder.html:97
+msgid "Edit order details"
+msgstr "编辑订单详情"
+
+#: Templates/order/vOrder.html:99
+msgid "Delete order"
+msgstr "删除订单"
+
+#: Templates/order/vOrder.html:104
+msgid "Do you want to grade the "
+msgstr "您想要评论"
+
+#: Templates/order/vOrder.html:106
+msgid "shop"
+msgstr "商家"
+
+#: Templates/order/vOrder.html:110
+msgid "consumer"
+msgstr "消费者"
+
+#: Templates/order/vOrder.html:121
+msgid "Grade ranging from 0 to 5: "
+msgstr "分数从0到5"
+
+#: Templates/order/vOrder.html:124 Templates/order/vOrders.html:34
+#: Templates/profile/profile_edit.html:28
 #: Templates/registration/password_change_form.html:29
 #: Templates/registration/password_reset_confirm.html:18
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
-#: Templates/product/vCommodities.html:26
+#: Templates/order/vOrders.html:32
+msgid "View orders created after the date of:"
+msgstr "查找在该日期之后订单"
+
+#: Templates/product/vCommodities.html:23 Templates/shop/vShops.html:25
+msgid "Search by keyword:"
+msgstr "按关键词搜索"
+
+#: Templates/product/vCommodities.html:27 Templates/shop/vShops.html:29
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
-#: Templates/product/vCommodities.html:29
+#: Templates/product/vCommodities.html:30 Templates/shop/vShops.html:31
+msgid "Search by category..."
+msgstr "按类别搜索"
+
+#: Templates/product/vCommodities.html:32
 msgid "What is sold at TGou now?"
-msgstr ""
+msgstr "是什么正在天狗火热销售？"
 
-#: Templates/product/vCommodities.html:41
+#: Templates/product/vCommodities.html:44
+#: Templates/shop/vProductCategory.html:39
 msgid "from"
-msgstr ""
+msgstr "来自"
+
+#: Templates/profile/profile_edit.html:24
+msgid "Edit profile"
+msgstr "编辑简介"
+
+#: Templates/profile/profile_show.html:26
+msgid "Hello"
+msgstr "您好"
+
+#: Templates/profile/profile_show.html:26
+msgid "Welcome to TGou"
+msgstr "欢迎来到天狗"
+
+#: Templates/profile/profile_show.html:30
+msgid "Nickname"
+msgstr "昵称"
+
+#: Templates/profile/profile_show.html:33
+msgid "Default delivery address"
+msgstr "默认送货地址"
+
+#: Templates/profile/profile_show.html:35
+msgid "Default payment method"
+msgstr "默认付款方式"
+
+#: Templates/profile/profile_show.html:38
+msgid "Account for collection"
+msgstr "收款账号"
+
+#: Templates/profile/profile_show.html:41
+msgid "methods of contacting"
+msgstr "联系方式"
 
 #: Templates/registration/activate.html:6
 msgid "Account activation failed"
@@ -195,3 +425,62 @@ msgstr ""
 #: Templates/registration/registration_complete.html:5
 msgid "You are now registered. Activation email sent."
 msgstr ""
+
+#: Templates/shop/vProductCategories.html:25
+msgid "All product categories "
+msgstr "所有商品类别"
+
+#: Templates/shop/vProductCategory.html:26
+msgid "Products in the category "
+msgstr "该类别商品"
+
+#: Templates/shop/vShop.html:28 Templates/shop/vShopCategory.html:38
+#: Templates/shop/vShops.html:49
+msgid "Category"
+msgstr "类别"
+
+#: Templates/shop/vShop.html:37 Templates/shop/vShopCategory.html:36
+#: Templates/shop/vShops.html:47
+msgid "Location"
+msgstr "位置"
+
+#: Templates/shop/vShop.html:39 Templates/shop/vShopCategory.html:40
+#: Templates/shop/vShops.html:51
+msgid "Summary"
+msgstr "简介"
+
+#: Templates/shop/vShop.html:41
+msgid "Date of open"
+msgstr "开店日期"
+
+#: Templates/shop/vShop.html:56
+msgid "Shop management operations:"
+msgstr "商铺管理操作"
+
+#: Templates/shop/vShop.html:58
+msgid "Edit shop"
+msgstr "编辑商铺"
+
+#: Templates/shop/vShop.html:60
+msgid "Delete shop"
+msgstr "删除商铺"
+
+#: Templates/shop/vShopCategories.html:25
+msgid "All shop categories "
+msgstr "所有商铺类别"
+
+#: Templates/shop/vShopCategory.html:26
+msgid "Shops in the category "
+msgstr "该类别商铺"
+
+#: Templates/shop/vShops.html:37
+msgid "Top shops at TGou"
+msgstr "天狗最热商铺"
+
+#: Templates/vEditForm.html:34
+msgid "Edit"
+msgstr "编辑"
+
+#: Templates/vEditForm.html:36
+msgid "You are editing a(n) "
+msgstr "你正在编辑一个"
