@@ -95,3 +95,17 @@ def view_shop_in_category(request):
 @render_to('shop/vShopCategories.html')
 def view_shop_categories(request):
     return {'set': ShopCategory.objects.all()}
+
+@render_to('shop/vProductCategory.html')
+def view_product_in_category(request):
+    q = request.GET.get('q')
+    if request.method == 'POST':
+        q = request.POST.get('q')
+    cset = Commodity.objects.filter(
+        category=q) if q else Commodity.objects.all()
+    categoryName = CommodityCategory.objects.filter(id=q)[0].name if q else ""
+    return {'shops': cset, 'categoryName': categoryName}
+
+@render_to('shop/vProductCategories.html')
+def view_product_categories(request):
+    return {'set': CommodityCategory.objects.all()}

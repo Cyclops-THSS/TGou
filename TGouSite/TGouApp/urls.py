@@ -62,6 +62,8 @@ urlpatterns = [
     url(r'^product/(?P<id>\d+)/edit$', views.edit_product, name='edit_product'),
     url(r'^product/(?P<id>\d+)/delete$',
         views.delete_product, name='delete_product'),
+	url(r'^productincategory', views.view_product_in_category, name='view_product_in_category'),
+	url(r'^productcategories', views.view_product_categories, name='view_product_categories'),
     # comment related
     url(r'^comment/new$', views.new_comment, name='new_comment'),
     url(r'^comment/(?P<id>\d+)/edit$', views.edit_comment, name='edit_comment'),
