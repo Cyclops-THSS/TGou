@@ -54,7 +54,7 @@
 					<span class="commodity-intro">{{commodity.intro}}</span></p>
 		<p class="want-to-buy">有意购买？</p>
 
-		<form action="/add-to-cart" method="post">
+		<form action="{% url 'add-to-cart' %}" method="post">
 			{% csrf_token %}
 			<input name="commodityId" value="{{commodity.id}}" type="hidden" />
 			<p class="want-to-buy-num">

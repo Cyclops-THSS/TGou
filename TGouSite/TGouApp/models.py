@@ -113,6 +113,7 @@ class Comment (models.Model):
     grade = models.DecimalField(max_digits=3, decimal_places=2)  # 评分
     message = models.TextField()  # 评论内容
     time = models.DateTimeField()  # 创建时间
+    consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE)
 
 
 class Grading (models.Model):
