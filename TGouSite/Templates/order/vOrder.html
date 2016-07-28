@@ -115,10 +115,11 @@
 	{% csrf_token %}
 	<input name="direction" value="{%if isConsumer%}0{%else%}1{%endif%}" type="hidden"/>
 	<input name="cid" value="{{order.consumer.id}}" type="hidden"/>
+	<input type="hidden" name="odid" value="{{order.id}}">
 	<input name="sid" value="{{order.shop.id}}" type="hidden"/>
 	<p>
 		{% trans "Grade ranging from 0 to 5: " %}
-		<input name="sid" value="5" type="number"/></p>
+		<input name="grade" value="5" type="number"/></p>
 	<p><button class="btn-search-shop" type="submit" class="search">
 		{% trans "Submit" %}</button></p>
 </form>
