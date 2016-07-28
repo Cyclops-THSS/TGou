@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^shop/new$', views.new_shop, name='new_shop'),
     url(r'^shop/delete$', views.delete_shop, name='delete_shop'),
     url(r'^shop/edit$', views.edit_shop, name='edit_shop'),
+    url(r'^shop/my$', views.my_shop, name='my_shop'),
     url(r'^shop/(?P<id>\d+)$', views.view_shop_id, name='view_shop_id'),
     url(r'^shop/(?P<name>\w+)$', views.view_shop_name, name='view_shop_name'),
 	url(r'^shopincategory', views.view_shop_in_category, name='view_shop_in_category'),

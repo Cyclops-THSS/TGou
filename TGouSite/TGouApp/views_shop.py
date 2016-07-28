@@ -49,6 +49,11 @@ def new_shop(request):
     request.user.ShopKeeperProf.save()
     return redirect('edit_shop')
 
+@group_required('ShopKeeper')
+def my_shop(request):
+    if request.user.ShopKeeperProf.shop:
+        return redirect('edit_shop')
+    return redirect('new_shop')
 
 @group_required('ShopKeeper')
 @render_to('vEditForm.html')

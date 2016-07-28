@@ -23,23 +23,23 @@
 	<div class="profile-show-content">
 
 
-	<h3>{% trans "Hello" %}，{{user.nickName}}！{% trans "Welcome to TGou" %}！</h3>
+	<h3>{% trans "Hello" %}，{{prof.nickName}}！{% trans "Welcome to TGou" %}！</h3>
 
 
 	<!--个人资料编辑-->
 	<p>{% trans "Nickname" %}：
-		{{user.nickName}}</p>
+		{{prof.nickName}}</p>
 {% if isConsumer %}
 	<p>{% trans "Default delivery address" %}：
-		{{user.dftAddress}}</p>
+		{{prof.dftAddress}}</p>
 	<p>{% trans "Default payment method" %}：
-		{{user.dftPayType}}</p>
+		{{prof.dftPayType}}</p>
 {% else %}
 	<p>{% trans "Account for collection" %}：
-		{{user.account}}</p>
+		{{prof.account}}</p>
 {% endif %}
 		<p>{% trans "methods of contacting" %}：
-			{{user.contact}}</p>
+			{{prof.contact}}</p>
 
 
 
