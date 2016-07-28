@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load utils %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +30,19 @@
             <a class="head_changepassword" href="{% url 'auth_password_change' %}">{% trans     "Change password" %}</a>)
         {% else %}
              <a class="head_login" href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
+             <p class="sn-container3">
+                <a class="welcome-registe" href="{% url 'registration_register' %}">欢迎注册</a>
+             </p>
         {% endif %}
     </p>
 
+    {% ifusergroup Consumer %}
 
-    <p class="sn-container3">
-         <a class="welcome-registe" href="{% url 'registration_register' %}">欢迎注册</a>
-    </p>
     <p class="sn-container4">
         <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
     </p>
     <p class="sn-container5">
         <a class="personnal-center" href="{% url 'edit_profile' %}">个人中心</a>
-    </p>
-    <p class="sn-container6">
-        <i class="icon-ui glyphicon glyphicon-shopping-cart"></i>
-        <a class="my-cart" href="{% url 'edit_cart' %}">购物车</a>
     </p>
     <p class="sn-container7">
         <a class="my-commodity" href="{% url 'search_product' %}">商品</a>
@@ -51,6 +50,30 @@
     <p class="sn-container8">
         <a class="my-shop" href="{% url 'search_shop' %}">店铺</a>
     </p>
+    <p class="sn-container6">
+        <i class="icon-ui glyphicon glyphicon-shopping-cart"></i>
+        <a class="my-cart" href="{% url 'edit_cart' %}">购物车</a>
+    </p>
+
+    {% endifusergroup %}
+    {% ifusergroup ShopKeeper %}
+
+    <p class="sn-container4">
+        <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
+    </p>
+    <p class="sn-container5">
+        <a class="personnal-center" href="{% url 'edit_profile' %}">个人中心</a>
+    </p>
+
+    <p class="sn-container7">
+        <a class="my-commodity" href="{% url 'search_product' %}">商品</a>
+    </p>
+    <p class="sn-container8">
+        <a class="my-shop" href="{% url 'search_shop' %}">店铺</a>
+    </p>
+
+    {% endifusergroup %}
+
 
     {% endblock %}
     <hr/>

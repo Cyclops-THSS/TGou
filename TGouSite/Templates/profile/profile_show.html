@@ -1,10 +1,8 @@
 {# prof, Consumer 或 ShopKeeper 对象#}
 {# isConsumer, bool #}
 
-
-
-
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block head%}
 <link rel="stylesheet" href="../../../static/css/base.css" type = "text/css"/>
@@ -16,13 +14,13 @@
 
 	<div class="w">
 		<div id="logo">
-			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
 				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
 			</a>
 			<b class="edit-profile"></b>
 		</div>
 	</div>
-
+	<div class="profile-show-content">
 
 
 	<h3>{% trans "Hello" %}，{{user.nickName}}！{% trans "Welcome to TGou" %}！</h3>
@@ -44,5 +42,7 @@
 			{{user.contact}}</p>
 
 
+
+	</div>
 
 {% endblock %}
