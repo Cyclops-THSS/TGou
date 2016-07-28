@@ -129,6 +129,26 @@ a {
 	text-shadow: 1px 1px 1px rgba(250,24,205, .66);
 }
 
+.add-new-commodity{
+	color: #660;
+	font-size: 15px;
+	position: relative;
+}
+.add-new-commodity:hover{
+	opacity: 0.65;/*不透明度*/
+	text-shadow: 1px 1px 1px rgba(250,24,205, .66);
+}
+
+.change-language{
+	color: #660;
+	font-size: 15px;
+	position: relative;
+}
+.change-language:hover{
+	opacity: 0.65;/*不透明度*/
+	text-shadow: 1px 1px 1px rgba(250,24,205, .66);
+}
+
 /*首页换行问题*/
 .sn-container{
 	width: 65px;
@@ -148,21 +168,21 @@ a {
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 400px;
+   	right: 420px;
 }
 
 .sn-container4{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 320px;
+   	right: 350px;
 }
 
 .sn-container5{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 240px;
+   	right: 270px;
 }
 
 /*购物车*/
@@ -170,21 +190,36 @@ a {
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 60px;
+   	right: 90px;
 }
 
 .sn-container7{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 140px;
+   	right: 170px;
 }
 
 .sn-container8{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 190px;
+   	right: 220px;
+}
+
+
+.sn-container9{
+	display: inline-block;
+    position: absolute;
+    font-size: 16px;
+   	right: 90px;
+}
+
+.sn-container10{
+	display: inline-block;
+    position: absolute;
+    font-size: 16px;
+   	right: 15px;
 }
 
 .icon-ui{
