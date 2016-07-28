@@ -32,7 +32,7 @@ def create_profile(sender, user, request, **kwargs):
 
 
 @login_required
-@render_to('profile/profile.html')
+@render_to('profile/profile_edit.html')
 def edit_profile(request):
     if request.method == 'GET':
         form = ConsumerProf(instance=request.user.ConsumerProf) if belongTo(
@@ -43,3 +43,8 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
     return {'form': form}
+
+@login_required
+@render_to('profile/profile_view.html')
+def view_profile(request):
+	pass;
