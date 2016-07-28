@@ -81,3 +81,17 @@ def search_shop(request):
     cset = Shop.objects.filter(
         name__icontains=q) if q else Shop.objects.all()
     return {'shops': cset, 'query': q if q else ''}
+
+@render_to('shop/vShopCategory.html')
+def view_shop_in_category(request):
+    q = request.GET.get('q')
+    if request.method == 'POST':
+        q = request.POST.get('q')
+    cset = Shop.objects.filter(
+        category=q) if q else Shop.objects.all()
+    categoryName = ShopCategory.objects.filter(id=q)[0].name if q else ""
+    return {'shops': cset, 'categoryName': categoryName}
+
+@render_to('shop/vShopCategories.html')
+def view_shop_categories(request):
+    return {'set': ShopCategory.objects.all()}

@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^shop/edit$', views.edit_shop, name='edit_shop'),
     url(r'^shop/(?P<id>\d+)$', views.view_shop_id, name='view_shop_id'),
     url(r'^shop/(?P<name>\w+)$', views.view_shop_name, name='view_shop_name'),
+	url(r'^shopincategory', views.view_shop_in_category, name='view_shop_in_category'),
+	url(r'^shopcategories', views.view_shop_categories, name='view_shop_categories'),
     # cart related
     url(r'^cart/$', views.edit_cart, name='edit_cart'),
     url(r'^add-to-cart/$', views.add_to_cart, name='add-to-cart'),
