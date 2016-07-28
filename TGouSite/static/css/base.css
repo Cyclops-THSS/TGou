@@ -99,6 +99,16 @@ a {
 	text-shadow: 1px 1px 1px rgba(250,24,205, .66);
 }
 
+.personnal-center{
+	color: #660;
+	font-size: 15px;
+	position: relative;
+}
+.personnal-center:hover{
+	opacity: 0.65;/*不透明度*/
+	text-shadow: 1px 1px 1px rgba(250,24,205, .66);
+}
+
 .sn-container{
 	width: 60px;
 	height: 19px;
@@ -112,7 +122,7 @@ a {
     font-size: 16px;
    	right: -0px;
 }
-
+/*欢迎注册*/
 .sn-container3{
 	display: inline-block;
     position: absolute;
@@ -124,14 +134,21 @@ a {
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 200px;
+   	right: 220px;
 }
 
 .sn-container5{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 100px;
+   	right: 140px;
+}
+
+.sn-container6{
+	display: inline-block;
+    position: absolute;
+    font-size: 16px;
+   	right: 60px;
 }
 
 .icon-ui{
