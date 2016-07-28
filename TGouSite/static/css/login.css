@@ -501,8 +501,9 @@ label{
 	float: right;
 	position: relative;
 	top: 2%;
-	right: 26%;
+	right: 17%;
 	background: url(../images/zhuakuang.gif) no-repeat;
+	z-index: 2;
 }
 
 .edit_profile_content{

@@ -23,7 +23,7 @@
     <p class="sn-container">
         <i class="icon-ui glyphicon glyphicon-home"></i>
         <a class="head_home" href="{% url 'index' %}">{% trans "Home" %}</a> &nbsp;&nbsp;
-    <p class="sn-container2"> 
+    <p class="sn-container2">
         {% if user.is_authenticated %}
              {% trans "Log in" %}: {{ user.username }}&nbsp;
              (<a class="head_logout" href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
@@ -36,8 +36,15 @@
         {% endif %}
     </p>
 
+<<<<<<< HEAD
     {% ifusergroup Consumer %}
     
+=======
+
+    <p class="sn-container3">
+         <a class="welcome-registe" href="{% url 'registration_register' %}">欢迎注册</a>
+    </p>
+>>>>>>> Controller
     <p class="sn-container4">
         <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
     </p>
@@ -80,12 +87,13 @@
     </div>
 
     <!--主体-->
+		<div style="margin-left: 10%">
     <div id="content">
-    
-    {% block content %}
-    
-    {% endblock %}
 
+    {% block content %}
+
+    {% endblock %}
+		</div>
     </div>
 
     <!--脚-->

@@ -21,11 +21,11 @@
 	<!--店铺信息详情-->
 	<div class="shop-details-content">
 
-		<h1 class="id-shop">店 铺 #{{shop.id}}</h1>
+		<h1 class="id-shop">{% trans "Shop" %} #{{shop.id}}</h1>
 
-		<p class="shop-name">店铺名称：<span>{{shop.name}}</span></p>
+		<p class="shop-name">{% trans "Name" %}<span>{{shop.name}}</span></p>
 
-		<p>类&nbsp;&nbsp;别：
+		<p>{% trans "Category" %}：
 			<div class="category-container">
 				{% for category in categoryList %}
 			    <span class="category-delimiter"> &gt; </span>
@@ -34,11 +34,11 @@
 			</div>
 		</p>
 
-		<p>位&nbsp;&nbsp;置：
+		<p>{% trans "Location" %}：
 			<span class="shop-location">{{shop.location}}</span></p>
-		<p>简&nbsp;&nbsp;介：
+		<p>{% trans "Summary" %}：
 			<span class="shop-intro">{{shop.intro}}</span></p>
-		<p>开店日期：
+		<p>{% trans "Date of open" %}：
 			<span class="shop-date">{{shop.createDate}}</span></p>
 
 		<ul class="commodity-list">
@@ -53,11 +53,11 @@
 		</ul>
 
 		<p>
-			管理操作：
+			{% trans "Shop management operations:" %}：
 			<a class="edit-shop" href="{% url 'edit_shop' %}">
-				编辑店铺</a>
+				{% trans "Edit shop" %}</a>
 			<a class="delete-shop" href="{% url 'delete_shop' %}">
-				删除店铺</a>
+				{% trans "Delete shop" %}</a>
 		</p>
 
 	</div>

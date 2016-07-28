@@ -20,15 +20,21 @@
 		</div>
 	</div>
 	<!--店铺搜索列表-->
+
 	<div class="shop-content">
+		<p>{% trans "Search by keyword:" %}</p>
 		<form action="" method="POST">
 				{% csrf_token %}
 				<input class="search-input" name="q" value="{{query}}"/>
-				<button class="btn-search-shop" type="submit" class="search">搜索</button>
+				<button class="btn-search-shop" type="submit" class="search">{% trans "Search" %}</button>
+			<p><a href="{% url 'view_shop_categories' %}">
+				{% trans "Search by category..." %}</a></p>
 		</form>
 
+
+
 		<p><h3 class="shop-h3">
-			以下店铺已入驻天狗：</h3>
+			{% trans "Top shops at TGou" %}：</h3>
 		</p>
 
 		<ul class="shop-list">
@@ -38,11 +44,11 @@
 					<span class="shop-name">
 						<a href="{% url 'view_shop_id' shop.id %}">
 							{{shop.name}}</a></span></p>
-				<p>位&nbsp;&nbsp;置：
+				<p>{% trans "Location" %}：
 					<span class="shop-location">{{shop.location}}</span></p>
-				<p>分&nbsp;&nbsp;类：
+				<p>{% trans "Category" %}：
 					<span class="category-name">{{shop.category.name}}</span></p>
-				<p>简&nbsp;&nbsp;介：
+				<p>{% trans "Summary" %}：
 					<span class="shop-intro">{{shop.intro}}</span></p>
 		 	</li>
 			{% endfor %}

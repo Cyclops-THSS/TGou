@@ -1,0 +1,42 @@
+
+{# set #}
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+{% block content %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-shops"></b>
+		</div>
+	</div>
+
+	<div class="shop-content">
+
+		<p><h3 class="shop-h3">
+			{% trans "All shop categories " %}: </h3>
+		</p>
+
+		<ul class="shop-list">
+			{% for c in set %}
+			<li class="shop-item">
+				<p>
+					<span class="shop-name">
+						<a href="{% url 'view_shop_in_category' %}/?q={{ c.id }}">
+							{{c.name}}</a></span></p>
+		 	</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+
+
+{% endblock %}

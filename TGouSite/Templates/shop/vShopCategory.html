@@ -1,0 +1,49 @@
+{# 表单 POST 自己，参数 q #}
+{# shops， 全部 或 搜索结果集 #}
+{# query 当前搜索框内容 #}
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head %}
+
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+{% block content %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-shops"></b>
+		</div>
+	</div>
+	<!--店铺搜索列表-->
+	<div class="shop-content">
+
+		<p><h3 class="shop-h3">
+			{% trans "Shops in the category " %}<b>{{ categoryName }}</b></h3>
+		</p>
+
+		<ul class="shop-list">
+			{% for shop in shops %}
+			<li class="shop-item">
+				<p>
+					<span class="shop-name">
+						<a href="{% url 'view_shop_id' shop.id %}">
+							{{shop.name}}</a></span></p>
+				<p>{% trans "Location" %}：
+					<span class="shop-location">{{shop.location}}</span></p>
+				<p>{% trans "Category" %}：
+					<span class="category-name">{{shop.category.name}}</span></p>
+				<p>{% trans "Summary" %}：
+					<span class="shop-intro">{{shop.intro}}</span></p>
+		 	</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+
+
+{% endblock %}
