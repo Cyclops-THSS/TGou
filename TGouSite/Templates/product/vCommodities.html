@@ -18,7 +18,7 @@
 			<b class="search-commodities-pic"></b>
 		</div>
 	</div>
-	<!--商品搜索-->
+	<!--商品搜索列表-->
 	<div class="commodities-content">
 		<form action="" method="POST">
     		{% csrf_token %}
@@ -26,17 +26,19 @@
 			<button class="btn-search-shop" type="submit" class="search">搜索</button>
 		</form>
 
-		<p>以下商品正在天狗火热销售：</p>
+		<p><h3 class="shop-h3">以下商品正在天狗火热销售：</h3></p>
 
 		<ul class="shop-list">
 			{% for commodity in commodities %}
 			<li class="commodity-item">
 			<p>
-					<span class="commodity-name">{{ commodity.name }}</span>
-		 	(#{{ commodity.id }})</p>
-			<p>
+				<span class="commodity-name">{{ commodity.name }}</span>
+		 		(#{{ commodity.id }})
+		 	</p>
+			<p class="commodities-2">
 				<span class="commodity-price">¥ {{ commodity.price }}</span>
-				来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
+				来自 <span class="shop-name">{{ commodity.shop.name }}</span>
+			</p>
 		 	</li>
 			{% endfor %}
 		</ul>

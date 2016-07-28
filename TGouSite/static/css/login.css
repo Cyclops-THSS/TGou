@@ -364,7 +364,7 @@ label{
 }
 
 .change_password_content{
-	height: 230px;
+	height: 130px;
 	margin-left: 20%;
 	margin-top: 5%;
 	position: relative;
@@ -429,7 +429,7 @@ label{
 }
 
 .change_password_content{
-	height: 500px;
+	height: 330px;
 }
 
 .change_password_content form{
@@ -592,6 +592,9 @@ label{
 	
 }
 
+.shop-h3{
+	color: #633;
+}
 
 .search-input{
 	display: inline;
@@ -609,7 +612,7 @@ label{
 	font-weight: bold;
 	text-shadow: 1px 1px 1px rgba(250,245,245, .22);
 	font-size: 17px;
-	margin-left: 5px;
+	margin-left: 8px;
 	margin-bottom: 5px;
 	background-color: #aaccaa;
 	border-radius: 5px;
@@ -691,6 +694,13 @@ label{
 	background: url(../images/commodities.jpg);
 }
 
+.commodities-2{
+	font-size: 16px;
+	font-family: "Microsoft Yahei";
+	color: #565;
+}
+
+.
 /*订单搜索*/
 .search-order{
 	background: url(../images/ordersearch.jpg);
@@ -708,7 +718,51 @@ label{
 	padding-left: 0px; 
 }
 
+/*店铺详情*/
+.shop-details-pic{
+	background: url(../images/shopdetails.jpg) no-repeat;
+}
 
+.shop-details-content{
+	margin-top: 40px;
+	margin-bottom: 100px;
+	margin-left: 300px;
+}
 
+.id-shop{
 
+}
+
+.shop-name{
+	font-size: 19px;
+	margin-top: 20px;
+	color: #553;
+}
+
+.commodity-list{
+	margin-left: 30px;
+}
+
+/*商品详情*/
+.search-commodities-details-pic{
+	background: url(../images/commoditydetails.jpg);
+}
+
+.want-to-buy{
+	color: #562;
+	font-size: 19px;
+}
+
+.want-to-buy-num{
+	margin-bottom: 12px;
+}
+
+.commodities-input{
+	height: 30px;
+	width: 100px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
 

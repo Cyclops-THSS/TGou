@@ -19,7 +19,7 @@
 			<b class="search-shops"></b>
 		</div>
 	</div>
-	<!--店铺搜索-->
+	<!--店铺搜索列表-->
 	<div class="shop-content">
 		<form action="" method="POST">
 				{% csrf_token %}
@@ -27,8 +27,8 @@
 				<button class="btn-search-shop" type="submit" class="search">搜索</button>
 		</form>
 
-		<p>
-			以下店铺已入驻天狗：
+		<p><h3 class="shop-h3">
+			以下店铺已入驻天狗：</h3>
 		</p>
 
 		<ul class="shop-list">
@@ -36,11 +36,11 @@
 			<li class="shop-item">
 				<p>
 					<span class="shop-name">{{shop.name}} (#{{shop.id}})</span></p>
-				<p>位置：
+				<p>位&nbsp;&nbsp;置：
 					<span class="shop-location">{{shop.location}}</span></p>
-				<p>分类：
+				<p>分&nbsp;&nbsp;类：
 					<span class="category-name">{{shop.category.name}}</span></p>
-				<p>简介：
+				<p>简&nbsp;&nbsp;介：
 					<span class="shop-intro">{{shop.intro}}</span></p>
 		 	</li>
 			{% endfor %}
@@ -48,5 +48,5 @@
 
 	</div>
 
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 {% endblock %}

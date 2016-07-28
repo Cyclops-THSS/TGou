@@ -10,54 +10,75 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
+
 {% block content %}
 
-
-<h1>商品 #{{commodity.id}}</h1>
-
-<p>商品名称：
-	<span class="commodity-name">{{commodity.name}}</span></p>
-
-<p>店铺：
-	<span class="category-name">{{ commodity.shop.name }} (#{{ commodity.shop.id }}) </span></p>
-
-<p>类别：
-	<div class="category-container">
-		{% for category in categoryList %}
-	    <span class="category-delimiter"> &gt; </span>
-			<span class="category-name">{{ category.name }} (#{{ category.id }}) </span>
-		{% endfor %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-commodities-details-pic"></b>
+		</div>
 	</div>
-</p>
+	<!--商品信息详情-->
+	<div class="shop-content">
+		<h1 class="id-shop">商&nbsp;品 #{{commodity.id}}</h1>
 
-<p>有意购买？</p>
+		<p class="shop-name">商品名称：
+			<span class="commodity-name">{{commodity.name}}</span></p>
 
-<form action="/add-to-cart" method="post">
-<input name="commodityId" value="" type="hidden" />
-<p>件数：
-	<input name="quantity" value="" type="text" /></p>
-<button type="submit" class="add-to-cart">加入购物车</button>
-</form>
+		<p>店&nbsp;&nbsp;铺：
+			<span class="category-name">{{ commodity.shop.name }} (#{{ commodity.shop.id }}) </span></p>
 
+		<p>类&nbsp;&nbsp;别：
+			<div class="category-container">
+				{% for category in categoryList %}
+			    <span class="category-delimiter"> &gt; </span>
+					<span class="category-name">{{ category.name }} (#{{ category.id }}) </span>
+				{% endfor %}
+			</div>
+		</p>
 
-<p>详情：
-	<span class="commodity-intro">{{commodity.intro}}</span></p>
+		<p class="want-to-buy">有意购买？</p>
 
-
-<p>针对此商品的评论：
-	共 <span class="comment-count">{{comments|length}}</span> 条，
-	平均得分 <span class="comment-average">{{average}}</span>。</p>
-
-<ul class="comment-list">
-{% for comment in comments %}
-		<li class="comment-item">
-			用户<span class="comment-consumer">{{ comment.consumer }}</span>，
-			评分<span class="comment-grade">{{ comment.grade }}</span>，
-			<span class="comment-message">{{ comment.message }}</span>，
-			发表于 <span class="comment-time">{{ comment.time }}</span>
-		</li>
-{% endfor %}
-</ul>
+		<form action="/add-to-cart" method="post">
+			<input name="commodityId" value="" type="hidden" />
+			<p class="want-to-buy-num">
+				件&nbsp;&nbsp;数：
+				<input class="commodities-input" name="quantity" value="" type="text" /></p>
+				<button class="btn-search-shop" type="submit" class="add-to-cart">加入购物车</button>
+		</form>
 
 
+		<p>详&nbsp;&nbsp;情：
+			<span class="commodity-intro">{{commodity.intro}}</span></p>
+
+
+		<p>针对此商品的评论：
+			共 <span class="comment-count">{{comments|length}}</span> 条，
+			平均得分 <span class="comment-average">{{average}}</span>。</p>
+
+		<ul class="comment-list">
+		{% for comment in comments %}
+				<li class="comment-item">
+					用户<span class="comment-consumer">{{ comment.consumer }}</span>，
+					评分<span class="comment-grade">{{ comment.grade }}</span>，
+					<span class="comment-message">{{ comment.message }}</span>，
+					发表于 <span class="comment-time">{{ comment.time }}</span>
+				</li>
+		{% endfor %}
+		</ul>
+
+	</div>
+
+
+
+<br/><br/><br/>
 {% endblock %}
