@@ -68,6 +68,8 @@ def edit_shop(request):
 @check_request(lambda r: r.user.ShopKeeperProf.shop, _('You must open a shop first!'))
 def delete_shop(request):
     request.user.ShopKeeperProf.shop.delete()
+    request.user.ShopKeeperProf.shop = None
+    request.user.ShopKeeperProf.save()
     return redirect('index')
 
 

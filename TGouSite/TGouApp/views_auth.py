@@ -45,6 +45,7 @@ def edit_profile(request):
             return redirect('view_profile')
     return {'form': form}
 
+
 @login_required
 @render_to('profile/profile_show.html')
 def view_profile(request):

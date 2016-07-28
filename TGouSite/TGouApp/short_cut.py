@@ -65,7 +65,7 @@ def check_request(_lambda, message):
         @wraps(func)
         def inner(request, *args, **kwargs):
             ret = _lambda(request)
-            if ret == True:
+            if ret != False and ret != None and not isinstance(ret, six.string_types):
                 return func(request, *args, **kwargs)
             else:
                 return error(request, message if ret == False or not isinstance(ret, six.string_types) else ret)

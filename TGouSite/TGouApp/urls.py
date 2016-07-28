@@ -27,7 +27,7 @@ urlpatterns = [
     # accounts related
     # url(r'^accounts/profile/$', views.view_profile, name='view_profile'),
     url(r'^accounts/profile/edit/$', views.edit_profile, name='edit_profile'),
-	url(r'^accounts/profile/$', views.view_profile, name='view_profile'),
+    url(r'^accounts/profile/$', views.view_profile, name='view_profile'),
     url(r'^accounts/register/$', check_request(doNotLogin, 'Please log out first!')(views.TRegistrationView.as_view()),
         name='registration_register'),
     url(r'^accounts/login/$', check_request(doNotLogin, 'Please log out first!')(auth_views.login), {'template_name': 'registration/login.html'},
