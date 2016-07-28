@@ -228,6 +228,7 @@ label{
 }
 
 #id_username{
+	width: 236px;
 	height: 30px;
 	display: flex;
 	right: 50px;
@@ -238,6 +239,7 @@ label{
 }
 
 #id_password{
+	width: 236px;
 	height: 30px;
 	display: flex;
 	right: 50px;
@@ -308,6 +310,7 @@ label{
 }
 
 #id_email{
+	width: 236px;
 	height: 30px;
 	display: flex;
 	right: 50px;
@@ -318,6 +321,7 @@ label{
 }
 
 #id_password1{
+	width: 236px;
 	height: 30px;
 	display: flex;
 	right: 50px;
@@ -328,6 +332,7 @@ label{
 }
 
 #id_password2{
+	width: 236px;
 	height: 30px;
 	display: flex;
 	right: 50px;
@@ -501,7 +506,7 @@ label{
 }
 
 .edit_profile_content{
-	height: 800px;
+	
 }
 
 .edit_profile_content h1{
@@ -581,6 +586,26 @@ label{
 	font-size: 22px;
 }
 
+#id_grade{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
+#id_gradedBy{
+	height: 30px;
+	display: flex;
+	right: 50px;
+	border: 2px bold #FF0099;
+	background-color: RGBA(247, 238, 214, 0.5);
+	font-family: Serif;
+	font-size: 22px;
+}
+
 /*店铺搜索*/
 .search-shops{
 	background: url(../images/sousuo.jpg) no-repeat;
@@ -622,6 +647,16 @@ label{
 	text-shadow: 2px 2px 2px rgba(2,2,2, .22);
 	background-color: #44ff40;
 	cursor: pointer;
+}
+
+.edit-shop{
+	font-size: 17px;
+	color: #669;
+}
+
+.delete-shop{
+	font-size: 17px;
+	color: #669;
 }
 
 /*编辑商铺*/
@@ -691,7 +726,7 @@ label{
 }
 
 .search-commodities-pic{
-	background: url(../images/commodities.jpg);
+	background: url(../images/commodities.jpg) no-repeat;
 }
 
 .commodities-2{
@@ -700,10 +735,10 @@ label{
 	color: #565;
 }
 
-.
+
 /*订单搜索*/
 .search-order{
-	background: url(../images/ordersearch.jpg);
+	background: url(../images/ordersearch.jpg) no-repeat;
 }
 
 .date-order{

@@ -36,10 +36,19 @@
         <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
     </p>
     <p class="sn-container5">
-        <i class="icon-ui glyphicon glyphicon-shopping-cart"></i>
-        <a class="my-cart" href="#">购物车</a>
+        <a class="personnal-center" href="{% url 'edit_profile' %}">个人中心</a>
     </p>
-    
+    <p class="sn-container6">
+        <i class="icon-ui glyphicon glyphicon-shopping-cart"></i>
+        <a class="my-cart" href="{% url 'edit_cart' %}">购物车</a>
+    </p>
+    <p class="sn-container7">
+        <a class="my-commodity" href="{% url 'search_product' %}">商品</a>
+    </p>
+    <p class="sn-container8">
+        <a class="my-shop" href="{% url 'search_shop' %}">店铺</a>
+    </p>
+
     {% endblock %}
     <hr/>
     </div>
