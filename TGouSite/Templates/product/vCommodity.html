@@ -19,7 +19,9 @@
 	<span class="commodity-name">{{commodity.name}}</span></p>
 
 <p>店铺：
-	<span class="category-name">{{ commodity.shop.name }} (#{{ commodity.shop.id }}) </span></p>
+	<span class="category-name">
+		<a href="{%url 'view_shop_id' commodity.shop.id}">
+			{{ commodity.shop.name }}</a></span></p>
 
 <p>类别：
 	<div class="category-container">
@@ -60,5 +62,12 @@
 {% endfor %}
 </ul>
 
+<p>
+	管理操作：
+	<a href="{% url 'edit_product' commodity.id %}">
+		编辑商品</a>
+	<a href="{% url 'delete_product' commodity.id %}">
+		删除商品</a>
+</p>
 
 {% endblock %}

@@ -57,12 +57,12 @@
 	<tr id="commodity_id_{{cartitem.commodity.id}}">
 		<td>
 			<span class="commodity-name">
-				{{ cartitem.commodity.name }}
-				(#{{ cartitem.commodity.id }})</span></td>
+				<a href="{% url 'view_product_id' cartitem.commodity.id %}">
+					{{ cartitem.commodity.name }}</a></span></td>
 		<td>
 			<span class="shop-name">
-				{{ cartitem.commodity.shop.name }}
-				(#{{ cartitem.commodity.shop.id }})</span></td>
+				<a href="{% url 'view_shop_id' cartitem.commodity.shop.id %}">
+					{{ cartitem.commodity.shop.name }}</a></span></td>
 		<td>
 			<input
 				class="quantity-box"

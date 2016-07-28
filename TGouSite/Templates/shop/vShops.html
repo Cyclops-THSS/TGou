@@ -22,7 +22,9 @@
 {% for shop in shops %}
 		<li class="shop-item">
 			<p>
-				<span class="shop-name">{{shop.name}} (#{{shop.id}})</span></p>
+				<span class="shop-name">
+					<a href="{% url 'view_shop_id' shop.id %}">
+						{{shop.name}}</a></span></p>
 			<p>位置：
 				<span class="shop-location">{{shop.location}}</span></p>
 			<p>分类：

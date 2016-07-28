@@ -22,16 +22,18 @@
 {% for order in orders %}
 	<li class="order-item">
 		<p>
+			<a href="{% url 'view_order_id' order.id %}">
 				<span class="order-id">#{{ order.id }}: </span>
-				<span class="time">{{order.time}}</span></p>
+				<span class="time">{{order.time}}</span></a></p>
 
 		<p>
 				¥ <span class="price">{{order.price}}</span></p>
 
 		<p>
 		 	{% if isConsumer %}
-			<span class="shop-name">{{ commodity.shop.name }}
-				(#{{order.shop.id}})</span>
+			<span class="shop-name">
+				<a href="{% url 'view_shop_id' order.shop.id}">
+					{{ commodity.shop.name }}	(#{{order.shop.id}})</a></span>
 		 	{% else %}
 			<span class="consumer-name">{{order.consumer.nickName}}
 				(#{{order.consumer.id}})</span>
