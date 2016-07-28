@@ -2,30 +2,46 @@
 
 {# form #}
 {# entityType，string shop/product/order #}
-{# isCreating，bool 新建还是编辑 #}
 
 {# 由以下各 view 共用：shop/product/order 的 edit/new #}
-
-
 
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block head %}
+
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+
+{% endblock %}
+
+
+<!--店铺编辑-->
 {% block content %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="edit-yourshop"></b>
+		</div>
+	</div>
 
+	<div class="registration-boder">
+		<div class="edit_profile_content">
+				<div class="edit_profile_gif"></div>
 
-<h1>
-	{%if isCreating%}新建{%else%}编辑{%endif%} {{entityType}}
-</h1>
+				<h1>&nbsp;&nbsp;&nbsp; {% trans "Edit" %} {{entityType}}</h1>
 
-<p>
-	您正在{%if isCreating%}创建一个新的{%else%}编辑一个已有的{%endif%} {{entityType}}。
-</p>
+				<p class="edit">{% trans "You are editing a(n) " %} {{entityType}}...</p>
 
-<form method="POST" action="" class="" >
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+				<form method="POST" action="" class="" >
+    				{% csrf_token %}
+    				{{ form.as_p }}
+    				<button class="btn-submit" type="submit">Save</button>
+				</form>
+		</div>
+	</div>
+
 
 {% endblock %}

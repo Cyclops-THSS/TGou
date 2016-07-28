@@ -4,30 +4,51 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+{% block head %}
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
 {% block content %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="search-commodities-pic"></b>
+		</div>
+	</div>
+	<!--商品搜索列表-->
+	<div class="commodities-content">
+		<p>{% trans "Search by keyword:" %}</p>
+		<form action="" method="POST">
+    		{% csrf_token %}
+			<input class="search-input" name="q" value="{{ query }}"/>
+			<button class="btn-search-shop" type="submit" class="search">{% trans "Search" %}</button>
+		</form>
+		<p><a href="{% url 'view_product_categories' %}">
+			{% trans "Search by category..." %}</a></p>
 
-<form action="" method="POST">
-    {% csrf_token %}
-	<input name="q" value="{{ query }}"/>
-	<button type="submit" class="search">搜索</button>
-</form>
+		<p><h3 class="shop-h3">{% trans "What is sold at TGou now?" %}</h3></p>
 
-<p>
-	以下商品正在天狗火热销售：
-</p>
-
-<ul class="shop-list">
-{% for commodity in commodities %}
-	<li class="commodity-item">
-		<p>
-			<span class="commodity-name">{{ commodity.name }}</span>
-		 	(#{{ commodity.id }})</p>
-		<p>
-			<span class="commodity-price">¥ {{ commodity.price }}</span>
-			来自 <span class="shop-name">{{ commodity.shop.name }}</span></p>
-	 </li>
-{% endfor %}
-</ul>
+		<ul class="shop-list">
+			{% for commodity in commodities %}
+			<li class="commodity-item">
+			<p>
+				<span class="commodity-name">
+					<a href="{% url 'view_product_id' commodity.id %}">
+						{{ commodity.name }}</a></span>
+		 	</p>
+			<p class="commodities-2">
+				<span class="commodity-price">¥ {{ commodity.price }}</span>
+				{% trans "from" %} <span class="shop-name">
+					<a href="{% url 'view_shop_id' commodity.shop.id %}">
+						{{ commodity.shop.name }}</a></span>
+			</p>
+		 	</li>
+			{% endfor %}
+		</ul>
+	</div>
 
 
 {% endblock %}

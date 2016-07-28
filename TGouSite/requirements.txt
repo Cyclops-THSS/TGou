@@ -1,3 +1,4 @@
 django
 django-mathfilters
 django-registration
+django-rosetta

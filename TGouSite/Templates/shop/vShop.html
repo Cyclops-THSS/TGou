@@ -2,39 +2,66 @@
 {# categoryList 数组，所属分类，从分类树的根节点开始 #}
 
 {% extends "base.html" %}
+{% block head %}
+
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
 {% load i18n %}
 {% block content %}
-
-
-<h1>店铺 #{{shop.id}}</h1>
-
-<p>店铺名称：
-	<span class="shop-name">{{shop.name}}</span></p>
-
-<p>类别：
-	<div class="category-container">
-		{% for category in categoryList %}
-	    <span class="category-delimiter"> &gt; </span>
-			<span class="category-name">{{ category.name }} (#{{ category.id }}) </span>
-		{% endfor %}
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="shop-details-pic"></b>
+		</div>
 	</div>
-</p>
+	<!--店铺信息详情-->
+	<div class="shop-details-content">
 
-<p>位置：
-	<span class="shop-location">{{shop.location}}</span></p>
-<p>简介：
-	<span class="shop-intro">{{shop.intro}}</span></p>
-<p>开店日期：
-	<span class="shop-date">{{shop.createDate}}</span></p>
+		<h1 class="id-shop">{% trans "Shop" %} #{{shop.id}}</h1>
 
-<ul class="commodity-list">
-{% for commodity in shop.commodity_set.all %}
-		<li class="commodity-item">
-			<span class="commodity-name">{{ commodity.name }}</span>
-			 (#{{ commodity.id }})，
-			 ¥ <span class="commodity-price">{{ commodity.price }}</span>
-		 </li>
-{% endfor %}
-</ul>
+		<p class="shop-name">{% trans "Name" %}<span>{{shop.name}}</span></p>
+
+		<p>{% trans "Category" %}：
+			<div class="category-container">
+				{% for category in categoryList %}
+			    <span class="category-delimiter"> &gt; </span>
+					<span class="category-name">{{ category.name }} (#{{ category.id }}) </span>
+				{% endfor %}
+			</div>
+		</p>
+
+		<p>{% trans "Location" %}：
+			<span class="shop-location">{{shop.location}}</span></p>
+		<p>{% trans "Summary" %}：
+			<span class="shop-intro">{{shop.intro}}</span></p>
+		<p>{% trans "Date of open" %}：
+			<span class="shop-date">{{shop.createDate}}</span></p>
+
+		<ul class="commodity-list">
+		{% for commodity in shop.commodity_set.all %}
+				<li class="commodity-item">
+					<span class="commodity-name">
+						<a href="{% url 'view_product_id' commodity.id %}">
+							{{ commodity.name }}</a></span>
+					 ¥ <span class="commodity-price">{{ commodity.price }}</span>
+				 </li>
+		{% endfor %}
+		</ul>
+
+		<p>
+			{% trans "Shop management operations:" %}：
+			<a class="edit-shop" href="{% url 'edit_shop' %}">
+				{% trans "Edit shop" %}</a>
+			<a class="delete-shop" href="{% url 'delete_shop' %}">
+				{% trans "Delete shop" %}</a>
+		</p>
+
+	</div>
+
+
 
 {% endblock %}

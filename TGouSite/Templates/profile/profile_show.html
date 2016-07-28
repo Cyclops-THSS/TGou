@@ -1,0 +1,48 @@
+{# prof, Consumer 或 ShopKeeper 对象#}
+{# isConsumer, bool #}
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head%}
+<link rel="stylesheet" href="../../../static/css/base.css" type = "text/css"/>
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<!--head-->
+
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="edit-profile"></b>
+		</div>
+	</div>
+	<div class="profile-show-content">
+
+
+	<h3>{% trans "Hello" %}，{{user.nickName}}！{% trans "Welcome to TGou" %}！</h3>
+
+
+	<!--个人资料编辑-->
+	<p>{% trans "Nickname" %}：
+		{{user.nickName}}</p>
+{% if isConsumer %}
+	<p>{% trans "Default delivery address" %}：
+		{{user.dftAddress}}</p>
+	<p>{% trans "Default payment method" %}：
+		{{user.dftPayType}}</p>
+{% else %}
+	<p>{% trans "Account for collection" %}：
+		{{user.account}}</p>
+{% endif %}
+		<p>{% trans "methods of contacting" %}：
+			{{user.contact}}</p>
+
+
+
+	</div>
+
+{% endblock %}
