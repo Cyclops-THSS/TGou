@@ -70,5 +70,6 @@ def apply_grading(request):
     grade = request.POST['grade']
     o = Grading.objects.update_or_create(consumer=consumer, shop=shop,
                                          direction=direction, defaults={'time': time, 'grade': grade})
-    update(consumer if direction else shop, Consumer.objects.filter(pk=consumer.id) if direction else Shop.objects.filter(pk=shop.id), decimal.Decimal(grade))
+    update(consumer if direction else shop, Consumer.objects.filter(pk=consumer.id)
+           if direction else Shop.objects.filter(pk=shop.id), decimal.Decimal(grade))
     return redirect('view_order_id', id=request.POST['odid'])

@@ -39,19 +39,23 @@ def edit_cart(request):
 
 
 def check_for_add_to_cart(r):
-    try:
-        cmd = Commodity.objects.get(pk=r.POST['commodityId'])
-    except:
-        return False
-    if (r.user.ConsumerProf.cart.cartitem_set.count() > 0 and r.user.ConsumerProf.cart.cartitem_set.all()[0].commodity.shop != cmd.shop):
-        return _('You must apply your cart with another store\'s products first!')
-    return True
+    if r.POST.get('commodityId', None) and r.POST.get('quantity', None):
+        try:
+            cmd = Commodity.objects.get(pk=r.POST['commodityId'])
+        except:
+            return False
+        return True
+    return False
 
 
 @group_required('Consumer')
 @check_request(check_for_add_to_cart, _('bad request'))
 def add_to_cart(request):
     cmd = Commodity.objects.get(pk=request.POST['commodityId'])
+    if cmd.inventory < int(request.POST['quantity']):
+        return error(request, _('Inventory not available!'))
+    if (request.user.ConsumerProf.cart.cartitem_set.count() > 0 and request.user.ConsumerProf.cart.cartitem_set.all()[0].commodity.shop != cmd.shop):
+        return error(request, _('You must apply your cart with another store\'s products first!'))
     _add_to_cart(cmd, request.POST['quantity'], request.user.ConsumerProf.cart)
     return redirect('edit_cart')
 

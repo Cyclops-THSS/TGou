@@ -84,6 +84,8 @@ class CommodityForm(forms.ModelForm):
         super(CommodityForm, self).__init__(*args, **kwargs)
         self.fields['grade'].widget.attrs['readonly'] = True
         self.fields['gradedBy'].widget.attrs['readonly'] = True
+        self.fields['state'] = forms.ChoiceField(label=_('state'), choices=(
+            (0, _('available')), (1, _('unavailable'))), initial=0, required=True)
 
     class Meta:
         model = Commodity

@@ -65,7 +65,7 @@ def view_order_id(request, id):
 @check_request(lambda r: r.user.ConsumerProf.cart.cartitem_set.count() > 0, _('Please add at least one item in your cart first!'))
 def new_order(request):
     order = Order(consumer=request.user.ConsumerProf, shop=request.user.ConsumerProf.cart.cartitem_set.all()[
-                  0].commodity.shop, time=datetime.now())
+                  0].commodity.shop, time=datetime.now(), address=request.user.ConsumerProf.dftAddress)
     order.save()
     for item in request.user.ConsumerProf.cart.cartitem_set.all():
         o = OrderItem(cmd=item.commodity, order=order, quantity=item.quantity)
