@@ -60,6 +60,7 @@ def edit_shop(request):
             request.POST, instance=request.user.ShopKeeperProf.shop)
         if form.is_valid():
             form.save()
+            return redirect('view_shop_id', id=request.user.ShopKeeperProf.shop.id)
     return {'form': form, 'entityType': 'shop'}
 
 
@@ -67,6 +68,8 @@ def edit_shop(request):
 @check_request(lambda r: r.user.ShopKeeperProf.shop, _('You must open a shop first!'))
 def delete_shop(request):
     request.user.ShopKeeperProf.shop.delete()
+    request.user.ShopKeeperProf.shop = None
+    request.user.ShopKeeperProf.save()
     return redirect('index')
 
 

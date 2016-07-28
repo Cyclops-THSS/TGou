@@ -91,6 +91,7 @@ def edit_order(request, id):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
+            return redirect('view_order_id', id=id)
     return {'form': form, 'entityType': 'Order'}
 
 
@@ -103,7 +104,7 @@ def confirm_order(request, id):
     if order.consumer.user != request.user:
         raise PermissionDenied
     order.state = State.finished
-    return redirect('view_order')
+    return redirect('view_order_id', id=id)
 
 
 @group_required('Consumer')

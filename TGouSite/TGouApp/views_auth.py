@@ -42,9 +42,12 @@ def edit_profile(request):
             request.user, 'Consumer') else ShopKeeperProf(request.POST, instance=request.user.ShopKeeperProf)
         if form.is_valid():
             form.save()
+            return redirect('view_profile')
     return {'form': form}
 
+
 @login_required
-@render_to('profile/profile_view.html')
+@render_to('profile/profile_show.html')
 def view_profile(request):
-	pass;
+    isCons = belongTo(request.user, 'Consumer')
+    return {'isConsumer': isCons, 'prof': request.user.ConsumerProf if isCons else request.user.ShopKeeperProf}

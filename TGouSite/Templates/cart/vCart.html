@@ -30,8 +30,20 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load mathfilters %}
+{% block head %}
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+{% endblock %}
 {% block content %}
 
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="vcart-pic"></b>
+		</div>
+	</div>
 
 <script>
 {% autoescape off %}
@@ -40,6 +52,7 @@
 </script>
 
 
+<div class="vcart-content">
 <h1>{% trans "Your cart" %}</h1>
 
 <p>{% trans "now contains the following commodities" %}：</p>
@@ -112,6 +125,7 @@
 		{% trans "Go to pay" %}</button>
 </form>
 
+</div>
 
 
 <script src="/static/jquery.min.js"></script>
