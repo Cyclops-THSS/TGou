@@ -134,6 +134,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "public"),
 ]
 
+STATIC_ROOT = ''
+
+STATICFILES_DIRS=(
+    os.path.join(BASE_DIR, 'static'),
+)
+
 # LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.126.com'

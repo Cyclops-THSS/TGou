@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', login_required(auth_views.logout),
         {'template_name': 'registration/logout.html'}, name='logout'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    
     # shop related
     url(r'^shop/$', views.search_shop, name='search_shop'),
     url(r'^shop/new$', views.new_shop, name='new_shop'),

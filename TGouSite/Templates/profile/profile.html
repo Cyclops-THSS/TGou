@@ -1,15 +1,31 @@
 {% extends "base.html" %}
 
+{% block head%}
+<link rel="stylesheet" href="../../../static/css/base.css" type = "text/css"/>
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
 {% block content %}
-
-<h1>Edit Profile</h1>
-
-
-<form method="POST" action="." class="" >
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="edit-profile"></b>
+		</div>
+	</div>
+	<!--个人资料编辑-->
+	<div class="registration-boder">
+		<div class="edit_profile_content">
+			<div class="edit_profile_gif"></div>
+			<h1>&nbsp;&nbsp;&nbsp;&nbsp;Edit Profile</h1>
+			<form method="POST" action="." class="" >
+    			{% csrf_token %}
+    			{{ form.as_p }}
+   				 <button class="btn-submit" type="submit">Save</button>
+			</form>
+		</div>
+	</div>
 
 {% endblock %}
