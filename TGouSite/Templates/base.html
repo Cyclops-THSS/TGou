@@ -37,6 +37,11 @@
     </p>
 
     {% ifusergroup Consumer %}
+    
+
+    <p class="sn-container3">
+         <a class="welcome-registe" href="{% url 'registration_register' %}">欢迎注册</a>
+    </p>
 
     <p class="sn-container4">
         <a class="my-order" href="{% url 'view_order' %}">我的订单</a>
@@ -71,7 +76,14 @@
     <p class="sn-container8">
         <a class="my-shop" href="{% url 'search_shop' %}">店铺</a>
     </p>
-
+    <p class="sn-container9">
+        <a class="add-new-commodity" href="{% url 'new_product' %}">新添商品</a>
+    </p>
+    <!--
+    <p class="sn-container10">
+        <a class="change-language" href="{% url 'search_shop' %}">切换语言</a>
+    </p>
+    -->
     {% endifusergroup %}
 
 
@@ -80,14 +92,14 @@
     </div>
 
     <!--主体-->
-		<div style="margin-left: 10%">
+
     <div id="content">
 
     {% block content %}
 
     {% endblock %}
 		</div>
-    </div>
+
 
     <!--脚-->
     <div id="footer">
