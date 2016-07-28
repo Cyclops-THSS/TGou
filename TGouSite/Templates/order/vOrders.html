@@ -28,9 +28,10 @@
 
 		{% if isConsumer %}
 		<form action="" method="POST">
-			<p class="search-order-p">查看在此日期之后的所有订单：</p>
+			{% csrf_token %}
+			<p class="search-order-p">{% trans "View orders created after the date of:" %}</p>
 			<input class="date-order" type="date" name="after"/>
-			<button class="btn-search-shop" type="submit" class="search">提交</button>
+			<button class="btn-search-shop" type="submit" class="search">{% trans "Submit" %}</button>
 		</form>
 		{% endif %}
 

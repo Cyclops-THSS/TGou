@@ -23,10 +23,10 @@
 		<form action="" method="POST">
     		{% csrf_token %}
 			<input class="search-input" name="q" value="{{ query }}"/>
-			<button class="btn-search-shop" type="submit" class="search">搜索</button>
+			<button class="btn-search-shop" type="submit" class="search">{% trans "Search" %}</button>
 		</form>
 
-		<p><h3 class="shop-h3">以下商品正在天狗火热销售：</h3></p>
+		<p><h3 class="shop-h3">{% trans "What is sold at TGou now?" %}</h3></p>
 
 		<ul class="shop-list">
 			{% for commodity in commodities %}
@@ -38,7 +38,7 @@
 		 	</p>
 			<p class="commodities-2">
 				<span class="commodity-price">¥ {{ commodity.price }}</span>
-				来自 <span class="shop-name">
+				{% trans "from" %} <span class="shop-name">
 					<a href="{% url 'view_shop_id' commodity.shop.id %}">
 						{{ commodity.shop.name }}</a></span>
 			</p>
