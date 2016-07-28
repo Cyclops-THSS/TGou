@@ -60,6 +60,7 @@ def edit_shop(request):
             request.POST, instance=request.user.ShopKeeperProf.shop)
         if form.is_valid():
             form.save()
+            return redirect('view_shop_id', id=request.user.ShopKeeperProf.shop.id)
     return {'form': form, 'entityType': 'shop'}
 
 

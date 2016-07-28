@@ -69,6 +69,7 @@ def edit_product(request, id):
         form = CommodityForm(request.POST, instance=prod)
         if form.is_valid():
             form.save()
+            return redirect('view_product_id', id=id)
     return {'form': form, 'entityType': 'product'}
 
 
