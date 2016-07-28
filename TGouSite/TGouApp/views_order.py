@@ -11,6 +11,7 @@ from registration.backends.simple.views import RegistrationView
 from datetime import datetime, timedelta
 from enum import Enum, unique
 from .short_cut import *
+from django.utils.translation import ugettext_lazy as _
 
 
 @unique
@@ -61,7 +62,7 @@ def view_order_id(request, id):
 
 
 @group_required('Consumer')
-@check_request(lambda r: r.user.ConsumerProf.cart.cartitem_set.count() > 0, 'Please add at least one item in your cart first!')
+@check_request(lambda r: r.user.ConsumerProf.cart.cartitem_set.count() > 0, _('Please add at least one item in your cart first!'))
 def new_order(request):
     order = Order(consumer=request.user.ConsumerProf, shop=request.user.ConsumerProf.cart.cartitem_set.all()[
                   0].commodity.shop, time=datetime.now())

@@ -11,6 +11,7 @@ from registration.backends.simple.views import RegistrationView
 from .views_other import error
 from datetime import datetime
 from .short_cut import *
+from django.utils.translation import ugettext_lazy as _
 
 
 @render_to('shop/vShop.html')
@@ -40,7 +41,7 @@ def view_shop_name(request, name):
 
 
 @group_required('ShopKeeper')
-@check_request(lambda r: not r.user.ShopKeeperProf.shop, 'You\'ve opened a shop')
+@check_request(lambda r: not r.user.ShopKeeperProf.shop, _('You\'ve opened a shop'))
 def new_shop(request):
     shop = Shop(createDate=datetime.now())
     shop.save()
@@ -63,7 +64,7 @@ def edit_shop(request):
 
 
 @group_required('ShopKeeper')
-@check_request(lambda r: r.user.ShopKeeperProf.shop, 'You must open a shop first!')
+@check_request(lambda r: r.user.ShopKeeperProf.shop, _('You must open a shop first!'))
 def delete_shop(request):
     request.user.ShopKeeperProf.shop.delete()
     return redirect('index')
