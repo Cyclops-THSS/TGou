@@ -56,6 +56,8 @@ class ShopForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShopForm, self).__init__(*args, **kwargs)
         self.fields['createDate'].widget.attrs['readonly'] = True
+        self.fields['grade'].widget.attrs['readonly'] = True
+        self.fields['gradedBy'].widget.attrs['readonly'] = True
 
     class Meta:
         model = Shop

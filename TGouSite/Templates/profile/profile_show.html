@@ -1,0 +1,52 @@
+{# prof, Consumer 或 ShopKeeper 对象#}
+{# isConsumer, bool #}
+
+
+
+
+{% extends "base.html" %}
+
+{% block head%}
+<link rel="stylesheet" href="../../../static/css/base.css" type = "text/css"/>
+<link rel="stylesheet" href="../../../static/css/login.css" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<!--head-->
+
+
+	<div class="w">
+		<div id="logo">
+			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="edit-profile"></b>
+		</div>
+	</div>
+
+
+	<h3>您好，{{prof.nickName}}！天狗欢迎您！</h3>
+
+
+	<!--个人资料编辑-->
+{% if isConsumer %}
+	<p>昵称：
+		{{prof.nickName}}</p>
+	<p>默认收货地址：
+		{{prof.dftAddress}}</p>
+	<p>默认付款方式：
+		{{prof.dftPayType}}</p>
+	<p>联系方式：
+		{{prof.contact}}</p>
+
+{% else %}
+	<p>昵称：
+		{{prof.nickName}}</p>
+	<p>收款账号：
+		{{prof.account}}</p>
+	<p>联系方式：
+		{{prof.contact}}</p>
+
+{% endif %}
+
+{% endblock %}

@@ -10,10 +10,11 @@ from django.contrib.auth.decorators import *
 from registration.backends.simple.views import RegistrationView
 from .short_cut import *
 from datetime import datetime
+from django.utils.translation import ugettext_lazy as _
 
 
 @group_required('Consumer')
-@check_request(lambda r: r.method == 'POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), 'bad request')
+@check_request(lambda r: r.method == 'POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), _('bad request'))
 def new_comment(request):
     oi = OrderItem.objects.get(pk=r.POST.oiid)
     oc = Comment(commodity=oi.cmd, grade=5.00, message='', time=datetime.now())
@@ -50,7 +51,7 @@ def delete_comment(request, id):
 
 
 @login_required
-@check_request(lambda r: r.method == 'POST' and r.POST.cid and r.POST.sid and r.POST.direction and r.POST.grade and Consumer.objects.get(pk=r.POST.cid) and Shop.objects.get(pk=r.POST.sid), 'bad request')
+@check_request(lambda r: r.method == 'POST' and r.POST.cid and r.POST.sid and r.POST.direction and r.POST.grade and Consumer.objects.get(pk=r.POST.cid) and Shop.objects.get(pk=r.POST.sid), _('bad request'))
 def apply_grading(request):
     def update(obj, g):
         tot = obj.grade * obj.gradedBy + g

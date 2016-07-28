@@ -6,7 +6,7 @@ class Consumer (models.Model):
     user = models.OneToOneField(User, null=True, related_name='ConsumerProf')
     nickName = models.CharField(max_length=200, default='No nickName')  # 用户昵称
     dftAddress = models.TextField(blank=True, null=True)  # 默认收货地址
-    dftPayType = models.IntegerField(blank=True, null=True)  # 默认付款方式
+    dftPayType = models.CharField(max_length=200, default='aliPay')  # 默认付款方式
     contact = models.TextField(blank=True, null=True)  # 联系方式
     grade = models.DecimalField(max_digits=8, decimal_places=2, default=5.0)
     gradedBy = models.IntegerField(default=1)
@@ -78,7 +78,7 @@ class Order (models.Model):
     consumer = models.ForeignKey(Consumer, on_delete=models.CASCADE)  # 创建用户标识符
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 负责店铺标识符
     address = models.CharField(max_length=200, default='')  # 送货地址
-    payType = models.IntegerField(default=0)  # 购买方式
+    payType = models.CharField(max_length=200, default='aliPay')  # 购买方式
     message = models.TextField(default='', blank=True)  # 留言
     price = models.DecimalField(
         max_digits=8, decimal_places=2, default=0.0)  # 订单总价

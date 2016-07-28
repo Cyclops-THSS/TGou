@@ -12,6 +12,7 @@ from django import forms
 from enum import Enum, unique
 from .views_other import error
 from .short_cut import *
+from django.utils.translation import ugettext_lazy as _
 
 
 @unique
@@ -21,7 +22,7 @@ class State(Enum):
 
 
 @group_required('ShopKeeper')
-@check_request(lambda r: r.user.ShopKeeperProf.shop, 'You must open a shop first!')
+@check_request(lambda r: r.user.ShopKeeperProf.shop, _('You must open a shop first!'))
 def new_product(request):
     prod = Commodity(shop=request.user.ShopKeeperProf.shop)
     prod.save()
@@ -68,6 +69,7 @@ def edit_product(request, id):
         form = CommodityForm(request.POST, instance=prod)
         if form.is_valid():
             form.save()
+            return redirect('view_product_id', id=id)
     return {'form': form, 'entityType': 'product'}
 
 

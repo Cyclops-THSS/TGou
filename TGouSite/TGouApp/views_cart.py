@@ -11,6 +11,7 @@ from registration.backends.simple.views import RegistrationView
 from .short_cut import *
 from .views_other import error
 import json
+from django.utils.translation import ugettext_lazy as _
 
 
 @group_required('Consumer')
@@ -43,12 +44,12 @@ def check_for_add_to_cart(r):
     except:
         return False
     if (r.user.ConsumerProf.cart.cartitem_set.count() > 0 and r.user.ConsumerProf.cart.cartitem_set.all()[0].commodity.shop != cmd.shop):
-        return 'You must apply your cart with another store\'s products first!'
+        return _('You must apply your cart with another store\'s products first!')
     return True
 
 
 @group_required('Consumer')
-@check_request(check_for_add_to_cart, 'Bad request')
+@check_request(check_for_add_to_cart, _('bad request'))
 def add_to_cart(request):
     cmd = Commodity.objects.get(pk=request.POST['commodityId'])
     _add_to_cart(cmd, request.POST['quantity'], request.user.ConsumerProf.cart)

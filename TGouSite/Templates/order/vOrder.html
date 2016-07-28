@@ -1,5 +1,6 @@
 
 {# order #}
+{# isConsumer, bool #}
 
 
 
@@ -10,52 +11,58 @@
 {% block content %}
 
 
-<h1>订单 #{{order.id}}</h1>
+<h1>{% trans "Order" %} #{{order.id}}</h1>
 
 <p>
-	消费者：
+	{% trans "Consumer" %}：
 	<span class="consumer-name">{{order.consumer.nickName}}
 		(#{{order.consumer.id}})</span></p>
 
 <p>
-	发货店铺：
+	{% trans "Shop" %}：
 	<span class="shop-name">
 		<a href="{% url 'view_shop_id' order.shop.id %}">
 			{{ order.shop.name }}</a></span></p>
 
 <p>
-	送货地址：
+	{% trans "Delivery address" %}：
 	<span class="address">{{order.address}}</span></p>
 
 <p>
-		创建时间：<span class="time">{{order.time}}</span></p>
+		{% trans "Time of creation" %}：<span class="time">{{order.time}}</span></p>
 <p>
-		总价格：<span class="price">{{order.price}}</span></p>
+		{% trans "Total price" %}：<span class="price">{{order.price}}</span></p>
 
-<p>该订单包含以下商品：</p>
+<p>{% trans "This order contains the following commodities" %}：</p>
 <table class="order-items">
 	<tr>
-		<th>商品</th>
-		<th>数量</th>
-		<th>单价</th>
-		<th>小计</th>
+		<th>{% trans "Name" %}</th>
+		<th>{% trans "Quantity" %}</th>
+		<th>{% trans "Unit price" %}</th>
+		<th>{% trans "Sub total" %}</th>
 	</tr>
 {% for orderitem in order.orderitem_set.all %}
 	<tr>
 		<td><span class="commodity-name">
 			<a href="{% url 'view_product_id' orderitem.cmd.id %}">
-				{{ orderitem.cmd.name }}</a></span></td>
+				{{ orderitem.cmd.name }}</a></span>
+		</td>
 		<td>
 			{{ orderitem.quantity }}</td>
 		<td><span class="price">
 			{{ orderitem.cmd.price }}</span></td>
 		<td><span class="price">
 			{{ orderitem.cmd.price|mul:orderitem.quantity }}</span></td>
+		<td><form action="{% url 'new_comment' %}" method="post">
+			{% csrf_token %}
+			<input name="oiid" value="{{orderitem.id}}" type="hidden"/>
+			<button class="btn-search-shop" type="submit" class="search">
+				{% trans "Comment it" %}</button></form></td>
 	</tr>
 {% endfor %}
 	<tr>
 		<td>
-			订单总价</td>
+			{% trans "Total price" %}</td>
 		<td></td>
 		<td></td>
 		<td><span class="price">
@@ -64,22 +71,59 @@
 </table>
 
 <p>
-	购买方式：{{order.payType}}</p>
+	{% trans "Payment" %}：{{order.payType}}</p>
 <p>
-	送货地址：{{order.address}}</p>
+	{% trans "Delivery address" %}：{{order.address}}</p>
 <p>
-	留言：{{order.message}}</p>
+	{% trans "Message" %}：{{order.message}}</p>
 <p>
-	订单状态：{{order.state}}</p>
+	{% trans "Status" %}：{{order.state}}</p>
 
 
-<p>
-	管理操作：
-	<a href="{% url 'edit_order' id=order.id %}">
-		编辑订单</a>
-	<a href="{% url 'delete_order' id=order.id %}">
-		删除订单</a>
+<p><b>
+	{% trans "Order management operations" %}</b></p>
+{% if isConsumer %}
+<p><a href="{% url 'confirm_order' id=order.id %}">
+		{% trans "Confirm delivery and close order" %}</a></p>
+{% else %}
+<p><a href="{% url 'edit_order' id=order.id %}">
+		{% trans "Confirm order" %}</a></p>
+<p><a href="{% url 'edit_order' id=order.id %}">
+		{% trans "I've started delivering" %}</a></p>
+<p><a href="{% url 'edit_order' id=order.id %}">
+		{% trans "Confirm receipt and close order" %}</a></p>
+{% endif %}
+	<p><a href="{% url 'edit_order' id=order.id %}">
+		{% trans "Edit order details" %}</a></p>
+	<p><a href="{% url 'delete_order' id=order.id %}">
+		{% trans "Delete order" %}</a></p>
 </p>
+
+
+<p>
+	{% trans "Do you want to grade the " %}
+	{% if isConsumer %}
+		{% trans "shop" %} <i>
+			<a href="{% url 'view_shop_id' order.shop.id %}">
+				{{ order.shop.name }}</a></i>
+	{% else %}
+		{% trans "consumer" %} <i>{{order.consumer.name}}</i>
+	{% endif %}
+	?
+</p>
+<form action="{% url 'apply_grading' %}" method="post">
+	{% csrf_token %}
+	<input name="direction" value="{%if isConsumer%}0{%else%}1{%endif%}" type="hidden"/>
+	<input name="cid" value="{{order.consumer.id}}" type="hidden"/>
+	<input name="sid" value="{{order.shop.id}}" type="hidden"/>
+	<p>
+		{% trans "Grade ranging from 0 to 5: " %}
+		<input name="sid" value="5" type="number"/></p>
+	<p><button class="btn-search-shop" type="submit" class="search">
+		{% trans "Submit" %}</button></p>
+</form>
+
+
 
 
 {% endblock %}
