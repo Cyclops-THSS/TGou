@@ -40,17 +40,17 @@
 </script>
 
 
-<h1>您的购物车</h1>
+<h1>{% trans "Your cart %}</h1>
 
-<p>包含以下商品：</p>
+<p>{% trans "now contains the following commodities" %}：</p>
 <table class="order-items">
 	<tr>
-		<th>商品</th>
-		<th>店铺</th>
-		<th>数量</th>
-		<th>单价</th>
-		<th>小计</th>
-		<th>操作</th>
+		<th>{% trans "Commodity" %}</th>
+		<th>{% trans "Shop %}</th>
+		<th>{% trans "Quantity" %}</th>
+		<th>{% trans "Unit price" %}</th>
+		<th>{% trans "Sub total" %}</th>
+		<th>{% trans "Oparation" %}</th>
 	</tr>
 
 {% for cartitem in cart.cartitem_set.all %}
@@ -78,13 +78,13 @@
 		<td>
 			<button
 				class="cartitem-remove"
-				onclick="item_remove({{cartitem.commodity.id}})">删除</button>
+				onclick="item_remove({{cartitem.commodity.id}})">{% trans "Remove" %}</button>
 		</td>
 	</tr>
 {% endfor %}
 	<tr>
 		<td>
-			总价格</td>
+			{% trans "Total price" %}</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -95,7 +95,7 @@
 </table>
 
 <div id="notice" style="display:none">
-	您已对购物车做了修改，别忘了保存哦！</div>
+	{% trans "You hava made changes to your cart. Don't forget to save your changes." %}</div>
 
 <form method="post" action="" id="form">
 	    {% csrf_token %}
@@ -103,13 +103,13 @@
 	<input id="cartJsonField" name="cartJson" type="hidden" value=""/>
 
 	<button type="button" class="cart-reload" onclick="cart_reload()">
-		撤销更改</button>
+		{% trans "Undo all changes" %}</button>
 	<button type="button" class="clear-cart" onclick="cart_clear()">
-		清空购物车</button>
+		{% trans "Clear cart" %}</button>
 	<button type="button" class="cart-save" onclick="cart_save()" style="display:none;">
-		保存更改</button>
+		{% trans "Save changes" %}</button>
 	<button type="button" class="cart-submit" onclick="cart_submit()">
-		前去结算</button>
+		{% trans "Go to pay" %}</button>
 </form>
 
 
@@ -129,7 +129,7 @@
 	function show_notice(){
 		$('#notice').show();
 		$('button.cart-save').show();
-		$('button.cart-submit').html("保存更改并前去结算");
+		$('button.cart-submit').html('{% trans "Save changes and go to pay" %}');
 	}
 	function item_remove(id){
 		$('#commodity_id_'+id).fadeOut(function(){

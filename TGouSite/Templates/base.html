@@ -20,7 +20,7 @@
     <p class="sn-container">
         <i class="icon-ui glyphicon glyphicon-home"></i>
         <a class="head_home" href="{% url 'index' %}">{% trans "Home" %}</a> &nbsp;&nbsp;
-    <p class="sn-container2"> 
+    <p class="sn-container2">
         {% if user.is_authenticated %}
              {% trans "Log in" %}: {{ user.username }}&nbsp;
              (<a class="head_logout" href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
@@ -54,10 +54,12 @@
     </div>
 
     <!--主体-->
+		<div style="margin-left: 10%">
     <div id="content">
     {% block content %}
 
     {% endblock %}
+		</div>
     </div>
 
     <!--脚-->

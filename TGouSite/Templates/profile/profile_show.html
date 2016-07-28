@@ -14,7 +14,6 @@
 {% block content %}
 <!--head-->
 
-
 	<div class="w">
 		<div id="logo">
 			<a href="http://tgou.ssast.org/" clstag='clickcart|keycount|shoppingcartpop|logo'>
@@ -25,28 +24,24 @@
 	</div>
 
 
-	<h3>您好，{{user.nickName}}！天狗欢迎您！</h3>
+	<h3>{% trans "Hello" %}，{{user.nickName}}！{% trans "Welcome to TGou" %}！</h3>
 
 
 	<!--个人资料编辑-->
+	<p>{% trans "Nickname" %}：
+		{{user.nickName}}</p>
 {% if isConsumer %}
-	<p>昵称：
-		{{user.nickName}}</p>
-	<p>默认收货地址：
+	<p>{% trans "Default delivery address" %}：
 		{{user.dftAddress}}</p>
-	<p>默认付款方式：
+	<p>{% trans "Default payment method" %}：
 		{{user.dftPayType}}</p>
-	<p>联系方式：
-		{{user.contact}}</p>
-
 {% else %}
-	<p>昵称：
-		{{user.nickName}}</p>
-	<p>收款账号：
+	<p>{% trans "Account for collection" %}：
 		{{user.account}}</p>
-	<p>联系方式：
-		{{user.contact}}</p>
-
 {% endif %}
+		<p>{% trans "methods of contacting" %}：
+			{{user.contact}}</p>
+
+
 
 {% endblock %}
