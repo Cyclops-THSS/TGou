@@ -2,10 +2,17 @@
 
 {% extends "base.html" %}
 {% load i18n %}
+{% block head %}
+<style>
+	.error-h1{
+		margin-left: 36%;
+	}
 
+</style>
+{% endblock %}
 {% block content %}
-<h1>出错啦 :(</h1>
-<h2>
+<h1 class="error-h1">出错啦 :(</h1>
+<h2 class="error-h1">
 	<span id="error-message">{{ message }}</span></h2>
 
 {% endblock %}
