@@ -14,10 +14,10 @@ from django.utils.translation import ugettext_lazy as _
 
 
 @group_required('Consumer')
-@check_request(lambda r: r.method == 'POST' and r.POST.oiid and OrderItem.objects.get(pk=r.POST.oiid), _('bad request'))
+@check_request(lambda r: r.method == 'POST' and r.POST.get('oiid', None) and OrderItem.objects.get(pk=r.POST.get('oiid')), _('bad request'))
 def new_comment(request):
-    oi = OrderItem.objects.get(pk=r.POST.oiid)
-    oc = Comment(commodity=oi.cmd, grade=5.00, message='', time=datetime.now())
+    oi = OrderItem.objects.get(pk=request.POST.get('oiid'))
+    oc = Comment(commodity=oi.cmd, grade=5.00, message='', time=datetime.now(), consumer=request.user.ConsumerProf)
     oc.save()
     return redirect('edit_comment', id=oc.id)
 
@@ -37,7 +37,7 @@ def edit_comment(request, id):
             form.save()
     else:
         form = CommentForm(instance=dat)
-    return {'form': form, 'entityType': 'Order'}
+    return {'form': form, 'entityType': 'Comment'}
 
 
 @group_required('Consumer')
