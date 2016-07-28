@@ -174,7 +174,7 @@
 	function cart_clear(){
 		var result = {};
 		for_own_properties(document.TGou_cartJson, function(id){
-			result[id] = 0;
+			result[id] = [0];
 		});
 		document.TGou_cartJson = result;
 		$('#whatamidoingField').val('save');
