@@ -10,6 +10,7 @@ class Consumer (models.Model):
     contact = models.TextField(blank=True, null=True)  # 联系方式
     grade = models.DecimalField(max_digits=8, decimal_places=2, default=5.0)
     gradedBy = models.IntegerField(default=1)
+
     def __str__(self):
         return self.nickName
 
@@ -31,6 +32,7 @@ class Shop (models.Model):
     createDate = models.DateTimeField()  # 开店日期
     grade = models.DecimalField(max_digits=8, decimal_places=2, default=5.0)
     gradedBy = models.IntegerField(default=1)
+
     def __str__(self):
         return self.name
 
@@ -91,12 +93,7 @@ class OrderItem (models.Model):
 
     def __init__(self, *args, **kwargs):
         super(OrderItem, self).__init__(*args, **kwargs)
-        item = kwargs.pop('item', None)
-        order = kwargs.pop('order', None)
-        if item and order:
-            self.cmd = item.commodity
-            self.quantity = item.quantity
-            self.order = order
+        self.__dict__.update(kwargs)
 
 
 class Cart (models.Model):

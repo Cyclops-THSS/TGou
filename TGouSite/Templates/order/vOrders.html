@@ -12,6 +12,7 @@
 
 {% if isConsumer %}
 <form action="" method="POST">
+    {% csrf_token %}
 	<p>查看在此日期之后的所有订单：</p>
 	<input type="date" name="after"/>
 	<button type="submit" class="search">提交</button>
@@ -32,8 +33,8 @@
 		<p>
 		 	{% if isConsumer %}
 			<span class="shop-name">
-				<a href="{% url 'view_shop_id' order.shop.id}">
-					{{ commodity.shop.name }}	(#{{order.shop.id}})</a></span>
+				<a href="{% url 'view_shop_id' id=order.shop.id %}">
+					{{ order.shop.name }}	(#{{order.shop.id}})</a></span>
 		 	{% else %}
 			<span class="consumer-name">{{order.consumer.nickName}}
 				(#{{order.consumer.id}})</span>

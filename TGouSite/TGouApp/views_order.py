@@ -31,8 +31,8 @@ def view_order(request):
     isConsumer = belongTo(request.user, 'Consumer')
     after = request.GET.get('after')
     before = request.GET.get('before')
-    left = datetime(1910, 1, 1)  # datetime.min causes complaints here
-    right = datetime.max
+    left = datetime(1970, 1, 1)  # datetime.min causes complaints here
+    right = datetime(3000, 1, 1)
     if after:
         y, m, d = after.split('-')
         left = datetime(int(y), int(m), int(d))
@@ -40,9 +40,11 @@ def view_order(request):
         y, m, d = before.split('-')
         right = datetime(int(y), int(m), int(d))
     if isConsumer:
-        oset = Order.objects.filter(time__range=[left, right], consumer=request.user.ConsumerProf)
+        oset = Order.objects.filter(
+            time__range=[left, right], consumer=request.user.ConsumerProf)
     else:
-        oset = Order.objects.filter(time__range=[left, right], shop=request.user.ShopKeeperProf.shop)
+        oset = Order.objects.filter(
+            time__range=[left, right], shop=request.user.ShopKeeperProf.shop)
     return {'orders': oset, 'isConsumer': isConsumer}
 
 
@@ -59,12 +61,13 @@ def view_order_id(request, id):
 
 
 @group_required('Consumer')
+@check_request(lambda r: r.user.ConsumerProf.cart.cartitem_set.count() > 0, 'Please add at least one item in your cart first!')
 def new_order(request):
     order = Order(consumer=request.user.ConsumerProf, shop=request.user.ConsumerProf.cart.cartitem_set.all()[
                   0].commodity.shop, time=datetime.now())
     order.save()
     for item in request.user.ConsumerProf.cart.cartitem_set.all():
-        o = OrderItem({'item': item, 'order': order})
+        o = OrderItem(cmd=item.commodity, order=order, quantity=item.quantity)
         order.price += float(item.quantity * item.commodity.price)
         o.save()
     order.save()

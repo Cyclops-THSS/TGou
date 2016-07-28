@@ -21,7 +21,7 @@
 	发货店铺：
 	<span class="shop-name">
 		<a href="{% url 'view_shop_id' order.shop.id %}">
-			{{ commodity.shop.name }}</a></span></p>
+			{{ order.shop.name }}</a></span></p>
 
 <p>
 	送货地址：
@@ -75,9 +75,9 @@
 
 <p>
 	管理操作：
-	<a href="{% url 'edit_order' %}">
+	<a href="{% url 'edit_order' id=order.id %}">
 		编辑订单</a>
-	<a href="{% url 'delete_order' %}">
+	<a href="{% url 'delete_order' id=order.id %}">
 		删除订单</a>
 </p>
 
