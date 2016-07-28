@@ -19,8 +19,9 @@
 
 <p>
 	发货店铺：
-	<span class="shop-name">{{ commodity.shop.name }}
-		(#{{order.shop.id}})</span></p>
+	<span class="shop-name">
+		<a href="{% url 'view_shop_id' order.shop.id %}">
+			{{ order.shop.name }}</a></span></p>
 
 <p>
 	送货地址：
@@ -42,7 +43,8 @@
 {% for orderitem in order.orderitem_set.all %}
 	<tr>
 		<td><span class="commodity-name">
-				{{ orderitem.cmd.name }} (#{{ orderitem.cmd.id }})</span></td>
+			<a href="{% url 'view_product_id' orderitem.cmd.id %}">
+				{{ orderitem.cmd.name }}</a></span></td>
 		<td>
 			{{ orderitem.quantity }}</td>
 		<td><span class="price">
@@ -71,7 +73,13 @@
 	订单状态：{{order.state}}</p>
 
 
-
+<p>
+	管理操作：
+	<a href="{% url 'edit_order' id=order.id %}">
+		编辑订单</a>
+	<a href="{% url 'delete_order' id=order.id %}">
+		删除订单</a>
+</p>
 
 
 {% endblock %}

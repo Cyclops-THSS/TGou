@@ -17,14 +17,22 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from . import views
 from .forms import UserRegForm
+from .short_cut import *
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import *
 
+doNotLogin = lambda u: u.user.is_authenticated() == False
 
 urlpatterns = [
     # accounts related
     # url(r'^accounts/profile/$', views.view_profile, name='view_profile'),
     url(r'^accounts/profile/edit/$', views.edit_profile, name='edit_profile'),
-    url(r'^accounts/register/$', views.TRegistrationView.as_view(),
+    url(r'^accounts/register/$', check_request(doNotLogin, 'Please log out first!')(views.TRegistrationView.as_view()),
         name='registration_register'),
+    url(r'^accounts/login/$', check_request(doNotLogin, 'Please log out first!')(auth_views.login), {'template_name': 'registration/login.html'},
+        name='auth_login'),
+    url(r'^accounts/logout/$', login_required(auth_views.logout),
+        {'template_name': 'registration/logout.html'}, name='logout'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     
     # shop related
@@ -36,7 +44,7 @@ urlpatterns = [
     url(r'^shop/(?P<name>\w+)$', views.view_shop_name, name='view_shop_name'),
     # cart related
     url(r'^cart/$', views.edit_cart, name='edit_cart'),
-    url(r'^cart/clear$', views.clear_cart, name='clear_cart'),
+    url(r'^add-to-cart/$', views.add_to_cart, name='add-to-cart'),
     # order related
     url(r'^order/$', views.view_order, name='view_order'),
     url(r'^order/new$', views.new_order, name='new_order'),

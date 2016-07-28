@@ -27,6 +27,7 @@
 			<b class="search-commodities-details-pic"></b>
 		</div>
 	</div>
+
 	<!--商品信息详情-->
 	<div class="shop-content">
 		<h1 class="id-shop">商&nbsp;品 #{{commodity.id}}</h1>
@@ -35,7 +36,9 @@
 			<span class="commodity-name">{{commodity.name}}</span></p>
 
 		<p>店&nbsp;&nbsp;铺：
-			<span class="category-name">{{ commodity.shop.name }} (#{{ commodity.shop.id }}) </span></p>
+			<span class="category-name">
+				<a href="{%url 'view_shop_id' commodity.shop.id}">
+					{{ commodity.shop.name }}</a></span></p>
 
 		<p>类&nbsp;&nbsp;别：
 			<div class="category-container">
@@ -46,10 +49,14 @@
 			</div>
 		</p>
 
+
+		<p>详&nbsp;&nbsp;情：
+					<span class="commodity-intro">{{commodity.intro}}</span></p>
 		<p class="want-to-buy">有意购买？</p>
 
 		<form action="/add-to-cart" method="post">
-			<input name="commodityId" value="" type="hidden" />
+			{% csrf_token %}
+			<input name="commodityId" value="{{commodity.id}}" type="hidden" />
 			<p class="want-to-buy-num">
 				件&nbsp;&nbsp;数：
 				<input class="commodities-input" name="quantity" value="" type="text" /></p>
@@ -57,8 +64,6 @@
 		</form>
 
 
-		<p>详&nbsp;&nbsp;情：
-			<span class="commodity-intro">{{commodity.intro}}</span></p>
 
 
 		<p>针对此商品的评论：
@@ -68,7 +73,7 @@
 		<ul class="comment-list">
 		{% for comment in comments %}
 				<li class="comment-item">
-					用户<span class="comment-consumer">{{ comment.consumer }}</span>，
+					用户<span class="comment-consumer">{{ comment.consumer.nickName }}</span>，
 					评分<span class="comment-grade">{{ comment.grade }}</span>，
 					<span class="comment-message">{{ comment.message }}</span>，
 					发表于 <span class="comment-time">{{ comment.time }}</span>
@@ -76,7 +81,17 @@
 		{% endfor %}
 		</ul>
 
+
+		<p>
+			管理操作：
+			<a href="{% url 'edit_product' commodity.id %}">
+				编辑商品</a>
+			<a href="{% url 'delete_product' commodity.id %}">
+				删除商品</a>
+		</p>
 	</div>
+
+
 
 
 

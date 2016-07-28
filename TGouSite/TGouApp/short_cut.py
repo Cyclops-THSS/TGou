@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import *
 from django.conf import settings
 from django.contrib.auth.decorators import *
+from functools import wraps
 
 
 def render_to(template):
@@ -46,3 +47,27 @@ def group_required(group, login_url='auth_login', raise_exception=True):
 
 def belongTo(user, group):
     return user.groups.filter(name=group).exists()
+
+
+@render_to('error.html')
+def error(request, message=None):
+    if not message:
+        message = request.session.get('msg', None)
+        if message:
+            del request.session['msg']
+    if not message:
+        raise Http404
+    return {'message': message}
+
+
+def check_request(_lambda, message):
+    def outer(func):
+        @wraps(func)
+        def inner(request, *args, **kwargs):
+            ret = _lambda(request)
+            if ret == True:
+                return func(request, *args, **kwargs)
+            else:
+                return error(request, message if ret == False or not isinstance(ret, six.string_types) else ret)
+        return inner
+    return outer

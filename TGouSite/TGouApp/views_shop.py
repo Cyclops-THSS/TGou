@@ -24,19 +24,24 @@ def _view_shop(request, shop):
 
 
 def view_shop_id(request, id):
-    shop = Shop.objects.get(pk=id)
+    try:
+        shop = Shop.objects.get(pk=id)
+    except:
+        raise Http404
     return _view_shop(request, shop)
 
 
 def view_shop_name(request, name):
-    shop = Shop.objects.get(name=name)
+    try:
+        shop = Shop.objects.get(pk=id)
+    except:
+        raise Http404
     return _view_shop(request, shop)
 
 
 @group_required('ShopKeeper')
+@check_request(lambda r: not r.user.ShopKeeperProf.shop, 'You\'ve opened a shop')
 def new_shop(request):
-    if request.user.ShopKeeperProf.shop:
-        return error(request, 'You\'ve opened a shop')
     shop = Shop(createDate=datetime.now())
     shop.save()
     request.user.ShopKeeperProf.shop = shop
@@ -58,6 +63,7 @@ def edit_shop(request):
 
 
 @group_required('ShopKeeper')
+@check_request(lambda r: r.user.ShopKeeperProf.shop, 'You must open a shop first!')
 def delete_shop(request):
     request.user.ShopKeeperProf.shop.delete()
     return redirect('index')

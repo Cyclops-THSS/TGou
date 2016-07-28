@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+@admin.register(ShopCategory)
+class SCAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(CommodityCategory)
+class CCAdmin(admin.ModelAdmin):
+    pass
