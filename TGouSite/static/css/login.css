@@ -512,12 +512,12 @@ label{
 .edit_profile_content h1{
 	color: #556;
 	font-family: "Microsoft YaHei" !important;
-	margin-left: 200px;
+	margin-left: 17%;
 }
 
 .edit_profile_content form{
 	margin-top: 40px;
-	margin-left: 200px;
+	margin-left: 17%;
 }
 
 .edit_profile_content form p{
@@ -612,8 +612,8 @@ label{
 }
 
 .shop-content{
-	margin-top: 40px;
-	margin-left: 350px;
+	margin-top: 2%;
+	margin-left: 33%;
 	
 }
 
@@ -720,9 +720,8 @@ label{
 
 /*商品搜索*/
 .commodities-content{
-	margin-top: 40px;
-	margin-left: 350px;
-	height: 300px;
+	margin-top: 2%;
+	margin-left: 33%;
 }
 
 .search-commodities-pic{
@@ -807,11 +806,13 @@ label{
 }
 
 .vcart-content{
-	margin-left: 300px;
-	margin-top: 30px;
+	margin-left: 29%;
+	margin-top: 2%;
 }
 
-
+.profile-show-content{
+	margin-left: 35%;
+}
 
 
 

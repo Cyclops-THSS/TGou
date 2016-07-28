@@ -165,25 +165,26 @@ a {
    	right: 240px;
 }
 
+/*购物车*/
 .sn-container6{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 160px;
+   	right: 60px;
 }
 
 .sn-container7{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 110px;
+   	right: 140px;
 }
 
 .sn-container8{
 	display: inline-block;
     position: absolute;
     font-size: 16px;
-   	right: 60px;
+   	right: 190px;
 }
 
 .icon-ui{
