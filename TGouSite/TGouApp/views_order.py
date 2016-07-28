@@ -56,7 +56,16 @@ def view_order_id(request, id):
 
 @group_required('Consumer')
 def new_order(request):
-    pass
+    order = Order(consumer=request.user.ConsumerProf, shop=request.user.ConsumerProf.cart.cartitem_set.all()[
+                  0].commodity.shop, time=datetime.now())
+    order.save()
+    for item in request.user.ConsumerProf.cart.cartitem_set.all():
+        o = OrderItem(item, order)
+        order.price += float(item.quantity * item.commodity.price)
+        o.save()
+    order.save()
+    request.user.ConsumerProf.cart.cartitem_set.clear()
+    return redirect('edit_order', id=order.id)
 
 
 @login_required

@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import *
 from django.conf import settings
 from django.contrib.auth.decorators import *
+from functools import wraps
 
 
 def render_to(template):
@@ -42,6 +43,19 @@ def group_required(group, login_url='auth_login', raise_exception=True):
             raise PermissionDenied
         return False
     return user_passes_test(check_perms, login_url=login_url)
+
+
+def check_user(_lambda, message):
+    def outer(func):
+        @wraps(func)
+        def inner(request, *args, **kwargs):
+            if _lambda(request.user):
+                return func(request, *args, **kwargs)
+            else:
+                request.session['msg'] = message
+                return redirect(resolve_url('error'))
+        return inner
+    return outer
 
 
 def belongTo(user, group):

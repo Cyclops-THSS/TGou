@@ -32,5 +32,11 @@ def apply_grading(request):
 
 
 @render_to('error.html')
-def error(request, message):
+def error(request, message=None):
+    if not message:
+        message = request.session.get('msg', None)
+        if message:
+            del request.session['msg']
+    if not message:
+        raise PermissionDenied
     return {'message': message}
