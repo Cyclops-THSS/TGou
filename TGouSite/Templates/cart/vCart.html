@@ -30,8 +30,20 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load mathfilters %}
+{% block head %}
+<link rel="stylesheet" href="../../static/css/login.css" type="text/css"/>
+{% endblock %}
 {% block content %}
 
+<!--head-->
+	<div class="w">
+		<div id="logo">
+			<a href="{% url 'index' %}" clstag='clickcart|keycount|shoppingcartpop|logo'>
+				<img src="../../../static/images/tgou.jpg" alt="天狗" width="170" height="60" />
+			</a>
+			<b class="vcart-pic"></b>
+		</div>
+	</div>
 
 <script>
 {% autoescape off %}
@@ -39,14 +51,14 @@
 {% endautoescape %}
 </script>
 
-
+<div class="vcart-content">
 <h1>您的购物车</h1>
 
 <p>包含以下商品：</p>
 <table class="order-items">
 	<tr>
-		<th>商品</th>
-		<th>店铺</th>
+		<th>商品 </th>
+		<th>店铺 </th>
 		<th>数量</th>
 		<th>单价</th>
 		<th>小计</th>
@@ -112,6 +124,7 @@
 		前去结算</button>
 </form>
 
+</div>
 
 
 <script src="/static/jquery.min.js"></script>
