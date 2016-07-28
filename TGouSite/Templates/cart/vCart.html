@@ -40,13 +40,13 @@
 </script>
 
 
-<h1>{% trans "Your cart %}</h1>
+<h1>{% trans "Your cart" %}</h1>
 
 <p>{% trans "now contains the following commodities" %}：</p>
 <table class="order-items">
 	<tr>
 		<th>{% trans "Commodity" %}</th>
-		<th>{% trans "Shop %}</th>
+		<th>{% trans "Shop" %}</th>
 		<th>{% trans "Quantity" %}</th>
 		<th>{% trans "Unit price" %}</th>
 		<th>{% trans "Sub total" %}</th>
@@ -153,9 +153,9 @@
 				= parseFloat(document.TGou_cartJson[id][1])
 				* parseInt(document.TGou_cartJson[id][0]);
 			total += sub_total;
-			$('#commodity_id_'+id+' .sub-total').html(sub_total);
+			$('#commodity_id_'+id+' .sub-total').html(sub_total.toFixed(2));
 		});
-		$('#total-price').html(total);
+		$('#total-price').html(total.toFixed(2));
 	}
 	function cart_reload(){
 		document.location.reload();
